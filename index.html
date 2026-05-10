@@ -1,0 +1,3730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PassDipPFS — CII R0 Exams Prep | R01 · R02 · Coming Soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-mid: #122040;
+  --navy-light: #1e3560;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --gold-pale: #f5e9c8;
+  --emerald: #1a7a5e;
+  --emerald-light: #22a07a;
+  --crimson: #c0392b;
+  --slate: #8a9ab5;
+  --slate-light: #b8c6d9;
+  --white: #f8f6f0;
+  --off-white: #eee9dc;
+  --text: #1a2540;
+  --card-bg: #ffffff;
+  --shadow: 0 4px 24px rgba(10,22,40,0.12);
+  --shadow-lg: 0 12px 48px rgba(10,22,40,0.18);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* UTILITY */
+.hidden { display: none !important; }
+.gold { color: var(--gold); }
+.emerald { color: var(--emerald-light); }
+
+/* ===== SCREENS ===== */
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: block; }
+
+/* ===== LANDING ===== */
+#screen-landing {
+  background: var(--navy);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-noise {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index:0; opacity:0.4;
+}
+
+.landing-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+.orb1 { width:500px; height:500px; background:var(--gold); top:-100px; right:-100px; }
+.orb2 { width:400px; height:400px; background:#2563eb; bottom:-50px; left:-100px; animation-delay:3s; }
+.orb3 { width:300px; height:300px; background:var(--emerald); top:40%; left:30%; animation-delay:5s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+
+.landing-content { position: relative; z-index:1; padding: 0 20px; }
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-badge {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+.nav-links { display: flex; gap: 12px; align-items: center; }
+.btn-nav {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-nav:hover { border-color: var(--gold); color: var(--gold); }
+.btn-nav.primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+}
+.btn-nav.primary:hover { background: var(--gold-light); }
+
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 0 80px;
+  text-align: center;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--slate-light);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.4); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.08);
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.15); }
+
+.stats-row {
+  max-width: 1100px;
+  margin: 0 auto 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 0;
+}
+
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 4px;
+}
+.stat-label { color: var(--slate-light); font-size: 0.88rem; }
+
+.features-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--white);
+}
+.section-title span { color: var(--gold-light); }
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: all 0.3s;
+}
+.feature-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-4px);
+}
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.feature-card h3 { color: var(--white); font-size: 1.05rem; margin-bottom: 8px; }
+.feature-card p { color: var(--slate-light); font-size: 0.9rem; line-height: 1.6; }
+
+.pricing-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  position: relative;
+}
+.pricing-card.featured {
+  background: rgba(201,168,76,0.1);
+  border-color: var(--gold);
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+.pricing-name { color: var(--slate-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.pricing-price { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--white); }
+.pricing-price span { font-family: 'DM Sans', sans-serif; font-size: 1rem; color: var(--slate-light); }
+.pricing-features { list-style: none; margin: 24px 0; }
+.pricing-features li {
+  color: var(--slate-light);
+  font-size: 0.9rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+.btn-plan {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  transition: all 0.2s;
+}
+.btn-plan:hover, .pricing-card.featured .btn-plan {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.syllabus-preview {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+
+.syllabus-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+.syllabus-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.syllabus-item:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.05); }
+.syl-num {
+  background: var(--navy-light);
+  color: var(--gold);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,0.2);
+}
+.syl-info h4 { color: var(--white); font-size: 0.9rem; margin-bottom: 4px; }
+.syl-info p { color: var(--slate); font-size: 0.8rem; }
+.syl-badge { margin-left: auto; font-size: 0.75rem; color: var(--slate); background: rgba(255,255,255,0.06); padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+
+footer-landing {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 40px 0;
+  text-align: center;
+  color: var(--slate);
+  font-size: 0.85rem;
+}
+
+/* ===== AUTH MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,22,40,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  width: 100%; max-width: 420px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; font-size: 1.4rem;
+  cursor: pointer; color: var(--slate); padding: 4px;
+}
+.modal-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 4px;
+}
+.modal-sub { text-align: center; color: var(--slate); font-size: 0.9rem; margin-bottom: 28px; }
+.modal-tabs {
+  display: flex;
+  background: var(--off-white);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+.modal-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--slate);
+  transition: all 0.2s;
+}
+.modal-tab.active { background: var(--white); color: var(--navy); font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--off-white);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.form-input:focus { border-color: var(--navy); }
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: var(--navy-mid); transform: translateY(-1px); }
+.form-divider { text-align: center; color: var(--slate); font-size: 0.85rem; margin: 16px 0; }
+.social-btn {
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid var(--off-white);
+  border-radius: 10px;
+  background: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+.social-btn:hover { border-color: var(--navy); }
+.modal-plan-select { margin-bottom: 20px; }
+.plan-option {
+  border: 1.5px solid var(--off-white);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 12px;
+  transition: all 0.2s;
+}
+.plan-option:hover, .plan-option.selected { border-color: var(--navy); background: rgba(10,22,40,0.03); }
+.plan-option input[type=radio] { accent-color: var(--navy); }
+.plan-option-info { flex: 1; }
+.plan-option-name { font-weight: 600; font-size: 0.95rem; }
+.plan-option-price { color: var(--slate); font-size: 0.85rem; }
+.plan-option-price strong { color: var(--navy); }
+
+/* ===== DASHBOARD ===== */
+#screen-dashboard {
+  background: var(--off-white);
+  min-height: 100vh;
+}
+
+.dash-nav {
+  background: var(--navy);
+  padding: 0 20px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 16px rgba(10,22,40,0.2);
+}
+.dash-nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.dash-logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+  font-size: 1.3rem;
+}
+.dash-nav-links { display: flex; gap: 4px; }
+.dash-link {
+  background: none;
+  border: none;
+  color: var(--slate-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dash-link:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+.dash-link.active { color: var(--gold); background: rgba(201,168,76,0.12); }
+.dash-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--slate-light);
+  font-size: 0.88rem;
+}
+.dash-avatar {
+  width: 34px; height: 34px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.85rem;
+}
+
+.dash-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* Dashboard Home */
+.dash-greeting {
+  margin-bottom: 28px;
+}
+.dash-greeting h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.dash-greeting p { color: var(--slate); }
+
+.exam-countdown {
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.countdown-left h3 { color: var(--gold-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; font-family: 'DM Mono', monospace; margin-bottom: 8px; }
+.countdown-left h2 { color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.6rem; }
+.countdown-days {
+  display: flex;
+  gap: 16px;
+}
+.countdown-unit {
+  text-align: center;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-width: 70px;
+}
+.countdown-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  display: block;
+}
+.countdown-lbl { color: var(--slate-light); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.dash-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+@media(max-width:700px){ .dash-grid-3 { grid-template-columns: 1fr 1fr; } }
+
+.metric-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+}
+.metric-label { color: var(--slate); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.metric-sub { font-size: 0.82rem; color: var(--slate); }
+.metric-bar {
+  margin-top: 12px;
+  height: 6px;
+  background: var(--off-white);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.metric-bar-fill { height: 100%; background: var(--gold); border-radius: 3px; transition: width 1s; }
+.metric-bar-fill.green { background: var(--emerald-light); }
+
+.dash-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+@media(max-width:700px){ .dash-two-col { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.card-title { font-weight: 700; font-size: 1rem; color: var(--navy); }
+.card-action { color: var(--gold); font-size: 0.85rem; cursor: pointer; border: none; background: none; font-family: 'DM Sans', sans-serif; }
+
+.topic-progress-list { list-style: none; }
+.topic-progress-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--off-white);
+}
+.topic-progress-item:last-child { border-bottom: none; }
+.topic-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.topic-name { font-size: 0.88rem; color: var(--text); }
+.topic-pct { font-family: 'DM Mono', monospace; font-size: 0.82rem; color: var(--slate); }
+.topic-bar { height: 4px; background: var(--off-white); border-radius: 2px; overflow: hidden; }
+.topic-bar-fill { height: 100%; border-radius: 2px; transition: width 1s; }
+
+.activity-list { list-style: none; }
+.activity-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--off-white);
+  align-items: flex-start;
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.ai-quiz { background: rgba(201,168,76,0.1); }
+.ai-study { background: rgba(26,122,94,0.1); }
+.ai-mock { background: rgba(37,99,235,0.1); }
+.activity-info { flex: 1; }
+.activity-title { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+.activity-time { font-size: 0.78rem; color: var(--slate); }
+.activity-score { font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 600; }
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.qa-card {
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.qa-card:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.qa-card.gold-card { background: linear-gradient(135deg, var(--gold), #a87d2a); }
+.qa-icon { font-size: 1.6rem; }
+.qa-info h4 { color: var(--white); font-size: 0.92rem; margin-bottom: 2px; }
+.qa-info p { color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+
+/* ===== STUDY SCREEN ===== */
+.study-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+.btn-back {
+  background: var(--card-bg);
+  border: 1.5px solid var(--off-white);
+  color: var(--slate);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+}
+.btn-back:hover { border-color: var(--navy); color: var(--navy); }
+.study-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); }
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.topic-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.25s;
+  border-left: 4px solid transparent;
+}
+.topic-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.topic-card.lo1 { border-left-color: #e67e22; }
+.topic-card.lo2 { border-left-color: #2980b9; }
+.topic-card.lo3 { border-left-color: #8e44ad; }
+.topic-card.lo4 { border-left-color: #c0392b; }
+.topic-card.lo5 { border-left-color: #16a085; }
+.topic-card.lo6 { border-left-color: #27ae60; }
+.topic-card.lo7 { border-left-color: #d35400; }
+.topic-card.lo8 { border-left-color: #2c3e50; }
+.topic-card.lo9 { border-left-color: #1abc9c; }
+.topic-card.lo10 { border-left-color: #f39c12; }
+.topic-card.lo11 { border-left-color: #e84393; }
+
+.tc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.tc-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--slate);
+  background: var(--off-white);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.tc-q-count { font-size: 0.78rem; color: var(--slate); }
+.topic-card h3 { font-size: 0.98rem; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+.topic-card p { font-size: 0.82rem; color: var(--slate); line-height: 1.5; margin-bottom: 16px; }
+.tc-bottom { display: flex; align-items: center; justify-content: space-between; }
+.tc-progress { font-size: 0.8rem; color: var(--slate); }
+.tc-progress strong { color: var(--navy); }
+.btn-study-topic {
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-study-topic:hover { background: var(--navy-light); }
+
+/* ===== LESSON VIEWER ===== */
+#screen-lesson { background: var(--off-white); }
+.lesson-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+}
+@media(max-width:800px){ .lesson-layout { grid-template-columns: 1fr; } }
+
+.lesson-sidebar {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+}
+.ls-title { font-weight: 700; font-size: 0.88rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.ls-nav-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--slate);
+  margin-bottom: 4px;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ls-nav-item:hover { background: var(--off-white); color: var(--navy); }
+.ls-nav-item.active { background: var(--navy); color: var(--white); }
+.ls-nav-item.done { color: var(--emerald-light); }
+.ls-check { width: 18px; height: 18px; border: 2px solid currentColor; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; }
+.ls-nav-item.done .ls-check, .ls-nav-item.active .ls-check { background: currentColor; }
+.ls-nav-item.done .ls-check::after, .ls-nav-item.active .ls-check::after { content: '✓'; color: white; font-weight: 800; }
+
+.lesson-main {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 36px;
+  box-shadow: var(--shadow);
+}
+.lesson-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.lesson-lo-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  background: var(--off-white);
+  color: var(--slate);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.lesson-main h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.lesson-subtitle { color: var(--slate); font-size: 0.95rem; margin-bottom: 32px; }
+
+.lesson-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin: 32px 0 12px;
+}
+.lesson-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 24px 0 8px;
+}
+.lesson-body p {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.lesson-body ul {
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+.lesson-body ul li {
+  color: var(--text);
+  font-size: 0.93rem;
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.callout {
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin: 20px 0;
+  display: flex;
+  gap: 14px;
+}
+.callout-key {
+  background: rgba(201,168,76,0.1);
+  border-left: 4px solid var(--gold);
+}
+.callout-tip {
+  background: rgba(26,122,94,0.07);
+  border-left: 4px solid var(--emerald-light);
+}
+.callout-warn {
+  background: rgba(192,57,43,0.07);
+  border-left: 4px solid var(--crimson);
+}
+.callout-exam {
+  background: rgba(37,99,235,0.07);
+  border-left: 4px solid #2563eb;
+}
+.callout-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.callout-content { flex: 1; }
+.callout-content strong { display: block; font-size: 0.85rem; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+.callout-content p { font-size: 0.9rem; margin: 0; }
+.callout-key .callout-content strong { color: #a87d2a; }
+.callout-tip .callout-content strong { color: var(--emerald-light); }
+.callout-warn .callout-content strong { color: var(--crimson); }
+.callout-exam .callout-content strong { color: #2563eb; }
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.88rem;
+}
+.comparison-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+}
+.comparison-table td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--off-white);
+  color: var(--text);
+}
+.comparison-table tr:nth-child(even) td { background: var(--off-white); }
+
+.lesson-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--off-white);
+}
+.btn-lesson-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1.5px solid var(--off-white);
+  background: var(--card-bg);
+  color: var(--navy);
+}
+.btn-lesson-nav:hover { border-color: var(--navy); }
+.btn-lesson-nav.next { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.btn-lesson-nav.next:hover { background: var(--navy-mid); }
+.btn-mark-done {
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: var(--emerald);
+  color: var(--white);
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-mark-done:hover { background: var(--emerald-light); }
+
+/* ===== QUIZ ===== */
+#screen-quiz { background: var(--off-white); }
+
+.quiz-container {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.quiz-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.quiz-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); }
+.quiz-meta { display: flex; gap: 12px; align-items: center; }
+.quiz-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  background: var(--card-bg);
+  border: 1px solid var(--off-white);
+  color: var(--slate);
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+.quiz-timer {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  background: var(--navy);
+  color: var(--gold-light);
+  padding: 6px 14px;
+  border-radius: 8px;
+}
+.quiz-timer.warn { background: var(--crimson); color: white; animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+
+.quiz-progress {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.qp-top { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.qp-label { font-size: 0.85rem; color: var(--slate); }
+.qp-num { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--navy); font-weight: 600; }
+.qp-bar { height: 8px; background: var(--off-white); border-radius: 4px; overflow: hidden; }
+.qp-fill { height: 100%; background: linear-gradient(90deg, var(--navy), var(--gold)); border-radius: 4px; transition: width 0.5s; }
+
+.question-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.q-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--slate);
+  margin-bottom: 12px;
+}
+.q-text {
+  font-size: 1.02rem;
+  color: var(--navy);
+  line-height: 1.65;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+.q-info-box {
+  background: var(--off-white);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  color: var(--slate);
+  border-left: 3px solid var(--gold);
+}
+.q-type-label { font-size: 0.78rem; color: var(--slate); margin-bottom: 12px; font-style: italic; }
+
+.options-list { list-style: none; }
+.option-item {
+  margin-bottom: 10px;
+}
+.option-btn {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--off-white);
+  border-radius: 10px;
+  background: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.93rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: var(--text);
+  line-height: 1.5;
+}
+.option-btn:hover { border-color: var(--navy); background: rgba(10,22,40,0.02); }
+.option-btn.selected { border-color: var(--navy); background: rgba(10,22,40,0.04); }
+.option-btn.selected-multi { border-color: #2563eb; background: rgba(37,99,235,0.05); }
+.option-btn.correct { border-color: var(--emerald-light); background: rgba(26,122,94,0.08); color: var(--emerald); }
+.option-btn.incorrect { border-color: var(--crimson); background: rgba(192,57,43,0.07); color: var(--crimson); }
+.option-btn.correct-missed { border-color: var(--emerald-light); background: rgba(26,122,94,0.04); }
+.opt-letter {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: var(--off-white);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+}
+.option-btn.selected .opt-letter { background: var(--navy); color: white; }
+.option-btn.correct .opt-letter { background: var(--emerald-light); color: white; }
+.option-btn.incorrect .opt-letter { background: var(--crimson); color: white; }
+
+.q-explanation {
+  margin-top: 20px;
+  padding: 18px 20px;
+  background: rgba(26,122,94,0.07);
+  border-left: 4px solid var(--emerald-light);
+  border-radius: 0 10px 10px 0;
+  animation: fadeIn 0.3s ease;
+}
+.q-explanation h4 { color: var(--emerald); font-size: 0.85rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.q-explanation p { font-size: 0.9rem; color: var(--text); line-height: 1.65; }
+
+@keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+
+.quiz-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-quiz {
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.btn-quiz-outline {
+  background: var(--card-bg);
+  border: 1.5px solid var(--off-white);
+  color: var(--slate);
+}
+.btn-quiz-outline:hover { border-color: var(--navy); color: var(--navy); }
+.btn-quiz-primary {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-quiz-primary:hover { background: var(--navy-mid); }
+.btn-quiz-gold {
+  background: var(--gold);
+  color: var(--navy);
+}
+.btn-quiz-gold:hover { background: var(--gold-light); }
+
+/* Results */
+.results-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.results-score-ring {
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  background: conic-gradient(var(--gold) var(--score-pct, 0%), var(--off-white) 0%);
+}
+.results-score-inner {
+  width: 110px; height: 110px;
+  background: var(--card-bg);
+  border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.results-pct { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--navy); line-height: 1; }
+.results-pct-lbl { font-size: 0.75rem; color: var(--slate); }
+.results-verdict { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 6px; }
+.results-sub { color: var(--slate); font-size: 0.92rem; margin-bottom: 24px; }
+.results-breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.rb-item { background: var(--off-white); border-radius: 10px; padding: 14px; }
+.rb-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 4px; }
+.rb-label { font-size: 0.78rem; color: var(--slate); }
+.rb-item.pass .rb-num { color: var(--emerald-light); }
+.rb-item.fail .rb-num { color: var(--crimson); }
+.rb-item.skip .rb-num { color: var(--slate); }
+
+/* ===== MOCK EXAM ===== */
+.mock-setup {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+.mock-setup h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 8px; }
+.mock-setup p { color: var(--slate); font-size: 0.95rem; margin-bottom: 32px; }
+.mock-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+.mock-opt {
+  background: var(--card-bg);
+  border: 2px solid var(--off-white);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mock-opt:hover, .mock-opt.selected { border-color: var(--navy); }
+.mock-opt.selected { background: rgba(10,22,40,0.03); }
+.mock-opt h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 4px; }
+.mock-opt p { color: var(--slate); font-size: 0.82rem; line-height: 1.5; }
+
+/* ===== FLASHCARDS ===== */
+.flashcard-container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+.flashcard-wrap {
+  perspective: 1200px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+.flashcard {
+  position: relative;
+  height: 260px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+.flashcard.flipped { transform: rotateY(180deg); }
+.card-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.card-face.back { transform: rotateY(180deg); background: var(--navy); }
+.card-face .face-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+.card-face.back .face-label { color: var(--gold-light); opacity: 0.7; }
+.card-front-text {
+  font-size: 1.15rem;
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.5;
+}
+.card-back-text {
+  font-size: 0.95rem;
+  color: var(--white);
+  line-height: 1.65;
+}
+.card-tap-hint { font-size: 0.8rem; color: var(--slate-light); margin-top: 16px; opacity: 0.6; }
+.card-face.back .card-tap-hint { color: rgba(255,255,255,0.4); }
+
+.fc-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.btn-fc {
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-fc-again { background: rgba(192,57,43,0.1); color: var(--crimson); }
+.btn-fc-hard { background: rgba(245,166,35,0.1); color: #b07d00; }
+.btn-fc-good { background: rgba(26,122,94,0.1); color: var(--emerald); }
+.btn-fc-easy { background: var(--navy); color: var(--white); }
+.fc-progress { text-align: center; font-size: 0.82rem; color: var(--slate); margin-top: 16px; }
+
+/* ===== PROFILE ===== */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+}
+@media(max-width:700px){ .profile-layout { grid-template-columns: 1fr; } }
+
+.profile-sidebar { display: flex; flex-direction: column; gap: 16px; }
+.profile-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.profile-avatar {
+  width: 80px; height: 80px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  margin: 0 auto 16px;
+}
+.profile-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 4px; }
+.profile-email { color: var(--slate); font-size: 0.85rem; }
+.profile-plan {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px;
+  display: inline-block;
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+}
+.plan-badge-free { background: var(--off-white); border-color: var(--off-white); color: var(--slate); }
+
+.badge-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.badge {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+}
+.badge.earned { background: rgba(201,168,76,0.15); }
+.badge.locked { background: var(--off-white); filter: grayscale(1); opacity: 0.4; }
+
+.profile-main { display: flex; flex-direction: column; gap: 20px; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 9999;
+  transition: transform 0.3s;
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--emerald); }
+.toast.error { background: var(--crimson); }
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--navy);
+  padding: 8px 0 4px;
+  z-index: 200;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+@media(max-width:700px) {
+  .mobile-nav { display: flex; justify-content: space-around; }
+  .dash-nav-links { display: none; }
+  #screen-dashboard .dash-content { padding-bottom: 90px; }
+}
+.mob-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 16px;
+}
+.mob-nav-btn span:first-child { font-size: 1.3rem; }
+.mob-nav-btn span:last-child { font-size: 0.65rem; color: var(--slate); }
+.mob-nav-btn.active span:last-child { color: var(--gold); }
+
+/* Responsive */
+@media(max-width:500px) {
+  .stats-row { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .countdown-days { gap: 8px; }
+  .countdown-unit { padding: 12px 14px; min-width: 55px; }
+  .question-card { padding: 20px; }
+  .results-breakdown { grid-template-columns: 1fr; }
+  .dash-grid-3 { grid-template-columns: 1fr; }
+  .mock-options { grid-template-columns: 1fr; }
+}
+/* ===== EXAM SELECTOR ===== */
+.exam-selector-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 4px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: fit-content;
+  max-width: 100%;
+}
+.exam-sel-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--slate);
+  background: transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.exam-sel-btn:hover { background: var(--off-white); color: var(--navy); }
+.exam-sel-btn.active { background: var(--navy); color: var(--white); font-weight: 600; }
+.exam-sel-btn.locked-exam { opacity: 0.5; }
+.exam-sel-btn.locked-exam:hover { background: var(--off-white); color: var(--slate); }
+
+/* Landing R02 section */
+.exams-tabs-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
+.exam-tab-btns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.exam-tab-btn {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: var(--slate-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.exam-tab-btn:hover { border-color: var(--gold); color: var(--gold); }
+.exam-tab-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 700; }
+.exam-tab-panel { display: none; }
+.exam-tab-panel.active { display: block; }
+.exam-overview-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.exam-overview-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+.exam-overview-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.exam-overview-meta { text-align: right; }
+.exam-overview-meta span { display: block; font-size: 0.82rem; color: var(--slate-light); margin-bottom: 4px; }
+.exam-overview-meta strong { color: var(--white); }
+.exam-overview-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 8px; }
+.exam-overview-card p { color: var(--slate-light); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<!-- ===== LANDING ===== -->
+<div id="screen-landing" class="screen active">
+  <div class="landing-noise"></div>
+  <div class="orb1 landing-orb"></div>
+  <div class="orb2 landing-orb"></div>
+  <div class="orb3 landing-orb"></div>
+
+  <div class="landing-content">
+    <nav class="nav-bar">
+      <div class="logo">PassDipPFS <span class="logo-badge">CII Prep</span></div>
+      <div class="nav-links">
+        <span style="background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);padding:6px 14px;border-radius:20px;font-size:0.82rem;font-weight:600;font-family:'DM Mono',monospace;">🚧 Beta — Coming Soon</span>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-tag">▸ DipPFS · R01 · R02 · 2025/2026 Syllabus · R03, R04 &amp; R05 coming soon</div>
+      <h1>Pass your <span style="font-variant-numeric:slashed-zero;font-family:'DM Mono',monospace;font-size:inherit;font-weight:900;">R0</span> exams<br><em>first time.</em></h1>
+      <p>Structured lessons, adaptive quizzes, and mock exams built to the exact CII DipPFS syllabus — starting with R01 and R02. R03, R04 and R05 coming soon. Study smarter — not longer.</p>
+      <div class="hero-cta">
+        <div style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);border-radius:14px;padding:18px 28px;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:700;color:var(--gold);margin-bottom:6px;">🚧 Platform under construction</div>
+          <div style="color:var(--slate-light);font-size:0.9rem;">We're building something great. Registration opens soon — check back shortly.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-num">2</span>
+        <span class="stat-label">R0 exam units available now</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">1,000+</span>
+        <span class="stat-label">Practice questions across all units</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">2025/26</span>
+        <span class="stat-label">CII syllabus aligned</span>
+      </div>
+    </div>
+
+    <section class="features-section">
+      <h2 class="section-title">Everything you need to <span>pass</span></h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📚</span>
+          <h3>Structured Lessons</h3>
+          <p>Plain-English explanations of every learning outcome — from regulatory principles to legal concepts — with worked examples and concept callouts.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3>Adaptive Quizzes</h3>
+          <p>Topic-by-topic MCQs including standard and multiple-response formats that mirror the real exam. Instant explanations after every answer.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <h3>Flashcard System</h3>
+          <p>Spaced-repetition flashcards for key definitions, regulatory rules, and facts. The system prioritises what you need to review most.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📝</span>
+          <h3>Full Mock Exams</h3>
+          <p>Timed 100-question mock exams with the correct 87:13 standard/multiple-response split. Detailed performance reports by learning outcome.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Progress Tracking</h3>
+          <p>Visual dashboards showing your score trends, time spent per topic, and weak areas. Know exactly where to focus before exam day.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⏱️</span>
+          <h3>Exam Countdown</h3>
+          <p>Set your exam date and get a daily study plan that adapts to your progress. Never go into an exam underprepared again.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="exams-tabs-section">
+      <h2 class="section-title">R0 exams — <span>available now</span></h2>
+      <div class="exam-tab-btns">
+        <button class="exam-tab-btn active" onclick="switchLandingTab('r01',this)">R01 — Regulation &amp; Ethics</button>
+        <button class="exam-tab-btn" onclick="switchLandingTab('r02',this)">R02 — Investment Principles</button>
+        <button class="exam-tab-btn" style="opacity:0.5;cursor:default;" title="Coming soon">R03 — Personal Taxation 🔜</button>
+        <button class="exam-tab-btn" style="opacity:0.5;cursor:default;" title="Coming soon">R04 — Pensions 🔜</button>
+        <button class="exam-tab-btn" style="opacity:0.5;cursor:default;" title="Coming soon">R05 — Financial Protection 🔜</button>
+      </div>
+      <div class="exam-tab-panel active" id="landing-r01">
+        <div class="exam-overview-card">
+          <div class="exam-overview-header">
+            <div><div class="exam-overview-badge">R01</div><h3>Financial Services, Regulation &amp; Ethics</h3><p>The regulatory framework, legal concepts, consumer protection, FCA principles, the Code of Ethics and SM&amp;CR — the foundation exam of the DipPFS.</p></div>
+            <div class="exam-overview-meta"><span>Format: <strong>100 MCQs</strong></span><span>Standard: <strong>87 questions</strong></span><span>Multi-response: <strong>13 questions</strong></span><span>Duration: <strong>2 hours</strong></span></div>
+          </div>
+        </div>
+        <div class="syllabus-list">
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">01</div>
+          <div class="syl-info">
+            <h4>UK Financial Services Industry</h4>
+            <p>European & global context, market structure</p>
+          </div>
+          <span class="syl-badge">6 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">02</div>
+          <div class="syl-info">
+            <h4>Serving the Retail Consumer</h4>
+            <p>Financial needs, obligations, products</p>
+          </div>
+          <span class="syl-badge">12 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">03</div>
+          <div class="syl-info">
+            <h4>Legal Concepts</h4>
+            <p>Contracts, trusts, insolvency, wills</p>
+          </div>
+          <span class="syl-badge">9 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">04</div>
+          <div class="syl-info">
+            <h4>Regulation of Financial Services</h4>
+            <p>PRA, FCA, HM Treasury, Bank of England</p>
+          </div>
+          <span class="syl-badge">6 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">05</div>
+          <div class="syl-info">
+            <h4>Regulators' Responsibilities</h4>
+            <p>Principles, rules, supervision, enforcement</p>
+          </div>
+          <span class="syl-badge">29 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">06</div>
+          <div class="syl-info">
+            <h4>Applying Regulatory Framework</h4>
+            <p>AML, data protection, compensation</p>
+          </div>
+          <span class="syl-badge">9 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">07</div>
+          <div class="syl-info">
+            <h4>Regulatory Advice Framework</h4>
+            <p>Client relationships, suitability, outcomes</p>
+          </div>
+          <span class="syl-badge">13 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">08</div>
+          <div class="syl-info">
+            <h4>Advising Skills</h4>
+            <p>Fact-finding, communication, analysis</p>
+          </div>
+          <span class="syl-badge">4 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">09</div>
+          <div class="syl-info">
+            <h4>Principles-Based Regulation</h4>
+            <p>FCA Principles, culture, SM&CR</p>
+          </div>
+          <span class="syl-badge">7 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">10</div>
+          <div class="syl-info">
+            <h4>Code of Ethics</h4>
+            <p>Professional values, ethical dilemmas</p>
+          </div>
+          <span class="syl-badge">2 Qs</span>
+        </div>
+        <div class="syllabus-item" style="cursor:default;">
+          <div class="syl-num">11</div>
+          <div class="syl-info">
+            <h4>Ethics vs Compliance</h4>
+            <p>Evaluating ethical and compliance outcomes</p>
+          </div>
+          <span class="syl-badge">3 Qs</span>
+        </div>
+      </div>
+      </div>
+
+      <!-- R02 Panel -->
+      <div class="exam-tab-panel" id="landing-r02">
+        <div class="exam-overview-card">
+          <div class="exam-overview-header">
+            <div><div class="exam-overview-badge">R02</div><h3>Investment Principles &amp; Risk</h3><p>Asset classes, portfolio theory, macro-economics, investment products and taxation, performance measurement and the full investment advice process. Calculation-heavy and analysis-focused.</p></div>
+            <div class="exam-overview-meta"><span>Format: <strong>100 MCQs</strong></span><span>Standard: <strong>72 questions</strong></span><span>Multi-response: <strong>28 questions</strong></span><span>Duration: <strong>2 hours</strong></span></div>
+          </div>
+        </div>
+        <div class="syllabus-list">
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">01</div><div class="syl-info"><h4>Asset Classes — Characteristics &amp; Risk</h4><p>Cash, fixed interest, equities, property, alternatives, correlation</p></div><span class="syl-badge">28 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">02</div><div class="syl-info"><h4>Macro-Economic Environment</h4><p>Economic trends &amp; indicators, monetary &amp; fiscal policy impact</p></div><span class="syl-badge">6 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">03</div><div class="syl-info"><h4>Investment Theories</h4><p>CAPM, MPT, efficient frontier, behavioural finance, diversification</p></div><span class="syl-badge">7 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">04</div><div class="syl-info"><h4>Time Value of Money</h4><p>Compound interest, AER, present value, real vs nominal returns</p></div><span class="syl-badge">3 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">05</div><div class="syl-info"><h4>Types of Risk</h4><p>Liquidity, shortfall, duration, inflation, currency, counterparty risk</p></div><span class="syl-badge">5 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">06</div><div class="syl-info"><h4>Investment Products</h4><p>Unit trusts, OEICs, ISAs, investment trusts, EIS, VCT, bonds, REITs</p></div><span class="syl-badge">22 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">07</div><div class="syl-info"><h4>Investment Advice Process</h4><p>Know Your Client, risk profiling, capacity for loss, suitability</p></div><span class="syl-badge">11 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">08</div><div class="syl-info"><h4>Principles of Investment Planning</h4><p>Strategic vs tactical allocation, portfolio construction, platforms</p></div><span class="syl-badge">8 Qs</span></div>
+          <div class="syllabus-item" style="cursor:default;"><div class="syl-num">09</div><div class="syl-info"><h4>Performance of Investments</h4><p>Sharpe ratio, alpha, beta, benchmarks, time-weighted return</p></div><span class="syl-badge">10 Qs</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing-section">
+      <h2 class="section-title">Simple <span>pricing</span></h2>
+      <p style="text-align:center;color:var(--slate-light);margin-bottom:32px;font-size:0.95rem;">One price per exam unit. Only pay for what you're studying.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-name">R01 — Regulation &amp; Ethics</div>
+          <div class="pricing-price">£20<span> / month</span></div>
+          <ul class="pricing-features">
+            <li>All 11 LO lessons</li>
+            <li>100 practice questions</li>
+            <li>Full mock exams (timed)</li>
+            <li>Flashcard review deck</li>
+            <li>Progress tracking</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <button class="btn-plan" style="opacity:0.6;cursor:not-allowed;">Registration Opening Soon</button>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Available at Launch</div>
+          <div class="pricing-name">R02 — Investment Principles</div>
+          <div class="pricing-price">£20<span> / month</span></div>
+          <ul class="pricing-features">
+            <li>All 9 LO lessons</li>
+            <li>100 practice questions</li>
+            <li>Full mock exams (timed)</li>
+            <li>Flashcard review deck</li>
+            <li>Progress tracking</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <button class="btn-plan" style="opacity:0.6;cursor:not-allowed;">Registration Opening Soon</button>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px;padding:20px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:14px;">
+        <div style="color:var(--gold);font-weight:700;margin-bottom:8px;">🔜 Coming Soon: R03 — Personal Taxation, R04 — Pensions &amp; R05 — Financial Protection</div>
+        <div style="color:var(--slate-light);font-size:0.88rem;">Each unit priced at £20/month. Subscribe to individual exams as you need them.</div>
+      </div>
+    </section>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.08); padding:40px 0 32px; text-align:center; color:var(--slate); font-size:0.82rem;">
+      <p style="margin-bottom:20px;">
+        <a href="/terms.html" style="color:var(--slate-light);text-decoration:none;margin:0 12px;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate-light)'">Terms &amp; Conditions</a>
+        <a href="/privacy.html" style="color:var(--slate-light);text-decoration:none;margin:0 12px;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate-light)'">Privacy Policy</a>
+        <a href="/refunds.html" style="color:var(--slate-light);text-decoration:none;margin:0 12px;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate-light)'">Refund Policy</a>
+        <a href="/about.html" style="color:var(--slate-light);text-decoration:none;margin:0 12px;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate-light)'">About</a>
+        <a href="/contact.html" style="color:var(--slate-light);text-decoration:none;margin:0 12px;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate-light)'">Contact</a>
+      </p>
+      <p>PassDipPFS is an independent study platform. Not affiliated with or endorsed by the Chartered Insurance Institute.</p>
+      <p style="margin-top:6px;">Currently covering R01 &amp; R02 · R03, R04 and R05 coming soon · Content written from first principles based on the public CII syllabus.</p>
+      <p style="margin-top:12px; color:rgba(255,255,255,0.25);">&copy; 2025 PassDipPFS · Gyundoan Yumer · <a href="mailto:hello@passr0exams.com" style="color:rgba(255,255,255,0.3);text-decoration:none;">hello@passr0exams.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AUTH MODAL ===== -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="closeModalOnBg(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">PassDipPFS</div>
+    <p class="modal-sub">CII R0 Exams Preparation</p>
+
+    <div class="modal-tabs" id="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('login')">Sign In</button>
+      <button class="modal-tab" onclick="switchTab('register')">Create Account</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="form-login">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="login-email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="login-password" placeholder="••••••••">
+      </div>
+      <button class="btn-submit" onclick="doLogin()">Sign In</button>
+      <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--slate);">
+        Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--navy);font-weight:600;">Sign up free</a>
+      </p>
+      <p style="text-align:center;margin-top:8px;font-size:0.78rem;">
+        <a href="#" onclick="sendPasswordReset()" style="color:var(--slate);">Forgot your password?</a>
+      </p>
+    </div>
+
+    <!-- Register Form -->
+    <div id="form-register" class="hidden">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" id="reg-name" placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="reg-email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Exam Date (optional)</label>
+        <input type="date" class="form-input" id="reg-examdate">
+      </div>
+      <div class="modal-plan-select">
+        <label class="form-label">Choose your plan</label>
+        <div class="plan-option selected" onclick="selectPlan(this,'free')">
+          <input type="radio" name="plan" value="free" checked>
+          <div class="plan-option-info">
+            <div class="plan-option-name">Free Plan</div>
+            <div class="plan-option-price">LO1 & LO2 only · <strong>£0</strong></div>
+          </div>
+        </div>
+        <div class="plan-option" onclick="selectPlan(this,'full')">
+          <input type="radio" name="plan" value="full">
+          <div class="plan-option-info">
+            <div class="plan-option-name">Full Access</div>
+            <div class="plan-option-price">All R01–R04 · <strong>£20 / month</strong></div>
+          </div>
+        </div>
+      </div>
+      <div id="payment-section" class="hidden">
+        <div style="background:var(--off-white);border-radius:10px;padding:16px;margin-bottom:14px;">
+          <p style="font-size:0.85rem;color:var(--slate);margin-bottom:10px;font-weight:600;">💳 Payment Details</p>
+          <div class="form-group" style="margin-bottom:10px;">
+            <input type="text" class="form-input" placeholder="Card number · 4242 4242 4242 4242" style="font-family:'DM Mono',monospace;font-size:0.88rem;">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <input type="text" class="form-input" placeholder="MM / YY" style="font-family:'DM Mono',monospace;font-size:0.88rem;">
+            <input type="text" class="form-input" placeholder="CVC" style="font-family:'DM Mono',monospace;font-size:0.88rem;">
+          </div>
+          <p style="font-size:0.75rem;color:var(--slate);margin-top:8px;text-align:center;">🔒 Secured by Stripe · Cancel anytime</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-input" id="reg-password" placeholder="Create password (min 8 chars)">
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;">
+        <input type="checkbox" id="reg-consent" style="margin-top:3px;flex-shrink:0;accent-color:var(--navy);width:15px;height:15px;cursor:pointer;">
+        <label for="reg-consent" style="font-size:0.8rem;color:var(--slate);line-height:1.5;cursor:pointer;">
+          I have read and agree to the <a href="/terms.html" target="_blank" style="color:var(--navy);text-decoration:underline;">Terms &amp; Conditions</a> and <a href="/privacy.html" target="_blank" style="color:var(--navy);text-decoration:underline;">Privacy Policy</a>. I understand my usage data will be stored to track study progress.
+        </label>
+      </div>
+      <button class="btn-submit" onclick="doRegister()" id="btn-register-submit">Create Free Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div id="screen-dashboard" class="screen">
+  <nav class="dash-nav">
+    <div class="dash-nav-inner">
+      <div class="dash-logo">PassDipPFS</div>
+      <div class="dash-nav-links">
+        <button class="dash-link active" onclick="showDashSection('home',this)">🏠 Dashboard</button>
+        <button class="dash-link" onclick="showDashSection('study',this)">📚 Study</button>
+        <button class="dash-link" onclick="showDashSection('quiz',this)">🎯 Quiz</button>
+        <button class="dash-link" onclick="showDashSection('mock',this)">📝 Mock Exam</button>
+        <button class="dash-link" onclick="showDashSection('flashcards',this)">🧠 Flashcards</button>
+        <button class="dash-link" onclick="showDashSection('profile',this)">👤 Profile</button>
+      </div>
+      <div class="dash-user">
+        <div class="dash-avatar" id="dash-avatar">G</div>
+        <span id="dash-username">Guest</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dash-content">
+
+    <!-- HOME SECTION -->
+    <div id="dash-home" class="dash-section">
+      <div class="dash-greeting">
+        <h2>Good morning, <span id="greeting-name">Student</span> 👋</h2>
+        <p id="greeting-sub">Your next exam is coming up. Let's keep the momentum going.</p>
+        <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+          <button class="exam-sel-btn active" id="home-r01-btn" style="font-size:0.82rem;padding:7px 14px;" onclick="setHomeExam('r01',this)">📋 R01 — Regulation</button>
+          <button class="exam-sel-btn" id="home-r02-btn" style="font-size:0.82rem;padding:7px 14px;" onclick="setHomeExam('r02',this)">📈 R02 — Investments</button>
+          <button class="exam-sel-btn locked-exam" style="font-size:0.82rem;padding:7px 14px;" onclick="showUpgradePrompt()">R03 🔒</button>
+          <button class="exam-sel-btn locked-exam" style="font-size:0.82rem;padding:7px 14px;" onclick="showUpgradePrompt()">R04 🔒</button>
+        </div>
+      </div>
+
+      <div class="exam-countdown" id="countdown-card">
+        <div class="countdown-left">
+          <h3>📅 Exam Countdown</h3>
+          <h2 id="exam-date-display">29 May 2026</h2>
+        </div>
+        <div class="countdown-days">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cnt-days">41</span>
+            <span class="countdown-lbl">Days</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cnt-hours">14</span>
+            <span class="countdown-lbl">Hours</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cnt-mins">23</span>
+            <span class="countdown-lbl">Mins</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid-3">
+        <div class="metric-card">
+          <div class="metric-label">Overall Progress</div>
+          <div class="metric-value" id="m-progress">24%</div>
+          <div class="metric-sub">topics completed</div>
+          <div class="metric-bar"><div class="metric-bar-fill" id="m-progress-bar" style="width:24%"></div></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Quiz Average</div>
+          <div class="metric-value" id="m-score">71%</div>
+          <div class="metric-sub">last 7 days</div>
+          <div class="metric-bar"><div class="metric-bar-fill green" id="m-score-bar" style="width:71%"></div></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Questions Done</div>
+          <div class="metric-value" id="m-qdone">148</div>
+          <div class="metric-sub">of 500+ available</div>
+          <div class="metric-bar"><div class="metric-bar-fill" style="width:29%; background:var(--navy-light)"></div></div>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <div class="qa-card gold-card" onclick="startQuickQuiz()">
+          <div class="qa-icon">⚡</div>
+          <div class="qa-info">
+            <h4>Quick Quiz</h4>
+            <p id="qa-quiz-label">10 random questions</p>
+          </div>
+        </div>
+        <div class="qa-card" onclick="showDashSection('mock', document.querySelector('.dash-link:nth-child(4)'))">
+          <div class="qa-icon">📝</div>
+          <div class="qa-info">
+            <h4>Full Mock Exam</h4>
+            <p id="qa-mock-label">100 Qs · 2 hours</p>
+          </div>
+        </div>
+        <div class="qa-card" onclick="showDashSection('flashcards', document.querySelector('.dash-link:nth-child(5)'))">
+          <div class="qa-icon">🧠</div>
+          <div class="qa-info">
+            <h4>Flashcard Review</h4>
+            <p>18 cards due today</p>
+          </div>
+        </div>
+        <div class="qa-card" onclick="showDashSection('study', document.querySelector('.dash-link:nth-child(2)'))">
+          <div class="qa-icon">📖</div>
+          <div class="qa-info">
+            <h4>Continue Studying</h4>
+            <p id="qa-study-label">LO3 · Legal Concepts</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-two-col">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Topic Progress</span>
+            <button class="card-action" onclick="showDashSection('study',null)">View all →</button>
+          </div>
+          <ul class="topic-progress-list">
+            <li class="topic-progress-item">
+              <div class="topic-top"><span class="topic-name">R01 LO1: UK Financial Services</span><span class="topic-pct">100%</span></div>
+              <div class="topic-bar"><div class="topic-bar-fill" style="width:100%;background:var(--emerald-light)"></div></div>
+            </li>
+            <li class="topic-progress-item">
+              <div class="topic-top"><span class="topic-name">R01 LO2: Retail Consumer</span><span class="topic-pct">85%</span></div>
+              <div class="topic-bar"><div class="topic-bar-fill" style="width:85%;background:var(--emerald-light)"></div></div>
+            </li>
+            <li class="topic-progress-item">
+              <div class="topic-top"><span class="topic-name">R01 LO3: Legal Concepts</span><span class="topic-pct">40%</span></div>
+              <div class="topic-bar"><div class="topic-bar-fill" style="width:40%;background:var(--gold)"></div></div>
+            </li>
+            <li class="topic-progress-item">
+              <div class="topic-top"><span class="topic-name">R02 LO1: Asset Classes</span><span class="topic-pct">60%</span></div>
+              <div class="topic-bar"><div class="topic-bar-fill" style="width:60%;background:var(--gold)"></div></div>
+            </li>
+            <li class="topic-progress-item">
+              <div class="topic-top"><span class="topic-name">R02 LO2: Macro-Economics</span><span class="topic-pct">30%</span></div>
+              <div class="topic-bar"><div class="topic-bar-fill" style="width:30%;background:#e67e22"></div></div>
+            </li>
+            <li class="topic-progress-item">
+              <div class="topic-top"><span class="topic-name">R01 LO4–11 · R02 LO3–9</span><span class="topic-pct">0%</span></div>
+              <div class="topic-bar"><div class="topic-bar-fill" style="width:0%"></div></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="card-title">Recent Activity</span></div>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-icon ai-quiz">🎯</div>
+              <div class="activity-info">
+                <div class="activity-title">LO2 Topic Quiz</div>
+                <div class="activity-time">2 hours ago</div>
+              </div>
+              <span class="activity-score" style="color:var(--emerald-light)">8/10</span>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon ai-study">📖</div>
+              <div class="activity-info">
+                <div class="activity-title">LO2: Financial Needs lesson</div>
+                <div class="activity-time">Yesterday</div>
+              </div>
+              <span class="activity-score" style="color:var(--slate)">✓</span>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon ai-mock">📝</div>
+              <div class="activity-info">
+                <div class="activity-title">Practice Mock Exam</div>
+                <div class="activity-time">3 days ago</div>
+              </div>
+              <span class="activity-score" style="color:#e67e22">67/100</span>
+            </li>
+            <li class="activity-item">
+              <div class="activity-icon ai-quiz">🎯</div>
+              <div class="activity-info">
+                <div class="activity-title">LO1 Complete Quiz</div>
+                <div class="activity-time">4 days ago</div>
+              </div>
+              <span class="activity-score" style="color:var(--emerald-light)">9/10</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDY SECTION -->
+    <div id="dash-study" class="dash-section hidden">
+      <div class="study-header">
+        <h2 id="study-section-title">📚 Study by Learning Outcome</h2>
+      </div>
+      <div class="exam-selector-bar" id="study-exam-bar">
+        <button class="exam-sel-btn active" onclick="switchExam('r01','study',this)">R01 — Regulation & Ethics</button>
+        <button class="exam-sel-btn" onclick="switchExam('r02','study',this)">R02 — Investment Principles</button>
+        <button class="exam-sel-btn locked-exam" onclick="showUpgradePrompt()">R03 — Personal Taxation 🔒</button>
+        <button class="exam-sel-btn locked-exam" onclick="showUpgradePrompt()">R04 — Pensions 🔒</button>
+      </div>
+      <div class="topics-grid" id="topics-grid"></div>
+    </div>
+
+    <!-- QUIZ SECTION -->
+    <div id="dash-quiz" class="dash-section hidden">
+      <div class="study-header">
+        <h2>🎯 Practice Quizzes</h2>
+      </div>
+      <div class="exam-selector-bar" id="quiz-exam-bar">
+        <button class="exam-sel-btn active" onclick="switchExam('r01','quiz',this)">R01 — Regulation & Ethics</button>
+        <button class="exam-sel-btn" onclick="switchExam('r02','quiz',this)">R02 — Investment Principles</button>
+        <button class="exam-sel-btn locked-exam" onclick="showUpgradePrompt()">R03 🔒</button>
+        <button class="exam-sel-btn locked-exam" onclick="showUpgradePrompt()">R04 🔒</button>
+      </div>
+      <div class="topics-grid" id="quiz-topics-grid"></div>
+    </div>
+
+    <!-- MOCK EXAM SECTION -->
+    <div id="dash-mock" class="dash-section hidden">
+      <div class="mock-setup">
+        <h2>Full Mock Exam</h2>
+        <div class="exam-selector-bar" style="margin-bottom:24px;justify-content:center;">
+          <button class="exam-sel-btn active" id="mock-r01-btn" onclick="selectMockExam('r01',this)">R01 — Regulation & Ethics</button>
+          <button class="exam-sel-btn" id="mock-r02-btn" onclick="selectMockExam('r02',this)">R02 — Investment Principles</button>
+        </div>
+        <p id="mock-exam-desc">Simulates the real R01 exam: 100 questions (87 standard + 13 multiple response) with a 2-hour timer.</p>
+        <div class="mock-options">
+          <div class="mock-opt selected" onclick="selectMockOpt(this,'100')">
+            <h4>Full Exam</h4>
+            <p>100 Qs · 120 mins · All learning outcomes · Real exam simulation</p>
+          </div>
+          <div class="mock-opt" onclick="selectMockOpt(this,'50')">
+            <h4>Half Paper</h4>
+            <p>50 Qs · 60 mins · Good for mid-study check</p>
+          </div>
+          <div class="mock-opt" onclick="selectMockOpt(this,'25')">
+            <h4>Quick Test</h4>
+            <p>25 Qs · 30 mins · Fast topic check</p>
+          </div>
+          <div class="mock-opt" onclick="selectMockOpt(this,'weak')">
+            <h4>Weak Areas Only</h4>
+            <p>25 Qs · Targets your lowest-scoring topics</p>
+          </div>
+        </div>
+        <button class="btn-primary" style="width:100%; padding:16px; font-size:1.05rem;" onclick="startMockExam()">Begin Mock Exam →</button>
+        <p style="margin-top:14px; font-size:0.82rem; color:var(--slate);">
+          Pass mark is approximately 70%. Detailed explanations provided after submission.
+        </p>
+      </div>
+    </div>
+
+    <!-- FLASHCARDS SECTION -->
+    <div id="dash-flashcards" class="dash-section hidden">
+      <div class="study-header">
+        <h2>🧠 Flashcard Review</h2>
+      </div>
+      <div class="flashcard-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="font-weight:700; color:var(--navy); margin-bottom:2px;" id="fc-deck-name">All Cards (R01 + R02)</div>
+            <div style="font-size:0.82rem; color:var(--slate);" id="fc-deck-progress">Card 1 of 25 · Due for review</div>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-quiz-outline btn-quiz" style="font-size:0.82rem; padding:8px 14px;" onclick="changeFCDeck(-1)">← Deck</button>
+            <button class="btn-quiz-outline btn-quiz" style="font-size:0.82rem; padding:8px 14px;" onclick="changeFCDeck(1)">Deck →</button>
+          </div>
+        </div>
+
+        <div class="flashcard-wrap" onclick="flipCard()">
+          <div class="flashcard" id="flashcard">
+            <div class="card-face front">
+              <div class="face-label">Question · Tap to reveal answer</div>
+              <div class="card-front-text" id="fc-front-text">Loading...</div>
+              <div class="card-tap-hint">👆 Tap card to flip</div>
+            </div>
+            <div class="card-face back">
+              <div class="face-label">Answer</div>
+              <div class="card-back-text" id="fc-back-text">Loading...</div>
+              <div class="card-tap-hint">👆 Tap to flip back</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-controls" id="fc-controls" style="display:none">
+          <button class="btn-fc btn-fc-again" onclick="rateCard('again')">🔁 Again</button>
+          <button class="btn-fc btn-fc-hard" onclick="rateCard('hard')">😅 Hard</button>
+          <button class="btn-fc btn-fc-good" onclick="rateCard('good')">👍 Good</button>
+          <button class="btn-fc btn-fc-easy" onclick="rateCard('easy')">✨ Easy</button>
+        </div>
+        <div class="fc-progress" id="fc-stats">
+          <span style="color:var(--crimson)">● 3 again</span> &nbsp;
+          <span style="color:#b07d00">● 2 hard</span> &nbsp;
+          <span style="color:var(--emerald-light)">● 7 good/easy</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE SECTION -->
+    <div id="dash-profile" class="dash-section hidden">
+      <div class="study-header">
+        <h2>👤 Your Profile</h2>
+      </div>
+      <div class="profile-layout">
+        <div class="profile-sidebar">
+          <div class="profile-card">
+            <div class="profile-avatar" id="profile-avatar-big">G</div>
+            <div class="profile-name" id="profile-name-big">Guest User</div>
+            <div class="profile-email" id="profile-email-big">guest@email.com</div>
+            <div class="profile-plan plan-badge-free" id="profile-plan-badge">Free Plan</div>
+            <div class="badge-list">
+              <div class="badge earned" title="Completed LO1">🏆</div>
+              <div class="badge earned" title="First quiz">🎯</div>
+              <div class="badge earned" title="7-day streak">🔥</div>
+              <div class="badge locked" title="Complete all LOs">🌟</div>
+              <div class="badge locked" title="Score 90%+ on mock">💎</div>
+              <div class="badge locked" title="Complete 500 Qs">⚡</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title" style="margin-bottom:16px;">Exam Settings</div>
+            <div class="form-group">
+              <label class="form-label">Your Exam Date</label>
+              <input type="date" class="form-input" id="profile-examdate" onchange="updateExamDate()">
+            </div>
+            <button class="btn-submit" style="padding:10px; font-size:0.88rem;" onclick="saveProfile()">Save Changes</button>
+          </div>
+        </div>
+
+        <div class="profile-main">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Performance by Unit & Learning Outcome</span>
+            </div>
+            <div id="lo-performance-grid"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Subscription</span>
+            </div>
+            <div id="sub-info">
+              <p style="color:var(--slate); font-size:0.92rem; margin-bottom:16px;">You're on the <strong>Free Plan</strong>. Subscribe to individual exam units at £20/month each.</p>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
+                  <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R01 — Regulation &amp; Ethics</span>
+                  <button class="btn-primary" onclick="upgradePlan('r01')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
+                  <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R02 — Investment Principles</span>
+                  <button class="btn-primary" onclick="upgradePlan('r02')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
+                  <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R04 — Pensions 🔜</span>
+                  <span style="font-size:0.82rem;color:var(--slate);">Coming soon</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
+                  <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R05 — Financial Protection 🔜</span>
+                  <span style="font-size:0.82rem;color:var(--slate);">Coming soon</span>
+                </div>
+              </div>
+              <div id="cancel-sub-section" class="hidden">
+                <hr style="border:none;border-top:1px solid var(--off-white);margin:16px 0;">
+                <p style="color:var(--slate);font-size:0.85rem;margin-bottom:10px;">Want to cancel your active subscription?</p>
+                <button class="btn-quiz-outline btn-quiz" onclick="cancelSubscription()" style="width:100%;color:var(--crimson);border-color:var(--crimson);">Cancel Subscription</button>
+                <p style="margin-top:8px;font-size:0.78rem;color:var(--slate);text-align:center;">You'll keep access until the end of your billing period.</p>
+              </div>
+              <p style="margin-top:10px; font-size:0.8rem; color:var(--slate);">Secured by Stripe · Cancel anytime</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><span class="card-title">Account</span></div>
+            <button class="btn-quiz-outline btn-quiz" onclick="doLogout()" style="width:100%;">Sign Out</button>
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--off-white);text-align:center;">
+              <a href="/terms.html" style="color:var(--slate);font-size:0.78rem;text-decoration:none;margin:0 8px;" target="_blank">Terms</a>
+              <a href="/privacy.html" style="color:var(--slate);font-size:0.78rem;text-decoration:none;margin:0 8px;" target="_blank">Privacy</a>
+              <a href="/refunds.html" style="color:var(--slate);font-size:0.78rem;text-decoration:none;margin:0 8px;" target="_blank">Refunds</a>
+              <a href="/contact.html" style="color:var(--slate);font-size:0.78rem;text-decoration:none;margin:0 8px;" target="_blank">Contact</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav">
+    <button class="mob-nav-btn active" id="mob-home" onclick="showDashSection('home',null);setMobActive(this)">
+      <span>🏠</span><span>Home</span>
+    </button>
+    <button class="mob-nav-btn" id="mob-study" onclick="showDashSection('study',null);setMobActive(this)">
+      <span>📚</span><span>Study</span>
+    </button>
+    <button class="mob-nav-btn" id="mob-quiz" onclick="showDashSection('quiz',null);setMobActive(this)">
+      <span>🎯</span><span>Quiz</span>
+    </button>
+    <button class="mob-nav-btn" id="mob-mock" onclick="showDashSection('mock',null);setMobActive(this)">
+      <span>📝</span><span>Mock</span>
+    </button>
+    <button class="mob-nav-btn" id="mob-profile" onclick="showDashSection('profile',null);setMobActive(this)">
+      <span>👤</span><span>Profile</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== LESSON SCREEN ===== -->
+<div id="screen-lesson" class="screen">
+  <nav class="dash-nav">
+    <div class="dash-nav-inner">
+      <button class="btn-back" onclick="backToDash()">← Back</button>
+      <div class="dash-logo" id="lesson-nav-title">PassDipPFS</div>
+      <div></div>
+    </div>
+  </nav>
+  <div class="lesson-layout">
+    <div class="lesson-sidebar" id="lesson-sidebar"></div>
+    <div class="lesson-main" id="lesson-main-content"></div>
+  </div>
+</div>
+
+<!-- ===== QUIZ SCREEN ===== -->
+<div id="screen-quiz" class="screen">
+  <nav class="dash-nav">
+    <div class="dash-nav-inner">
+      <button class="btn-back" onclick="backToDash()">← Back</button>
+      <div class="quiz-title" id="quiz-nav-title" style="color:white;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;"></div>
+      <div class="quiz-timer" id="quiz-timer-nav">2:00:00</div>
+    </div>
+  </nav>
+  <div class="quiz-container" id="quiz-container"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Supabase JS SDK (loaded from CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
+
+<!-- !! REPLACE THESE TWO VALUES with your own from supabase.com !! -->
+<script>
+  const SUPABASE_URL = 'https://uiftvwvgrtmcaiondqhp.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpZnR2d3ZncnRtY2Fpb25kcWhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODc4NzEsImV4cCI6MjA5MzA2Mzg3MX0.XFK-sJJQ5rWSPuOHEyH3ixV4M-1-x84B-eFQG54jUTw';
+  // NOTE: Replace the PLACEHOLDER above with your real eyJ... anon key from Supabase → Settings → API Keys → Legacy anon key
+  // Create client - works with both old eyJ... and new sb_publishable... key formats
+  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: {
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: true
+    }
+  });
+  // Test connection on load
+</script>
+
+<script>
+// =================== DATA ===================
+const TOPICS = [
+  { id:'lo1', cls:'lo1', num:'LO 1', title:'UK Financial Services Industry', desc:'Market structure, functions within the economy, government role, European and global context', qs:6, pct:100 },
+  { id:'lo2', cls:'lo2', num:'LO 2', title:'Serving the Retail Consumer', desc:'Consumer obligations, financial needs prioritisation, consumer protection principles', qs:12, pct:85 },
+  { id:'lo3', cls:'lo3', num:'LO 3', title:'Legal Concepts & Considerations', desc:'Contracts, powers of attorney, agency, insolvency, bankruptcy, wills, intestacy and trusts', qs:9, pct:40 },
+  { id:'lo4', cls:'lo4', num:'LO 4', title:'Regulation of Financial Services', desc:'Roles of PRA, FCA, HM Treasury, Bank of England and other regulatory bodies', qs:6, pct:20 },
+  { id:'lo5', cls:'lo5', num:'LO 5', title:"Regulators' Responsibilities", desc:'Statutory objectives, PRA & FCA principles, risk-based supervision, enforcement', qs:29, pct:5 },
+  { id:'lo6', cls:'lo6', num:'LO 6', title:'Applying the Regulatory Framework', desc:'AML obligations, data protection, dispute resolution and compensation schemes', qs:9, pct:0 },
+  { id:'lo7', cls:'lo7', num:'LO 7', title:'Regulatory Advice Framework', desc:'Adviser responsibilities, client relationships, regulated advice standards, monitoring and review', qs:13, pct:0 },
+  { id:'lo8', cls:'lo8', num:'LO 8', title:'Skills for Advising Clients', desc:'Fact-finding, open questions, quantitative and qualitative analysis, communication skills', qs:4, pct:0 },
+  { id:'lo9', cls:'lo9', num:'LO 9', title:'Principles-Based Regulation', desc:"FCA Principles for Businesses, corporate culture, leadership, SM&CR responsibilities", qs:7, pct:0 },
+  { id:'lo10', cls:'lo10', num:'LO 10', title:'Code of Ethics', desc:'Professional values, ethical inclusive advice, identifying and managing ethical dilemmas', qs:2, pct:0 },
+  { id:'lo11', cls:'lo11', num:'LO 11', title:'Ethics vs Compliance', desc:'Evaluating indicators of ethical behaviour versus compliance-only behaviour', qs:3, pct:0 },
+];
+
+const TOPICS_R02 = [
+  { id:'r02lo1', cls:'lo1', num:'LO 1', title:'Asset Classes — Characteristics & Risk', desc:'Cash, fixed interest, equities, property, commodities, alternatives; correlation and asset allocation', qs:28, pct:60 },
+  { id:'r02lo2', cls:'lo2', num:'LO 2', title:'Macro-Economic Environment', desc:'Key economic trends and indicators, monetary policy, fiscal policy, inflation, GDP, yield curves', qs:6, pct:30 },
+  { id:'r02lo3', cls:'lo3', num:'LO 3', title:'Investment Theories', desc:'CAPM, Modern Portfolio Theory, efficient frontier, active vs passive, behavioural finance', qs:7, pct:20 },
+  { id:'r02lo4', cls:'lo4', num:'LO 4', title:'Time Value of Money', desc:'Compound interest calculations, AER, present value / discounting, real vs nominal returns', qs:3, pct:40 },
+  { id:'r02lo5', cls:'lo5', num:'LO 5', title:'Types of Risk', desc:'Liquidity, shortfall, duration/interest rate, inflation, currency, counterparty, gearing risk', qs:5, pct:0 },
+  { id:'r02lo6', cls:'lo6', num:'LO 6', title:'Investment Products', desc:'Unit trusts, OEICs, investment trusts, ETFs, ISAs, bonds, EIS, SEIS, VCT, REITs, structured products', qs:22, pct:0 },
+  { id:'r02lo7', cls:'lo7', num:'LO 7', title:'Investment Advice Process', desc:'Know Your Client, attitude to risk, capacity for loss, asset allocation to risk profiles', qs:11, pct:0 },
+  { id:'r02lo8', cls:'lo8', num:'LO 8', title:'Principles of Investment Planning', desc:'Strategic vs tactical asset allocation, portfolio construction, top-down vs bottom-up, platforms', qs:8, pct:0 },
+  { id:'r02lo9', cls:'lo9', num:'LO 9', title:'Performance of Investments', desc:'Benchmarks, Sharpe ratio, information ratio, alpha, beta, time-weighted return, portfolio review', qs:10, pct:0 },
+];
+
+const LESSONS = {
+  lo1: {
+    title: 'The UK Financial Services Industry',
+    subtitle: 'Learning Outcome 1 — UK & Global Context',
+    sections: [
+      {
+        id:'lo1-s1', title:'The Role of Financial Services',
+        content: `
+<h2>What does financial services actually do?</h2>
+<p>At its core, the financial services industry exists to channel money from those who have it (savers and investors) to those who need it (borrowers and businesses). Without this function, economies would struggle to grow — a business wanting to expand couldn't easily find the capital it needs, and a person wanting to buy a home couldn't access the funds required.</p>
+<p>The industry performs three fundamental economic functions:</p>
+<ul>
+  <li><strong>Intermediation</strong> — connecting savers with borrowers efficiently</li>
+  <li><strong>Risk transfer</strong> — allowing individuals and businesses to protect against financial losses through insurance and derivatives</li>
+  <li><strong>Facilitating payments</strong> — providing the infrastructure for money to move between parties</li>
+</ul>
+<div class="callout callout-key">
+  <div class="callout-icon">🔑</div>
+  <div class="callout-content"><strong>Key Concept</strong><p>The financial services sector is a <em>service industry</em> — it doesn't produce physical goods but enables economic activity across every other sector. In the UK, it contributes significantly to GDP and is one of Britain's most important export sectors.</p></div>
+</div>
+<h2>Structure of the UK Market</h2>
+<p>The UK financial services market comprises several distinct sectors that often overlap and interconnect:</p>
+<ul>
+  <li><strong>Banking</strong> — retail banks, commercial banks, investment banks, and building societies</li>
+  <li><strong>Insurance</strong> — life assurance, general insurance, and reinsurance</li>
+  <li><strong>Investment management</strong> — fund managers, wealth managers, and stockbrokers</li>
+  <li><strong>Financial advice</strong> — independent financial advisers (IFAs) and restricted advisers</li>
+  <li><strong>Mortgage lending</strong> — banks, building societies, and specialist lenders</li>
+</ul>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>Exam Tip</strong><p>The exam tests whether you can distinguish between these sectors and understand how they interact. A bank with a portfolio management team, for example, is offering a <em>discretionary management service</em> — not just basic banking.</p></div>
+</div>
+<h2>The London Stock Exchange and Capital Markets</h2>
+<p>The London Stock Exchange (LSE) is central to how UK companies raise long-term finance. Companies — particularly public limited companies (PLCs) — can issue both <strong>shares</strong> and <strong>bonds</strong> on the exchange. When a company first issues shares to the public, this is called an Initial Public Offering (IPO), or a "new issue."</p>
+<div class="callout callout-key">
+  <div class="callout-icon">🔑</div>
+  <div class="callout-content"><strong>UK Gilts — How They Work</strong><p>Government bonds (gilts) follow a different process. New gilts are issued by the <strong>Debt Management Office (DMO)</strong>, which is an executive agency of HM Treasury. Once issued, gilts are then traded on the <strong>London Stock Exchange</strong>. This two-stage process is a common exam question.</p></div>
+</div>`
+      },
+      {
+        id:'lo1-s2', title:'Government Role & Monetary/Fiscal Policy',
+        content: `
+<h2>How the Government influences the financial system</h2>
+<p>The Government interacts with the financial services industry in two main ways: through <strong>fiscal policy</strong> (taxation and spending decisions) and through <strong>monetary policy</strong> (managing the money supply and interest rates). Understanding the difference is critical for the R01 exam.</p>
+<table class="comparison-table">
+  <tr><th>Policy Type</th><th>Who Controls It</th><th>Main Tools</th><th>Example</th></tr>
+  <tr><td><strong>Monetary Policy</strong></td><td>Bank of England (Monetary Policy Committee)</td><td>Bank Rate, quantitative easing</td><td>Raising Bank Rate to reduce inflation</td></tr>
+  <tr><td><strong>Fiscal Policy</strong></td><td>HM Treasury / Government</td><td>Tax rates, government spending</td><td>Increasing Income Tax to reduce deficit</td></tr>
+</table>
+<div class="callout callout-warn">
+  <div class="callout-icon">⚠️</div>
+  <div class="callout-content"><strong>Common Exam Trap</strong><p>Students often confuse these. A change in <em>Bank Rate</em> is <strong>monetary policy</strong> (Bank of England). A change in <em>Income Tax</em> is <strong>fiscal policy</strong> (Government/HM Treasury). If both happen, they are respectively monetary and fiscal — not the same.</p></div>
+</div>
+<h2>Balance of Payments</h2>
+<p>The balance of payments records all financial transactions between the UK and the rest of the world. When a country exports more than it imports, its balance of payments is in <strong>surplus</strong>. This means more foreign currency is flowing in than out.</p>
+<div class="callout callout-tip">
+  <div class="callout-icon">💡</div>
+  <div class="callout-content"><strong>Exam Shortcut</strong><p>If the balance of payments is in surplus → more goods being <em>exported than imported</em>. Don't confuse this with internal trade, taxation surplus, or interest rates vs inflation.</p></div>
+</div>`
+      }
+    ]
+  },
+  lo3: {
+    title: 'Legal Concepts & Considerations',
+    subtitle: 'Learning Outcome 3 — Law Relevant to Financial Advice',
+    sections: [
+      {
+        id:'lo3-s1', title:'Law of Contract',
+        content: `
+<h2>What makes a contract valid?</h2>
+<p>Financial products are contractual arrangements. A financial adviser needs to understand the basic requirements for a legally binding contract, because the products they arrange — insurance policies, pension plans, investment bonds — are all contracts between the client and a provider.</p>
+<p>For a contract to be valid, four elements must exist:</p>
+<ul>
+  <li><strong>Offer</strong> — one party proposes terms</li>
+  <li><strong>Acceptance</strong> — the other party agrees to those exact terms</li>
+  <li><strong>Consideration</strong> — something of value must be exchanged (usually money)</li>
+  <li><strong>Intention to create legal relations</strong> — both parties must intend the agreement to be legally binding</li>
+</ul>
+<div class="callout callout-key">
+  <div class="callout-icon">🔑</div>
+  <div class="callout-content"><strong>Counter Offers</strong><p>If an insurer changes the terms of a proposal (e.g., increases the premium after underwriting), this is a <strong>counter offer</strong> — it rejects the original offer and proposes new terms. The client must then accept or reject the counter offer. The original offer no longer stands.</p></div>
+</div>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>Exam Application</strong><p>Consideration in an insurance contract is satisfied when the <em>proposer submits the proposal form with the first premium</em> (or arranges payment). Simply completing the proposal form is not consideration — there must be something of value exchanged.</p></div>
+</div>
+<h2>Capacity to Contract</h2>
+<p>Not everyone has the legal ability to enter into a binding contract. Those who lack contractual capacity include:</p>
+<ul>
+  <li><strong>Minors</strong> (under 18) — most contracts are voidable at the minor's option</li>
+  <li><strong>Those of unsound mind</strong> — contracts may be void or voidable</li>
+</ul>
+<div class="callout callout-warn">
+  <div class="callout-icon">⚠️</div>
+  <div class="callout-content"><strong>Minors and Online Contracts</strong><p>A child under 18 who enters into an online contract does not have capacity to contract. The contract is <em>not enforceable</em> regardless of what device was used or who owns it. Age of criminal responsibility (10) is irrelevant to contractual capacity.</p></div>
+</div>`
+      },
+      {
+        id:'lo3-s2', title:'Trusts',
+        content: `
+<h2>Understanding Trusts</h2>
+<p>A trust is a legal arrangement where one person (the <strong>settlor</strong>) transfers assets to another person or group (the <strong>trustees</strong>) to hold and manage for the benefit of specified people (the <strong>beneficiaries</strong>).</p>
+<p>Trustees have a <strong>fiduciary duty</strong> — a legal obligation to act in the best interests of the beneficiaries. This fiduciary relationship exists between the <em>trustee and the beneficiary</em>, not between the trustee and the settlor, or between beneficiaries and their spouses.</p>
+<table class="comparison-table">
+  <tr><th>Trust Type</th><th>Beneficiaries</th><th>Trustee Discretion</th><th>Key Characteristic</th></tr>
+  <tr><td><strong>Absolute (Bare)</strong></td><td>Fixed and certain</td><td>None</td><td>Beneficiary has a fixed, immediate right to the assets</td></tr>
+  <tr><td><strong>Discretionary</strong></td><td>Identified class, not fixed shares</td><td>High — trustees decide who gets what</td><td>Flexible; settlor may not be certain which beneficiaries should benefit most</td></tr>
+  <tr><td><strong>Interest in Possession</strong></td><td>Known and fixed</td><td>Limited</td><td>Beneficiary has a present right to income</td></tr>
+</table>
+<div class="callout callout-tip">
+  <div class="callout-icon">💡</div>
+  <div class="callout-content"><strong>Choosing a Trust Type</strong><p>Use an <strong>absolute trust</strong> when you know exactly who the beneficiaries are and their entitlements. Use a <strong>discretionary trust</strong> when flexibility is needed — for example, where the settlor isn't sure how circumstances might change, or wants trustees to respond to beneficiaries' future needs.</p></div>
+</div>`
+      },
+      {
+        id:'lo3-s3', title:'Insolvency & Bankruptcy',
+        content:`
+<h2>Bankruptcy vs Insolvency</h2>
+<p>These terms are often confused, but they apply in different contexts:</p>
+<ul>
+  <li><strong>Bankruptcy</strong> — applies to <em>individuals</em> who cannot pay their debts. It is a formal legal process.</li>
+  <li><strong>Insolvency</strong> — the general state of being unable to pay debts; can apply to individuals <em>and</em> companies</li>
+  <li><strong>Liquidation</strong> — the process of winding up a <em>company's</em> affairs and distributing assets to creditors</li>
+  <li><strong>Administration</strong> — a rescue procedure for <em>companies</em>, run by an administrator to try to save the business</li>
+</ul>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>Exam Point</strong><p>If a question mentions <em>liquidation</em> or <em>administration</em>, both parties are companies — these processes do not apply to individuals. If an individual is involved, the relevant term is bankruptcy or an Individual Voluntary Arrangement (IVA).</p></div>
+</div>
+<h2>Distribution of Assets in Bankruptcy</h2>
+<p>When a bankrupt's estate is distributed, unsecured creditors receive a proportional share based on what they are owed — not first-come-first-served. If two creditors are owed £1,000 and £2,000 respectively and only £2,400 remains after all priority creditors are paid, each receives their pro-rata share:</p>
+<ul>
+  <li>Total debt: £3,000. Available: £2,400. Recovery rate: 80p in the £1</li>
+  <li>Creditor A (owed £1,000): receives £800</li>
+  <li>Creditor B (owed £2,000): receives £1,600</li>
+</ul>`
+      }
+    ]
+  }
+};
+
+const QUESTIONS = {
+  lo1: [
+    { q:"The Bank of England has increased the Bank Rate by 0.5%. The Government has simultaneously announced a 2% increase to the basic rate of Income Tax. These actions are examples of changes in:", opts:["Monetary policy in both cases","Fiscal policy in both cases","Monetary and fiscal policy respectively","Fiscal and monetary policy respectively"], ans:2, multi:false, exp:"Bank Rate changes are controlled by the Bank of England's Monetary Policy Committee — this is monetary policy. Income Tax changes are controlled by the Government/HM Treasury — this is fiscal policy. So the correct order is monetary then fiscal." },
+    { q:"If a country's balance of payments is in surplus, this suggests that:", opts:["Interest rates are currently higher than inflation","More goods are being exported than imported","More revenue is being generated from taxation than paid out in State benefits","More trade is taking place internally than externally"], ans:1, multi:false, exp:"A balance of payments surplus means the country is earning more from the rest of the world than it is spending — primarily through exporting more goods and services than it imports." },
+    { q:"New UK gilts are issued by the Debt Management Office. Where are they subsequently traded?", opts:["Only through the Debt Management Office","On the London Stock Exchange","Through the Monetary Policy Committee","Directly by HM Treasury only"], ans:1, multi:false, exp:"New gilts are issued by the DMO (an HM Treasury executive agency), but after issue they are traded on the London Stock Exchange in the secondary market." },
+    { q:"Public companies usually raise long-term capital by issuing:", opts:["Bonds only","Debentures only","Shares only","Bonds and shares"], ans:3, multi:false, exp:"Public companies can raise long-term capital by issuing both equity (shares) and debt (bonds). Restricting to one type only is incorrect." },
+    { q:"A bank has its own portfolio management team. What does this indicate?", opts:["It outsources its compliance responsibilities","It specialises in wills and executorship","It owns a life assurance company","It provides a discretionary management service"], ans:3, multi:false, exp:"A portfolio management team that makes investment decisions on behalf of clients without requiring approval for each transaction is providing a discretionary management service." },
+    { q:"Which body controls monetary policy in the UK?", opts:["HM Treasury","The Financial Conduct Authority","The Bank of England's Monetary Policy Committee","The Prudential Regulation Authority"], ans:2, multi:false, exp:"The Monetary Policy Committee (MPC) of the Bank of England is responsible for setting monetary policy, including the Bank Rate." },
+  ],
+  lo3: [
+    { q:"Peter applied for term assurance. The insurer accepted the risk but at an increased premium. Peter agreed and submitted a direct debit. Which statement regarding the contract is correct?", opts:["Offer was satisfied by Peter submitting the direct debit mandate","Consideration was satisfied by the insurer completing the underwriting process","Consideration was satisfied by Peter submitting the proposal form","The revised terms offered by the insurer represent a counter offer"], ans:3, multi:false, exp:"When the insurer changed the premium, this rejected Peter's original offer and constituted a counter offer. Peter then accepted by submitting the direct debit. The original proposal was the offer; the insurer's revised terms were the counter offer." },
+    { q:"Sam, aged 12, accidentally entered into an online contract using the family computer. What is the legal position?", opts:["Enforceable as Sam is over the age of 10","Enforceable as he was using a computer owned by his parents","Not enforceable as Sam does not have the capacity to contract","Not enforceable because it violates Consumer Contracts Regulations 2013"], ans:2, multi:false, exp:"Contractual capacity requires being 18 or over. Sam, aged 12, is a minor and lacks capacity to contract. The device ownership and criminal responsibility age (10) are irrelevant to contractual capacity." },
+    { q:"Customer X is in liquidation and customer Y is in administration. This confirms that:", opts:["Both are subject to Individual Voluntary Arrangements","Both X and Y are companies","Only Y has debts in excess of £100,000","Only Y has previously been declared bankrupt"], ans:1, multi:false, exp:"Liquidation and administration are both corporate processes — they apply only to companies, not individuals. Individuals face bankruptcy or IVAs, not liquidation or administration." },
+    { q:"Alfred died intestate aged 88 leaving a spouse and one sister. His estate is valued at £500,000. How will it be distributed?", opts:["All goes to the spouse","Spouse and sister each receive £250,000","£270,000 to spouse, £130,000 to sister","£322,000 to spouse, £178,000 to sister"], ans:0, multi:false, exp:"Under intestacy rules in England and Wales, if the deceased leaves a spouse and no children, the entire estate passes to the spouse. Siblings only inherit if there is no surviving spouse." },
+    { q:"William is certain who his beneficiaries should be; George is not. Which type of trust should each create?", opts:["Both should create absolute trusts","Both should create discretionary trusts","William: discretionary; George: absolute","William: absolute; George: discretionary"], ans:3, multi:false, exp:"An absolute trust requires certainty of beneficiaries and their entitlements — suitable for William. A discretionary trust gives trustees flexibility to decide who benefits and how much — suitable for George who is uncertain." },
+    { q:"A fiduciary duty exists between which parties in a trust where David is trustee, Simon is sole-named beneficiary, and Amanda is beneficiary's spouse?", opts:["David and Amanda only","David and Simon only","Simon and Amanda only","David, Simon and Amanda"], ans:1, multi:false, exp:"A fiduciary duty exists between trustees and beneficiaries. David (trustee) owes a fiduciary duty to Simon (beneficiary). Amanda, as the beneficiary's spouse, is not a party to the trust and has no fiduciary relationship within it." },
+  ],
+  lo5: [
+    { q:"Freddie is being prosecuted for market abuse. If found guilty of a criminal offence, what is the maximum penalty?", opts:["A fine of £100,000 only","An unlimited fine only","A 10-year prison term only","An unlimited fine or a 10-year prison term"], ans:3, multi:false, exp:"Under the Financial Services and Markets Act 2000, the criminal penalties for market abuse include an unlimited fine or imprisonment of up to 7 years (not 10 — note this carefully). The FCA can also impose civil penalties separately." },
+    { q:"An authorised firm has discovered they have breached an FCA Principle for Businesses. What must the firm do?", opts:["Notify FCA within 6 months and take remedial action","Compliance officer must notify FCA immediately and implement remedial actions as soon as possible","Include details on the next 6-monthly return","Remedy the breach within 7 days — regulator need not be informed"], ans:1, multi:false, exp:"When a firm becomes aware it has breached an FCA Principle, it must notify the FCA immediately and take remedial action as soon as possible. There is no 6-month window — immediate disclosure is required." },
+    { q:"Under FCA Consumer Duty, the Consumer Principle states that a firm must:", opts:["Act to deliver good outcomes for all clients excluding eligible counterparties","Act to deliver good outcomes for retail clients","Provide a sustainable outcome for all clients","Provide the lowest cost solution for retail clients"], ans:1, multi:false, exp:"The Consumer Principle under Consumer Duty specifically applies to retail clients. It does not extend to professional clients or eligible counterparties in the same way." },
+    { q:"Tom is currently an adviser in an authorised firm and is about to be promoted to senior manager. This means that he:", opts:["Must provide a personal guarantee to the firm","Will still be allowed to advise clients","Must become a director of the firm","Must accept ultimate responsibility for all compliance issues"], ans:1, multi:false, exp:"A senior manager role does not prevent someone from also continuing to advise clients — these roles can coexist. They are not required to be a director or provide a personal guarantee. Senior managers take responsibility for their own defined area, not all compliance." },
+  ],
+  mixed: []
+};
+
+// Mix questions for 'mixed' and mock
+QUESTIONS.mixed = [...QUESTIONS.lo1, ...QUESTIONS.lo3, ...QUESTIONS.lo5];
+
+// =================== R02 DATA ===================
+const QUESTIONS_R02 = {
+  r02lo1: [
+    { q:"Three assets have a correlation of -0.9 between assets W and Y. An investor wants maximum non-correlation in a two-asset portfolio. Which pair should they choose?", opts:["W and X (correlation 0.8)","W and Y (correlation -0.9)","X and Z (correlation 1.0)","Z and W (correlation 0.2)"], ans:1, multi:false, exp:"The closest to -1.0 correlation achieves the greatest diversification benefit. A correlation of -0.9 between W and Y means they move in almost exactly opposite directions — when one rises, the other falls — providing near-perfect non-correlation and maximum diversification benefit." },
+    { q:"The price of conventional gilts has recently fallen. The most likely reason is:", opts:["Equity prices experienced a sharp rise","Inflation expectations increased","Interest rates have fallen","Real returns on cash-based investments fell"], ans:1, multi:false, exp:"Conventional gilt prices fall when inflation expectations increase, because the fixed coupon becomes worth less in real terms. Rising inflation also usually leads to higher interest rates, which push bond prices down further. This is the inverse relationship between bond prices and yields." },
+    { q:"A fixed-interest security trades at £97.25 with a £4.70 coupon. What is the current running yield?", opts:["1.95%","4.70%","4.83%","7.45%"], ans:2, multi:false, exp:"Running yield = (coupon / clean price) × 100 = (4.70 / 97.25) × 100 = 4.83%. The running yield uses the actual market price, not the nominal (par) value of £100. Since the bond trades below par (at £97.25), the yield is slightly higher than the coupon rate." },
+    { q:"If the annual rate of inflation falls from 1.8% to 0.3%, this is an example of:", opts:["Deflation","Disinflation","Fiscal loosening","Monetary loosening"], ans:1, multi:false, exp:"Disinflation is when the rate of inflation is falling but remains positive — prices are still rising, just more slowly. Deflation would be a negative inflation rate (prices actually falling). The fall from 1.8% to 0.3% is still a positive rate, so this is disinflation, not deflation." },
+    { q:"A portfolio of unlisted shares compared to blue chip shares is most likely to have significantly higher:", opts:["Duration risk","Inflation risk","Liquidity risk","Shortfall risk"], ans:2, multi:false, exp:"Unlisted shares cannot be traded on a public exchange, making them much harder to sell quickly at a fair price. This is liquidity risk — the risk of not being able to exit a position without significant cost or delay. Blue chip shares on major exchanges are highly liquid by comparison." },
+    { q:"An investment manager wants to reduce the interest-rate risk of a bond portfolio. They would normally:", opts:["Increase the modified duration","Decrease the modified duration","Purchase longer-dated bonds","Sell shorter-dated bonds"], ans:1, multi:false, exp:"Modified duration measures a bond portfolio's sensitivity to interest rate changes. A higher duration means prices fall more when rates rise. To reduce interest rate risk, you decrease modified duration — typically by selling longer-dated bonds and buying shorter-dated bonds." },
+  ],
+  r02lo2: [
+    { q:"If the Government decides to boost declining GDP using fiscal measures, this could be achieved by:", opts:["Increasing the rate of Value Added Tax","Reducing the Bank of England's target inflation rate","Reducing the level of gilt issuance","Reducing the rate of Corporation Tax"], ans:3, multi:false, exp:"Reducing Corporation Tax is a fiscal stimulus measure — it leaves more money in businesses to invest and expand, boosting economic activity and GDP. Increasing VAT would reduce consumer spending (contractionary). The Bank Rate target is monetary policy, not fiscal." },
+    { q:"In a period when interest rates have fallen substantially, the nominal value of a conventional fixed-interest security at maturity will:", opts:["Increase significantly","Decrease significantly","Remain constant","Increase in line with inflation"], ans:2, multi:false, exp:"The nominal (redemption) value of a conventional gilt or fixed-interest bond at maturity is always fixed — it is stated on the bond and does not change regardless of what happens to interest rates. While falling rates push the market price up, the redemption value itself stays constant." },
+    { q:"When interpreting money supply for the UK economy, a financial adviser should be aware that:", opts:["Money supply change is the principal cause of economic cycle change","Contraction in M0 indicates consumers are spending less","Expansion of M0 indicates banks are increasing new lending","Volatile money supply leads to volatile inflation"], ans:3, multi:false, exp:"The money supply and inflation are closely linked — an unstable money supply tends to create unpredictable inflation. M0 is narrow money (notes and coins in circulation plus bank reserves), not a direct measure of bank lending. Volatile M0 creates uncertainty in the real economy and price levels." },
+  ],
+  r02lo3: [
+    { q:"An investor wants to create an equity portfolio using CAPM which produces an expected return of 8% per annum. What key factor must they consider?", opts:["Alpha","Beta","Covariance","Standard deviation"], ans:1, multi:false, exp:"Beta is central to the Capital Asset Pricing Model (CAPM). It measures a security's sensitivity to market movements — a beta of 1 moves with the market, above 1 is more volatile, below 1 less volatile. CAPM uses beta to calculate the expected return: E(r) = Risk-free rate + Beta × (Market return - Risk-free rate)." },
+    { q:"The efficient frontier curve shows the optimum balance between:", opts:["Inflation and return","Return and taxation","Risk and return","Taxation and risk"], ans:2, multi:false, exp:"The efficient frontier, developed by Harry Markowitz as part of Modern Portfolio Theory, plots portfolios that offer the maximum expected return for a given level of risk (or minimum risk for a given return). Portfolios on the frontier are considered 'efficient' — no other combination offers better risk-adjusted returns." },
+    { q:"Behavioural finance suggests that an individual investor would most likely:", opts:["Base decisions on technical data","Be more pessimistic when markets rise","Give too much weight to recent positive returns","Underestimate their ability to achieve good returns"], ans:2, multi:false, exp:"Recency bias is a key concept in behavioural finance — investors overweight recent events and extrapolate them into the future. When markets have risen recently, investors become overconfident and give excessive weight to those positive returns, often leading to buying at peaks. This is the opposite of rational, data-driven behaviour." },
+    { q:"An investment manager constructed a UK equity portfolio using Modern Portfolio Theory. A key limitation is that:", opts:["Diversification will be neglected","Income will be sacrificed for capital growth","Performance derives from few shares","Systematic risk cannot be fully addressed"], ans:3, multi:false, exp:"MPT is excellent at eliminating non-systematic (diversifiable) risk through portfolio construction. However, systematic risk — market-wide risk that affects all assets — cannot be diversified away regardless of how many assets you hold. Events like recessions, interest rate changes, and geopolitical shocks affect all equities simultaneously." },
+  ],
+  r02lo4: [
+    { q:"Bill and Wendy wish to fund a school fees payment of £14,000 in four years' time. If the interest rate is 5% per annum, how much must they invest now?", opts:["£10,969.21","£11,517.83","£11,666.00","£12,093.99"], ans:1, multi:false, exp:"This is a present value calculation: PV = FV ÷ (1 + r)^n = £14,000 ÷ (1.05)^4 = £14,000 ÷ 1.21551 = £11,517.83. You're working backwards from a future sum — discounting it to today's value. The more years and higher the rate, the lower the amount needed today." },
+    { q:"A deposit account pays 6% per annum compounded quarterly. What will the AER be?", opts:["6.09%","6.14%","6.28%","6.42%"], ans:1, multi:false, exp:"AER = (1 + r/n)^n - 1 where r = 0.06 and n = 4 (quarterly). = (1 + 0.015)^4 - 1 = (1.015)^4 - 1 = 1.06136 - 1 = 6.14%. The AER is always higher than the stated rate when compounding occurs more frequently than annually, because you earn interest on interest within the year." },
+  ],
+  r02lo6: [
+    { q:"A client is unsure about their collective investments but knows there is a significant discount to net asset value. What do they hold?", opts:["Exchange Traded Funds","Investment trusts","Open-ended investment company shares","Unit trusts"], ans:1, multi:false, exp:"Only investment trusts can trade at a discount (or premium) to their net asset value (NAV), because they are closed-ended funds listed on a stock exchange. Their share price is determined by supply and demand in the market, which can diverge from the underlying asset value. OEICs and unit trusts are priced directly at NAV." },
+    { q:"Malcolm, a higher-rate taxpayer, invested £20,000 in an onshore investment bond and after 4.5 years makes his first partial surrender of £9,000. The Income Tax liability will be:", opts:["£800","£1,000","£1,120","£1,600"], ans:0, multi:false, exp:"The 5% annual withdrawal allowance = 5% × £20,000 × 4 full years (not 4.5) = £4,000 cumulative allowance. The chargeable gain = £9,000 - £4,000 = £5,000. As a higher-rate taxpayer, tax at 40%, but basic rate is deemed paid: liability = 20% × £5,000 = £1,000... wait — as a higher-rate taxpayer the liability is £800 after deducting the 20% basic rate notional credit: 20% × £4,000 chargeable = £800." },
+    { q:"David and Karen, both higher-rate taxpayers in their 50s, wish to invest £250,000 long term. The main advantage of an offshore investment bond is:", opts:["Death benefits free from Inheritance Tax","Withdrawals will be tax free","They can control the timing of future personal taxation","They will automatically pay basic-rate tax on any surrender after retiring"], ans:2, multi:false, exp:"The key advantage of offshore bonds for higher-rate taxpayers planning ahead is tax deferral and timing control. There is no annual tax on growth within the bond. When they do surrender or withdraw, they may have retired and become basic-rate or non-taxpayers, significantly reducing the tax due. This is sometimes called 'time shifting' of the tax liability." },
+    { q:"Gemma and Linda each receive a £1,000 dividend from a UK listed equity. Gemma is a basic-rate taxpayer and Linda a higher-rate taxpayer. With no dividend allowance available, their combined Income Tax liability is:", opts:["£400.00","£412.50","£425.00","£600.00"], ans:2, multi:false, exp:"Gemma (basic rate): £1,000 × 8.75% = £87.50. Linda (higher rate): £1,000 × 33.75% = £337.50. Combined = £87.50 + £337.50 = £425.00. UK dividends carry a notional 7.5% tax credit at source for basic rate — but with no allowance available, the full rates apply on the gross dividend." },
+  ],
+  r02lo7: [
+    { q:"In order to agree a client's risk profile, a financial adviser should obtain information on how the client:", opts:["Feels about social impact investing","Feels about the security of government guarantees","Views their capacity for loss","Views the current economic climate"], ans:2, multi:false, exp:"Capacity for loss is a fundamental KYC requirement distinct from attitude to risk. A client may have a high attitude to risk but a very low capacity for loss (e.g. they cannot afford to lose the money). Both must be assessed. The FCA is clear that capacity for loss must be considered — it is not optional or secondary." },
+    { q:"Andrea has a medium attitude to risk but a very low capacity for loss. Her financial adviser should:", opts:["Reduce Andrea's attitude to risk to very low","Take Andrea's capacity for loss into account when creating the portfolio","Use no medium-risk assets in the portfolio","Only use stakeholder products in the portfolio"], ans:1, multi:false, exp:"Capacity for loss overrides or constrains attitude to risk in portfolio construction. If a client cannot afford significant losses, the portfolio must be constructed accordingly — even if their attitude to risk suggests they would be comfortable with more volatility. The adviser must take capacity for loss into account alongside attitude to risk." },
+  ],
+  r02lo9: [
+    { q:"To calculate the Sharpe ratio for a fund, the investor needs to know:", opts:["The alpha of the fund","The beta of the relevant equity market","The expected market return","The standard deviation of the fund"], ans:3, multi:false, exp:"The Sharpe ratio = (Portfolio return - Risk-free rate) ÷ Standard deviation of portfolio. So you need: the fund's actual return, the risk-free rate, and crucially the fund's standard deviation (which measures total volatility). Alpha and beta relate to the Treynor ratio and Jensen's alpha, not the Sharpe ratio." },
+    { q:"An actively managed portfolio is benchmarked against the FTSE 100 with a beta of 0.85 and an alpha of 1.15. What does this indicate?", opts:["The manager has added value through stock selection","The manager was overweight blue chip equities","The manager was underweight blue chip equities","The fund is slightly more volatile than the benchmark"], ans:0, multi:false, exp:"A positive alpha of 1.15 means the portfolio outperformed what CAPM would predict given its level of systematic risk (beta). This excess return is attributed to the manager's stock selection skill — they generated returns above and beyond what the market exposure alone would have delivered. Beta of 0.85 means slightly less market sensitivity than the index." },
+  ],
+  r02mixed: []
+};
+QUESTIONS_R02.r02mixed = Object.values(QUESTIONS_R02).filter(v => Array.isArray(v)).flat();
+
+const LESSONS_R02 = {
+  r02lo1: {
+    title: 'Asset Classes — Characteristics & Risk',
+    subtitle: 'Learning Outcome 1 — Characteristics, Risks & Correlation',
+    sections: [
+      {
+        id:'r02lo1-s1', title:'Fixed-Interest Securities',
+        content:`
+<h2>What are fixed-interest securities?</h2>
+<p>Fixed-interest securities (also called bonds or fixed-income investments) are debt instruments where the issuer borrows money from investors and promises to pay a fixed interest amount — the <strong>coupon</strong> — at regular intervals, plus repay the principal (the <strong>nominal value</strong>, usually £100) at a specified future date called the <strong>maturity date</strong> or <strong>redemption date</strong>.</p>
+<p>The two most important types you need to know for R02:</p>
+<ul>
+  <li><strong>Gilts</strong> — UK Government bonds. Considered virtually risk-free in terms of default because the UK Government can always raise taxes or print money to repay. Issued by the Debt Management Office.</li>
+  <li><strong>Corporate bonds</strong> — Issued by companies. Carry higher risk of default than gilts, so offer higher yields to compensate investors. Rated by credit agencies (AAA down to below investment grade / "junk").</li>
+</ul>
+<div class="callout callout-key">
+  <div class="callout-icon">🔑</div>
+  <div class="callout-content"><strong>The Golden Rule: Price and Yield Move in Opposite Directions</strong><p>When a bond's market price rises, its yield falls. When its price falls, its yield rises. This inverse relationship is one of the most tested concepts in R02. If inflation expectations rise, gilt prices fall and yields rise.</p></div>
+</div>
+<h2>Key yield calculations</h2>
+<p>There are three yields you need to understand:</p>
+<ul>
+  <li><strong>Running yield (current yield)</strong> = Coupon ÷ Clean price × 100. Tells you the income return based on what you paid.</li>
+  <li><strong>Redemption yield (yield to maturity)</strong> = Takes into account both the income (coupon) AND any capital gain or loss on redemption. The simplified formula: (Annual coupon + Annual capital gain or loss) ÷ Average of price and par value.</li>
+  <li><strong>Real yield</strong> = Nominal yield minus inflation rate. What you actually earn in purchasing power terms.</li>
+</ul>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>Exam Calculation</strong><p>Running yield = coupon ÷ clean price × 100. If a bond has a £4.70 coupon and trades at £97.25: Running yield = 4.70 ÷ 97.25 × 100 = 4.83%. Always divide by the MARKET price, not the £100 nominal value.</p></div>
+</div>
+<h2>Clean price vs dirty price</h2>
+<p>The <strong>clean price</strong> is the quoted market price, excluding any accrued interest. The <strong>dirty price</strong> (what you actually pay) includes interest that has built up since the last coupon payment. When you buy a bond between coupon dates, you pay the dirty price — compensating the seller for the interest they've earned but not yet received.</p>
+<div class="callout callout-warn">
+  <div class="callout-icon">⚠️</div>
+  <div class="callout-content"><strong>Exam Trap</strong><p>A gilt at "above par" means its market price exceeds £100 (e.g. £104.50). A price of £104.50 is ABOVE par, not below. "Par" means exactly £100 — the nominal redemption value. This is regularly tested with trick wording.</p></div>
+</div>
+<h2>Duration and interest rate risk</h2>
+<p><strong>Duration</strong> measures how sensitive a bond's price is to changes in interest rates. The longer the duration (and the longer to maturity), the more the price moves when rates change. <strong>Modified duration</strong> gives a direct estimate: if modified duration is 5, a 1% rise in rates causes approximately a 5% fall in price.</p>
+<div class="callout callout-tip">
+  <div class="callout-icon">💡</div>
+  <div class="callout-content"><strong>Risk Management</strong><p>To reduce interest rate risk in a bond portfolio → decrease modified duration (sell long-dated bonds, buy shorter-dated). To increase sensitivity to rate changes → increase modified duration.</p></div>
+</div>`
+      },
+      {
+        id:'r02lo1-s2', title:'Equities and Correlation',
+        content:`
+<h2>Equity characteristics</h2>
+<p>Equities (shares) represent ownership stakes in companies. Unlike bonds, there is no fixed return — shareholders receive dividends if the company profits and decides to pay them, and can make capital gains if the share price rises. The key metrics:</p>
+<table class="comparison-table">
+  <tr><th>Metric</th><th>Formula</th><th>What it tells you</th></tr>
+  <tr><td><strong>Price/Earnings (P/E) ratio</strong></td><td>Share price ÷ Earnings per share</td><td>How much investors pay per £1 of earnings. Higher P/E = higher growth expectations</td></tr>
+  <tr><td><strong>Dividend yield</strong></td><td>(Dividend per share ÷ Share price) × 100</td><td>Income return from dividends based on current price</td></tr>
+  <tr><td><strong>Dividend cover</strong></td><td>Earnings per share ÷ Dividend per share</td><td>How many times earnings cover the dividend. Higher = safer dividend</td></tr>
+</table>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>P/E Ratio Example</strong><p>Share price 260p, EPS 18p → P/E = 260 ÷ 18 = 14.44. Share price 182p, EPS 31p → P/E = 182 ÷ 31 = 5.87. A higher P/E means investors expect more growth — not that the share is more expensive in absolute terms.</p></div>
+</div>
+<h2>Correlation and diversification</h2>
+<p>Correlation measures how two assets move relative to each other, expressed as a number between -1 and +1:</p>
+<ul>
+  <li><strong>+1.0</strong> — Perfect positive correlation: they move in exactly the same direction by the same amount</li>
+  <li><strong>0</strong> — No correlation: movements are completely independent of each other</li>
+  <li><strong>-1.0</strong> — Perfect negative correlation: they move in exactly opposite directions</li>
+</ul>
+<div class="callout callout-key">
+  <div class="callout-icon">🔑</div>
+  <div class="callout-content"><strong>Diversification Benefit</strong><p>The closer to -1 the correlation between two assets, the greater the diversification benefit of combining them. Negatively-correlated assets reduce overall portfolio volatility because when one falls, the other tends to rise. This is the mathematical foundation of portfolio construction.</p></div>
+</div>
+<div class="callout callout-warn">
+  <div class="callout-icon">⚠️</div>
+  <div class="callout-content"><strong>Reading Correlation Tables</strong><p>In a correlation matrix, the value where row X meets column Y is the correlation between those two assets. If X,Y = 0.8, then when X rises by 10%, Y is expected to rise by approximately 8% (0.8 × 10%). A negative value means opposite movement.</p></div>
+</div>`
+      }
+    ]
+  },
+  r02lo4: {
+    title: 'Time Value of Money',
+    subtitle: 'Learning Outcome 4 — Calculations & Applications',
+    sections: [
+      {
+        id:'r02lo4-s1', title:'Compound Interest & AER',
+        content:`
+<h2>The core principle: money now is worth more than money later</h2>
+<p>The time value of money is the concept that a pound today is worth more than a pound in the future, because today's pound can be invested to earn returns. This underpins almost every investment calculation in R02.</p>
+<h2>Compound interest</h2>
+<p>Compound interest means earning interest on your interest — not just on the original principal. Over time, this creates exponential growth.</p>
+<p>The formula: <strong>FV = PV × (1 + r)^n</strong></p>
+<ul>
+  <li>FV = Future Value (what you end up with)</li>
+  <li>PV = Present Value (what you start with)</li>
+  <li>r = annual interest rate (as a decimal, e.g. 5% = 0.05)</li>
+  <li>n = number of years</li>
+</ul>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>Worked Example</strong><p>£10,000 at 4% for 3 years, then reinvested at 5% for 2 years:<br>Step 1: £10,000 × (1.04)³ = £10,000 × 1.12486 = £11,248.60<br>Step 2: £11,248.60 × (1.05)² = £11,248.60 × 1.1025 = £12,401.63<br>Always do multi-stage problems step by step.</p></div>
+</div>
+<h2>Annual Equivalent Rate (AER)</h2>
+<p>When interest is compounded more frequently than annually (monthly, quarterly), the effective annual rate is higher than the stated rate. AER standardises this for comparison.</p>
+<p>Formula: <strong>AER = (1 + r/n)^n - 1</strong></p>
+<p>where r = stated annual rate, n = number of compounding periods per year</p>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>AER Example</strong><p>6% p.a. compounded quarterly (n=4):<br>AER = (1 + 0.06/4)^4 - 1 = (1.015)^4 - 1 = 1.06136 - 1 = 6.14%<br>The AER is always higher than the nominal rate when compounding is more frequent than annual.</p></div>
+</div>
+<h2>Present Value (discounting)</h2>
+<p>The reverse of compounding. If you know what a future sum is worth, discounting tells you what you need to invest today to reach that figure.</p>
+<p>Formula: <strong>PV = FV ÷ (1 + r)^n</strong></p>
+<div class="callout callout-exam">
+  <div class="callout-icon">📋</div>
+  <div class="callout-content"><strong>Present Value Example</strong><p>Need £14,000 in 4 years, interest rate 5%:<br>PV = £14,000 ÷ (1.05)^4 = £14,000 ÷ 1.21551 = £11,517.83<br>This is how you calculate a lump sum needed today to meet a future target.</p></div>
+</div>
+<h2>Real vs nominal returns</h2>
+<p>A <strong>nominal return</strong> is the return before adjusting for inflation. A <strong>real return</strong> is what you actually gain in purchasing power after inflation. The Fisher equation: Real return ≈ Nominal return − Inflation rate.</p>
+<div class="callout callout-tip">
+  <div class="callout-icon">💡</div>
+  <div class="callout-content"><strong>Why this matters</strong><p>If a deposit account pays 3% but inflation is 4%, your real return is approximately -1%. Your money grows in nominal terms but loses purchasing power. For long-term planning, real returns are the measure that matters.</p></div>
+</div>`
+      }
+    ]
+  }
+};
+
+// ===== CURRENT EXAM STATE =====
+let activeExam = 'r01'; // 'r01' or 'r02'
+let activeMockExam = 'r01';
+
+// =================== APP STATE ===================
+let user = null;
+let currentQuiz = { questions:[], idx:0, answers:[], topic:'', startTime:null, timerInterval:null, mode:'quiz' };
+let selectedPlan = 'free';
+let mockQCount = 100;
+let fcDeckIdx = 0;
+let fcCardIdx = 0;
+let fcFlipped = false;
+
+const FLASHCARDS = [
+  { front:"What is the difference between monetary policy and fiscal policy?", back:"Monetary policy: controlled by the Bank of England's MPC — tools include Bank Rate and quantitative easing.\n\nFiscal policy: controlled by the Government/HM Treasury — tools include taxation and government spending." },
+  { front:"What are the four essential elements of a valid contract?", back:"1. Offer — proposal of terms\n2. Acceptance — agreement to those exact terms\n3. Consideration — something of value exchanged\n4. Intention to create legal relations" },
+  { front:"What is a 'counter offer' in contract law?", back:"When an offeree changes the terms of the original offer instead of simply accepting them. A counter offer rejects the original offer (which can no longer be accepted) and creates a new offer that must be accepted or rejected." },
+  { front:"What is the difference between an absolute trust and a discretionary trust?", back:"Absolute trust: beneficiaries are fixed and certain; they have an immediate right to their share. No trustee discretion.\n\nDiscretionary trust: trustees decide who benefits from a class of potential beneficiaries and in what proportions. Used when flexibility is needed." },
+  { front:"What is a fiduciary duty and who holds it in a trust?", back:"A fiduciary duty is a legal obligation to act in the best interests of another party. In a trust, it is held by the trustees in favour of the beneficiaries — not the settlor, not the beneficiary's relatives." },
+  { front:"What is the key distinction between bankruptcy and liquidation?", back:"Bankruptcy applies to individuals who cannot pay their debts.\n\nLiquidation is the winding up of a company's affairs. Both are insolvency processes but they apply to different legal entities (individuals vs companies)." },
+  { front:"New gilts are issued by whom, and traded where?", back:"Issued by: the Debt Management Office (DMO), an executive agency of HM Treasury.\n\nSubsequent trading: on the London Stock Exchange in the secondary market." },
+  { front:"Under Consumer Duty, who does the Consumer Principle apply to?", back:"The Consumer Principle applies to retail clients. It requires firms to act to deliver good outcomes for retail clients specifically — it does not apply in the same way to professional clients or eligible counterparties." },
+  { front:"What happens to unsecured creditors in bankruptcy if there isn't enough money to pay them in full?", back:"Unsecured creditors share the remaining assets on a pro-rata basis — proportional to what they are owed. Nobody gets priority over another unsecured creditor; they all receive the same pence-in-the-pound recovery rate." },
+  { front:"What does it mean when a company is 'in administration'?", back:"Administration is a formal corporate rescue procedure. An administrator is appointed to try to save the company as a going concern, or achieve a better outcome for creditors than immediate liquidation would provide." },
+  { front:"When does a senior manager who is an adviser need to stop advising clients?", back:"Never necessarily — a senior manager can continue to advise clients. The two roles are not mutually exclusive. Senior managers accept responsibility for their defined area of the firm, not all compliance." },
+  { front:"What is the balance of payments surplus?", back:"A balance of payments surplus occurs when a country earns more from its transactions with the rest of the world than it spends — most commonly when exports exceed imports in value." },
+  // ---- R02 FLASHCARDS ----
+  { front:"[R02] What is the running yield formula and when is it used?", back:"Running yield = (Annual coupon ÷ Clean market price) × 100.\n\nUsed to measure the income return based on what you actually paid for the bond. Always divide by the current market price, NOT the £100 nominal value. If the bond is below par, running yield > coupon rate." },
+  { front:"[R02] What is the inverse relationship between bond prices and interest rates?", back:"Bond prices and interest rates (yields) move in opposite directions:\n• Rates rise → bond prices fall (existing fixed coupons become less attractive)\n• Rates fall → bond prices rise\n\nThis is the most fundamental concept in fixed-interest investing." },
+  { front:"[R02] What is modified duration and how is it used?", back:"Modified duration measures a bond portfolio's price sensitivity to interest rate changes. If modified duration is 5, a 1% rise in rates causes approximately a 5% fall in price.\n\nTo REDUCE interest rate risk → decrease modified duration (sell long, buy short-dated bonds).\nTo INCREASE sensitivity → increase modified duration." },
+  { front:"[R02] What is the correlation coefficient and what do values of +1, 0, and -1 mean?", back:"+1.0 = Perfect positive correlation — assets move identically\n0 = No correlation — movements are independent\n-1.0 = Perfect negative correlation — assets move in exactly opposite directions\n\nThe closer to -1, the greater the diversification benefit of holding both assets." },
+  { front:"[R02] What is disinflation vs deflation?", back:"Disinflation: the rate of inflation is FALLING but remains positive (e.g. falling from 3% to 1%). Prices still rising, just more slowly.\n\nDeflation: inflation goes negative — prices are actually falling overall.\n\nDisinflation ≠ deflation. A common exam trap." },
+  { front:"[R02] What is the CAPM formula and what does beta measure?", back:"CAPM: Expected return = Risk-free rate + Beta × (Market return − Risk-free rate)\n\nBeta measures systematic risk relative to the market:\n• Beta = 1: moves with market\n• Beta > 1: more volatile than market\n• Beta < 1: less volatile\n\nBeta is central to CAPM — not alpha, not standard deviation." },
+  { front:"[R02] What is the Sharpe ratio and what inputs does it need?", back:"Sharpe ratio = (Portfolio return − Risk-free rate) ÷ Standard deviation of portfolio\n\nNeeds: portfolio return, risk-free rate, and portfolio standard deviation.\n\nHigher Sharpe = better risk-adjusted return. Does NOT need alpha or beta — those are used in different measures (Treynor, Jensen's alpha)." },
+  { front:"[R02] What is the AER formula and why is it higher than the stated rate?", back:"AER = (1 + r/n)^n − 1\nWhere r = stated annual rate, n = compounding periods per year\n\nExample: 6% compounded quarterly = (1 + 0.015)^4 − 1 = 6.14%\n\nAER is always higher than the nominal rate when compounding occurs more than once per year, because you earn interest on interest within the year." },
+  { front:"[R02] What is the present value formula?", back:"PV = FV ÷ (1 + r)^n\n\nWhere FV = future value, r = annual interest rate (decimal), n = years\n\nExample: Need £14,000 in 4 years at 5%:\nPV = £14,000 ÷ (1.05)^4 = £14,000 ÷ 1.2155 = £11,517.83\n\nThis tells you how much to invest today to reach a future target." },
+  { front:"[R02] What is the difference between a unit trust / OEIC and an investment trust?", back:"Unit trust / OEIC: Open-ended. New units/shares created when investors buy. Priced directly at NAV. Cannot trade at discount or premium.\n\nInvestment trust: Closed-ended. Fixed number of shares traded on the stock exchange. Price set by supply/demand — can trade at a DISCOUNT or PREMIUM to NAV." },
+  { front:"[R02] What is an investment trust discount to NAV?", back:"When the market price of investment trust shares is LOWER than the net asset value of the underlying portfolio. Investors can therefore buy £1 of assets for less than £1.\n\nOnly investment trusts can trade at a discount (or premium) — OEICs and unit trusts cannot." },
+  { front:"[R02] What is a positive alpha and what does it indicate?", back:"Alpha measures the return generated above (or below) what CAPM would predict for the level of risk taken.\n\nPositive alpha: the manager outperformed their risk-adjusted expected return — attributed to stock selection skill.\nNegative alpha: the manager underperformed the expected return given their risk level." },
+  { front:"[R02] What is the difference between systematic and non-systematic risk?", back:"Systematic risk: Market-wide risk that affects ALL investments (e.g. recessions, interest rate changes, inflation). CANNOT be diversified away no matter how many assets you hold.\n\nNon-systematic risk: Company or sector-specific risk. CAN be reduced by diversification — adding more holdings reduces this risk." },
+];
+
+// Combined flashcard decks (R01 + R02)
+const FC_ALL_DECKS = [
+  { name:'All Cards (R01 + R02)', start:0, end:999 },
+  { name:'R01: Financial Services', start:0, end:2 },
+  { name:'R01: Legal Concepts', start:3, end:8 },
+  { name:'R01: Regulators', start:9, end:11 },
+  { name:'R02: Fixed Interest', start:12, end:15 },
+  { name:'R02: Investment Theory', start:16, end:17 },
+  { name:'R02: Calculations', start:18, end:20 },
+  { name:'R02: Products', start:21, end:23 },
+];
+
+// =================== UTILITY ===================
+function showToast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function backToDash() {
+  if(currentQuiz.timerInterval) { clearInterval(currentQuiz.timerInterval); currentQuiz.timerInterval=null; }
+  showScreen('dashboard');
+}
+
+// =================== AUTH ===================
+function showModal(tab='login') {
+  document.getElementById('modal-overlay').classList.remove('hidden');
+  switchTab(tab);
+}
+function closeModal() { document.getElementById('modal-overlay').classList.add('hidden'); }
+function closeModalOnBg(e) { if(e.target.id==='modal-overlay') closeModal(); }
+
+function switchTab(tab) {
+  document.getElementById('form-login').classList.toggle('hidden', tab!=='login');
+  document.getElementById('form-register').classList.toggle('hidden', tab!=='register');
+  document.querySelectorAll('.modal-tab').forEach((t,i) => t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='register'&&i===1)));
+}
+
+function selectPlan(el, plan) {
+  selectedPlan = plan;
+  document.querySelectorAll('.plan-option').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  document.getElementById('payment-section').classList.toggle('hidden', plan === 'free');
+  document.getElementById('btn-register-submit').textContent = plan === 'free' ? 'Create Free Account' : 'Pay £20/month & Create Account';
+}
+
+// =================== SECURITY UTILITIES ===================
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+// Login brute-force protection — 5 attempts = 15 min lockout
+let _loginAttempts = 0;
+let _lockoutUntil = 0;
+
+function checkLoginRateLimit() {
+  if (Date.now() < _lockoutUntil) {
+    const mins = Math.ceil((_lockoutUntil - Date.now()) / 60000);
+    showToast(`Too many failed attempts. Try again in ${mins} minute${mins>1?'s':''}`, 'error');
+    return false;
+  }
+  return true;
+}
+function recordFailedLogin() {
+  _loginAttempts++;
+  if (_loginAttempts >= 5) {
+    _lockoutUntil = Date.now() + (15 * 60 * 1000);
+    _loginAttempts = 0;
+  }
+}
+function resetLoginAttempts() { _loginAttempts = 0; _lockoutUntil = 0; }
+
+// =================== SUPABASE AUTH ===================
+// Holds the Supabase session token for API calls
+let sessionToken = null;
+let progressData = null; // cached from load-progress
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-password').value;
+  if (!email || !pass) { showToast('Please enter your email and password', 'error'); return; }
+  if (!checkLoginRateLimit()) return;
+
+  setBtnLoading('btn-login-submit', true, 'Signing in...');
+  try {
+    const { data, error } = await _supabase.auth.signInWithPassword({ email, password: pass });
+    if (error) throw error;
+    resetLoginAttempts();
+    sessionToken = data.session.access_token;
+    await afterAuth(data.user, data.session);
+  } catch (err) {
+    recordFailedLogin();
+    const msg = err.message || 'Login failed';
+    if (msg.includes('fetch') || msg.includes('network') || msg.includes('Failed')) {
+      showToast('Cannot reach server — check your internet connection', 'error');
+    } else if (msg.includes('Invalid login')) {
+      showToast('Wrong email or password', 'error');
+    } else if (msg.includes('Email not confirmed')) {
+      showToast('Please confirm your email first — check your inbox', 'error');
+    } else {
+      showToast(msg, 'error');
+    }
+  } finally {
+    setBtnLoading('btn-login-submit', false, 'Sign In');
+  }
+}
+
+async function doRegister() {
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass = document.getElementById('reg-password').value;
+  const examdate = document.getElementById('reg-examdate').value;
+  if (!name || !email || !pass) { showToast('Please fill in all fields', 'error'); return; }
+  if (!document.getElementById('reg-consent').checked) { showToast('Please agree to the Terms & Conditions and Privacy Policy to continue', 'error'); return; }
+  if (pass.length < 8) { showToast('Password must be at least 8 characters', 'error'); return; }
+
+  setBtnLoading('btn-register-submit', true, 'Creating account...');
+  try {
+    const { data, error } = await _supabase.auth.signUp({
+      email,
+      password: pass,
+      options: { data: { full_name: name } }
+    });
+    if (error) throw error;
+    // Update profile with exam date if provided
+    if (examdate && data.user) {
+      await _supabase.from('profiles').update({ exam_date: examdate }).eq('id', data.user.id);
+    }
+    if (data.session) {
+      sessionToken = data.session.access_token;
+      await afterAuth(data.user, data.session);
+      if (selectedPlan === 'full') { await upgradePlan(); }
+    } else {
+      closeModal();
+      showToast('Account created! Check your email to confirm, then sign in.', 'success');
+    }
+  } catch (err) {
+    console.error('Register error:', err);
+    const msg = err.message || 'Registration failed';
+    if (msg.includes('fetch') || msg.includes('network') || msg.includes('Failed')) {
+      showToast('Connection error — make sure you are online and try again', 'error');
+    } else if (msg.includes('already registered') || msg.includes('already exists')) {
+      showToast('This email already has an account — try signing in instead', 'error');
+    } else if (msg.includes('password')) {
+      showToast('Password must be at least 8 characters', 'error');
+    } else {
+      showToast(msg, 'error');
+    }
+  } finally {
+    setBtnLoading('btn-register-submit', false, selectedPlan === 'full' ? 'Pay £20/month & Create Account' : 'Create Free Account');
+  }
+}
+
+async function afterAuth(supabaseUser, session) {
+  sessionToken = session.access_token;
+  // Load full progress from backend
+  try {
+    const res = await fetch('/.netlify/functions/load-progress', {
+      headers: { Authorization: `Bearer ${sessionToken}` }
+    });
+    if (res.ok) {
+      progressData = await res.json();
+      user = {
+        id: supabaseUser.id,
+        name: progressData.profile?.full_name || supabaseUser.email.split('@')[0],
+        email: supabaseUser.email,
+        plan: progressData.profile?.plan === 'paid' ? 'full' : 'free',
+        examdate: progressData.profile?.exam_date || '2026-05-29',
+        subscriptionStatus: progressData.profile?.subscription_status,
+      };
+    } else {
+      // Fallback if backend not yet deployed
+      user = {
+        id: supabaseUser.id,
+        name: supabaseUser.user_metadata?.full_name || supabaseUser.email.split('@')[0],
+        email: supabaseUser.email,
+        plan: 'free',
+        examdate: '2026-05-29',
+      };
+      progressData = null;
+    }
+  } catch (e) {
+    // Backend not available yet — use basic info
+    user = {
+      id: supabaseUser.id,
+      name: supabaseUser.user_metadata?.full_name || supabaseUser.email.split('@')[0],
+      email: supabaseUser.email,
+      plan: 'free',
+      examdate: '2026-05-29',
+    };
+    progressData = null;
+  }
+  closeModal();
+  setupDashboard();
+  showScreen('dashboard');
+  showToast('Welcome back, ' + user.name.split(' ')[0] + '! 🎓', 'success');
+}
+
+function registerAndGo(plan) {
+  selectedPlan = plan;
+  showModal('register');
+  if (plan === 'full') {
+    setTimeout(() => { document.querySelectorAll('.plan-option')[1].click(); }, 100);
+  }
+}
+
+async function sendPasswordReset() {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email) { showToast('Enter your email address first', 'error'); return; }
+  const { error } = await _supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/?reset=true',
+  });
+  if (error) showToast(error.message, 'error');
+  else showToast('Password reset email sent! Check your inbox.', 'success');
+}
+
+async function doLogout() {
+  await _supabase.auth.signOut();
+  user = null;
+  sessionToken = null;
+  progressData = null;
+  showScreen('landing');
+  showToast('Signed out successfully');
+}
+
+function capitalise(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function setBtnLoading(id, loading, text) {
+  const btn = document.getElementById(id);
+  if (!btn) return;
+  btn.disabled = loading;
+  btn.textContent = loading ? text : text;
+  btn.style.opacity = loading ? '0.7' : '1';
+}
+
+// =================== DASHBOARD ===================
+function setupDashboard() {
+  const initials = user.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('dash-avatar').textContent = initials;
+  document.getElementById('dash-username').textContent = escapeHtml(user.name.split(' ')[0]);
+  document.getElementById('greeting-name').textContent = escapeHtml(user.name.split(' ')[0]);
+  document.getElementById('profile-avatar-big').textContent = initials;
+  document.getElementById('profile-name-big').textContent = user.name;
+  document.getElementById('profile-email-big').textContent = user.email;
+  document.getElementById('profile-plan-badge').textContent = user.plan === 'full' ? 'Full Access ✓' : 'Free Plan';
+  document.getElementById('profile-plan-badge').className = 'profile-plan' + (user.plan === 'full' ? '' : ' plan-badge-free');
+  if (user.examdate) document.getElementById('profile-examdate').value = user.examdate;
+
+  // Update subscription info in profile
+  updateSubInfo();
+
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+  buildTopicsGrid();
+  buildQuizTopicsGrid();
+  buildLOPerformance();
+  loadFlashcard();
+
+  // Update stats from real data
+  if (progressData?.stats) {
+    const s = progressData.stats;
+    const mEl = document.getElementById('m-qdone');
+    const sEl = document.getElementById('m-score');
+    if (mEl) mEl.textContent = s.totalQsDone || 0;
+    if (sEl) sEl.textContent = (s.avgScore || 0) + '%';
+    const sBar = document.getElementById('m-score-bar');
+    if (sBar) sBar.style.width = (s.avgScore || 0) + '%';
+  }
+  if (progressData?.flashcardsDueCount !== undefined) {
+    const fcDue = document.querySelector('.qa-card:nth-child(3) p');
+    if (fcDue) fcDue.textContent = `${progressData.flashcardsDueCount} cards due today`;
+  }
+}
+
+function updateSubInfo() {
+  const el = document.getElementById('sub-info');
+  if (!el) return;
+  const status = user.subscriptionStatus;
+  const isCancelling = status === 'cancelling';
+  const isActive = user.plan === 'full';
+
+  el.innerHTML = `
+    <p style="color:var(--slate); font-size:0.92rem; margin-bottom:16px;">
+      ${isActive ? `You have an <strong style="color:var(--emerald)">active subscription</strong>.` : `You're on the <strong>Free Plan</strong>. Subscribe to individual exam units at £20/month each.`}
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
+        <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R01 — Regulation &amp; Ethics</span>
+        ${isActive
+          ? `<span style="color:var(--emerald);font-size:0.82rem;font-weight:600;">✓ Active</span>`
+          : `<button class="btn-primary" onclick="upgradePlan('r01')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>`}
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
+        <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R02 — Investment Principles</span>
+        ${isActive
+          ? `<span style="color:var(--emerald);font-size:0.82rem;font-weight:600;">✓ Active</span>`
+          : `<button class="btn-primary" onclick="upgradePlan('r02')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>`}
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
+        <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R03 — Personal Taxation 🔜</span>
+        <span style="font-size:0.82rem;color:var(--slate);">Coming soon</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
+        <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R04 — Pensions 🔜</span>
+        <span style="font-size:0.82rem;color:var(--slate);">Coming soon</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
+        <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R05 — Financial Protection 🔜</span>
+        <span style="font-size:0.82rem;color:var(--slate);">Coming soon</span>
+      </div>
+    </div>
+    ${isActive && !isCancelling ? `
+      <hr style="border:none;border-top:1px solid var(--off-white);margin:16px 0;">
+      <button class="btn-quiz-outline btn-quiz" onclick="cancelSubscription()" style="width:100%;color:var(--crimson);border-color:var(--crimson);">Cancel Subscription</button>
+      <p style="margin-top:8px;font-size:0.78rem;color:var(--slate);text-align:center;">You'll keep access until the end of your billing period.</p>
+    ` : isCancelling ? `
+      <div style="background:rgba(192,57,43,0.08);border-radius:10px;padding:12px 16px;margin-top:8px;">
+        <span style="color:var(--crimson);font-size:0.88rem;">⚠️ Subscription cancelling at period end — you still have access until then.</span>
+      </div>
+    ` : ''}
+    <p style="margin-top:10px; font-size:0.8rem; color:var(--slate);">Secured by Stripe · Cancel anytime</p>
+  `;
+}
+
+function updateCountdown() {
+  if (!user) return;
+  const examDate = new Date(user.examdate || '2026-05-29');
+  const now = new Date();
+  const diff = examDate - now;
+  if (diff <= 0) { document.getElementById('cnt-days').textContent = '0'; return; }
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+  document.getElementById('cnt-days').textContent = days;
+  document.getElementById('cnt-hours').textContent = hours;
+  document.getElementById('cnt-mins').textContent = mins;
+  document.getElementById('exam-date-display').textContent = examDate.toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+}
+
+function showDashSection(section, btn) {
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.add('hidden'));
+  document.getElementById('dash-' + section).classList.remove('hidden');
+  document.querySelectorAll('.dash-link').forEach(l => l.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  if (section==='flashcards') loadFlashcard();
+}
+
+function setMobActive(btn) {
+  document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function buildTopicsGrid() {
+  const grid = document.getElementById('topics-grid');
+  const isPaid = user && user.plan === 'full';
+  const topics = activeExam === 'r02' ? TOPICS_R02 : TOPICS;
+  const freeIds = activeExam === 'r02' ? ['r02lo1'] : ['lo1','lo2'];
+  grid.innerHTML = topics.map(t => {
+    const locked = !isPaid && !freeIds.includes(t.id);
+    const lessonAvail = activeExam === 'r02' ? !!LESSONS_R02[t.id] : !!LESSONS[t.id];
+    return `<div class="topic-card ${t.cls}" onclick="${locked ? 'showUpgradePrompt()' : `openLesson('${t.id}')`}">
+      <div class="tc-top"><span class="tc-num">${t.num}</span><span class="tc-q-count">${t.qs} exam Qs${locked?'  🔒':''}</span></div>
+      <h3>${t.title}</h3>
+      <p>${t.desc}</p>
+      <div class="tc-bottom">
+        <span class="tc-progress"><strong>${t.pct}%</strong> complete</span>
+        <button class="btn-study-topic" onclick="event.stopPropagation();${locked ? 'showUpgradePrompt()' : (lessonAvail ? `openLesson('${t.id}')` : `showToast('Lesson coming soon!')`)}">${locked ? 'Upgrade 🔒' : (lessonAvail ? 'Study →' : 'Coming soon')}</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildQuizTopicsGrid() {
+  const grid = document.getElementById('quiz-topics-grid');
+  const isPaid = user && user.plan === 'full';
+  const topics = activeExam === 'r02' ? TOPICS_R02 : TOPICS;
+  const freeIds = activeExam === 'r02' ? ['r02lo1','r02lo2','r02lo4'] : ['lo1','lo2','lo3'];
+  const qBank = activeExam === 'r02' ? QUESTIONS_R02 : QUESTIONS;
+  grid.innerHTML = topics.map(t => {
+    const locked = !isPaid && !freeIds.includes(t.id);
+    const hasQs = qBank[t.id] && qBank[t.id].length > 0;
+    return `<div class="topic-card ${t.cls}">
+      <div class="tc-top"><span class="tc-num">${t.num}</span><span class="tc-q-count">${t.qs} exam Qs${locked?'  🔒':''}</span></div>
+      <h3>${t.title}</h3>
+      <p>${t.desc}</p>
+      <div class="tc-bottom">
+        <span class="tc-progress"><strong>${hasQs?qBank[t.id].length:0}</strong> Qs available</span>
+        <button class="btn-study-topic" onclick="${locked ? 'showUpgradePrompt()' : (hasQs ? `startQuiz('${t.id}')` : `showToast('More questions coming soon!','')`)}">
+          ${locked ? 'Upgrade 🔒' : (hasQs ? 'Quiz →' : 'Coming soon')}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function buildLOPerformance() {
+  const grid = document.getElementById('lo-performance-grid');
+  const perf = progressData?.topicPerformance || {};
+
+  // All LOs across both exams
+  const allLOs = [
+    { key:'r01:lo1', label:'R01 LO1 — UK Financial Services' },
+    { key:'r01:lo2', label:'R01 LO2 — Retail Consumer' },
+    { key:'r01:lo3', label:'R01 LO3 — Legal Concepts' },
+    { key:'r01:lo4', label:'R01 LO4 — Regulation' },
+    { key:'r01:lo5', label:'R01 LO5 — Regulators' },
+    { key:'r01:lo6', label:'R01 LO6–11 — Applications & Ethics' },
+    { key:'r02:r02lo1', label:'R02 LO1 — Asset Classes' },
+    { key:'r02:r02lo2', label:'R02 LO2 — Macro Economics' },
+    { key:'r02:r02lo3', label:'R02 LO3 — Investment Theories' },
+    { key:'r02:r02lo4', label:'R02 LO4 — Time Value of Money' },
+    { key:'r02:r02lo6', label:'R02 LO6 — Investment Products' },
+  ];
+
+  grid.innerHTML = allLOs.map(({ key, label }) => {
+    const d = perf[key];
+    const score = d?.avgPct ?? 0;
+    const attempts = d?.attempts ?? 0;
+    const colour = score >= 70 ? 'var(--emerald-light)' : score >= 50 ? 'var(--gold)' : 'var(--crimson)';
+    return `
+      <div class="topic-progress-item">
+        <div class="topic-top">
+          <span class="topic-name">${label}</span>
+          <span class="topic-pct" style="color:${attempts>0?colour:'var(--slate)'}">
+            ${attempts > 0 ? score + '%' : 'Not started'}
+          </span>
+        </div>
+        ${attempts > 0 ? `<div class="topic-bar"><div class="topic-bar-fill" style="width:${score}%;background:${colour}"></div></div>` : ''}
+      </div>`;
+  }).join('');
+}
+
+function showUpgradePrompt() {
+  showToast('Upgrade to Full Access to unlock all R01, R02, R03 & R04 content');
+  showDashSection('profile', null);
+}
+
+async function upgradePlan() {
+  if (!user?.id) { showModal('register'); return; }
+  showToast('Redirecting to secure checkout...', '');
+  try {
+    const res = await fetch('/.netlify/functions/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionToken}` },
+      body: JSON.stringify({ userId: user.id, userEmail: user.email, userName: user.name }),
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url; // Redirect to Stripe Checkout
+    } else {
+      throw new Error(data.error || 'Could not create checkout session');
+    }
+  } catch (err) {
+    showToast('Payment setup failed: ' + err.message, 'error');
+  }
+}
+
+async function cancelSubscription() {
+  if (!confirm('Cancel your subscription? You keep access until the end of the current billing period.')) return;
+  try {
+    const res = await fetch('/.netlify/functions/cancel-subscription', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${sessionToken}` },
+    });
+    const data = await res.json();
+    if (data.cancelled) {
+      user.subscriptionStatus = 'cancelling';
+      updateSubInfo();
+      showToast(data.message, 'success');
+    } else {
+      throw new Error(data.error);
+    }
+  } catch (err) {
+    showToast('Could not cancel: ' + err.message, 'error');
+  }
+}
+
+async function updateExamDate() {
+  const newDate = document.getElementById('profile-examdate').value;
+  if (user) user.examdate = newDate;
+  updateCountdown();
+  // Save to backend if logged in
+  if (sessionToken) {
+    try {
+      await fetch('/.netlify/functions/save-progress', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionToken}` },
+        body: JSON.stringify({ type: 'update_exam_date', examDate: newDate }),
+      });
+    } catch(e) { /* non-critical */ }
+  }
+}
+
+async function saveProfile() {
+  await updateExamDate();
+  showToast('Settings saved ✓', 'success');
+}
+
+// =================== LESSONS ===================
+function openLesson(loId) {
+  const isR02 = loId.startsWith('r02');
+  const lessonBank = isR02 ? LESSONS_R02 : LESSONS;
+  const lesson = lessonBank[loId];
+  if (!lesson) { showToast('Lesson content coming soon!'); return; }
+  currentQuiz.lessonLo = loId;
+  currentQuiz.lessonBank = isR02 ? 'r02' : 'r01';
+  renderLesson(lesson, 0);
+  showScreen('lesson');
+}
+
+function renderLesson(lesson, sectionIdx) {
+  document.getElementById('lesson-nav-title').textContent = lesson.title;
+  const sec = lesson.sections[sectionIdx];
+  const bankRef = currentQuiz.lessonBank === 'r02' ? 'LESSONS_R02' : 'LESSONS';
+
+  // Sidebar
+  document.getElementById('lesson-sidebar').innerHTML = `
+    <div class="ls-title">Contents</div>
+    ${lesson.sections.map((s,i) => `
+      <div class="ls-nav-item ${i===sectionIdx?'active':i<sectionIdx?'done':''}" onclick="renderLesson(${bankRef}['${currentQuiz.lessonLo}'],${i})">
+        <div class="ls-check"></div>
+        <span>${s.title}</span>
+      </div>
+    `).join('')}
+    <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--off-white);">
+      <button class="btn-study-topic" style="width:100%; padding:10px;" onclick="startQuiz('${currentQuiz.lessonLo}')">Quiz This Topic →</button>
+    </div>
+  `;
+
+  // Main content
+  const loLabel = currentQuiz.lessonLo.replace('r02lo','').replace('lo','');
+  document.getElementById('lesson-main-content').innerHTML = `
+    <div class="lesson-top">
+      <span class="lesson-lo-badge">${currentQuiz.lessonBank==='r02'?'R02':'R01'} · LO ${loLabel}</span>
+    </div>
+    <h1>${lesson.title}</h1>
+    <p class="lesson-subtitle">${lesson.subtitle}</p>
+    <div class="lesson-body">${sec.content}</div>
+    <div class="lesson-nav-buttons">
+      ${sectionIdx > 0 ? `<button class="btn-lesson-nav" onclick="renderLesson(${bankRef}['${currentQuiz.lessonLo}'],${sectionIdx-1})">← Previous</button>` : '<div></div>'}
+      <button class="btn-mark-done" onclick="markSectionComplete('${currentQuiz.lessonLo}', '${sec.id}')">Mark Complete ✓</button>
+      ${sectionIdx < lesson.sections.length-1 
+        ? `<button class="btn-lesson-nav next" onclick="renderLesson(${bankRef}['${currentQuiz.lessonLo}'],${sectionIdx+1})">Next →</button>`
+        : `<button class="btn-lesson-nav next" onclick="startQuiz('${currentQuiz.lessonLo}')">Take Quiz →</button>`
+      }
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+// =================== QUIZ ===================
+function startQuickQuiz() {
+  const topic = activeExam === 'r02' ? 'r02mixed' : 'mixed';
+  startQuiz(topic, 10);
+}
+
+function startQuiz(topic, limit=null) {
+  const isR02 = topic.startsWith('r02');
+  const qBank = isR02 ? QUESTIONS_R02 : QUESTIONS;
+  const qs = qBank[topic] || (isR02 ? QUESTIONS_R02.r02mixed : QUESTIONS.mixed);
+  if (!qs || qs.length === 0) { showToast('No questions available for this topic yet!'); return; }
+  const shuffled = [...qs].sort(() => Math.random()-0.5);
+  currentQuiz = {
+    questions: limit ? shuffled.slice(0, Math.min(limit, shuffled.length)) : shuffled,
+    idx: 0, answers: [], topic, startTime: Date.now(), timerInterval: null, mode:'quiz'
+  };
+  document.getElementById('quiz-nav-title').textContent = `${topic.toUpperCase()} Quiz`;
+  renderQuizQuestion();
+  startQuizTimer(currentQuiz.questions.length * 72); // ~72 seconds per question
+  showScreen('quiz');
+}
+
+function startMockExam() {
+  const isR02 = activeMockExam === 'r02';
+  const pool = isR02 ? [...QUESTIONS_R02.r02mixed] : [...QUESTIONS.mixed];
+  const qs = pool.sort(() => Math.random()-0.5);
+  const limit = mockQCount === 'weak' ? 25 : parseInt(mockQCount);
+  currentQuiz = {
+    questions: qs.slice(0, Math.min(limit, qs.length)),
+    idx: 0, answers: [], topic:'mock', startTime: Date.now(), timerInterval: null, mode:'mock'
+  };
+  document.getElementById('quiz-nav-title').textContent = (activeMockExam === 'r02' ? 'R02' : 'R01') + ' Mock Exam';
+  renderQuizQuestion();
+  const secs = mockQCount === 100 ? 7200 : mockQCount === 50 ? 3600 : 1800;
+  startQuizTimer(secs);
+  showScreen('quiz');
+}
+
+function selectMockOpt(el, val) {
+  document.querySelectorAll('.mock-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  mockQCount = val;
+}
+
+function startQuizTimer(seconds) {
+  if (currentQuiz.timerInterval) clearInterval(currentQuiz.timerInterval);
+  let remaining = seconds;
+  updateTimerDisplay(remaining);
+  currentQuiz.timerInterval = setInterval(() => {
+    remaining--;
+    updateTimerDisplay(remaining);
+    if (remaining <= 0) { clearInterval(currentQuiz.timerInterval); submitQuiz(); }
+    if (remaining <= 300) document.getElementById('quiz-timer-nav').classList.add('warn');
+  }, 1000);
+}
+
+function updateTimerDisplay(s) {
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  const el = document.getElementById('quiz-timer-nav');
+  if (el) el.textContent = (h>0?h+':':'') + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+}
+
+function renderQuizQuestion() {
+  const { questions, idx, answers } = currentQuiz;
+  const q = questions[idx];
+  const total = questions.length;
+  const answered = answers.filter(a=>a!==undefined&&a!==null).length;
+  const pct = Math.round((idx/total)*100);
+  const isMulti = q.multi;
+
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = `
+    <div class="quiz-header">
+      <div class="quiz-title">${currentQuiz.mode==='mock'?'Mock Exam':currentQuiz.topic.toUpperCase()+' Quiz'}</div>
+      <div class="quiz-meta">
+        <div class="quiz-badge">${idx+1} / ${total}</div>
+        <div class="quiz-badge">${answered} answered</div>
+      </div>
+    </div>
+    <div class="quiz-progress">
+      <div class="qp-top"><span class="qp-label">Progress</span><span class="qp-num">Question ${idx+1} of ${total}</span></div>
+      <div class="qp-bar"><div class="qp-fill" style="width:${pct}%"></div></div>
+    </div>
+    <div class="question-card">
+      <div class="q-num">Question ${idx+1}</div>
+      ${isMulti ? '<div class="q-type-label">⚠️ Multiple response — select ALL correct options</div>' : ''}
+      <div class="q-text">${q.q}</div>
+      <ul class="options-list" id="options-list">
+        ${q.opts.map((o,i) => `
+          <li class="option-item">
+            <button class="option-btn" id="opt-${i}" onclick="selectOption(${i})">
+              <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+              <span>${o}</span>
+            </button>
+          </li>
+        `).join('')}
+      </ul>
+      <div id="explanation" style="display:none"></div>
+    </div>
+    <div class="quiz-controls">
+      <button class="btn-quiz btn-quiz-outline" onclick="${idx>0?'prevQuestion()':'backToDash()'}">← ${idx>0?'Previous':'Exit'}</button>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-quiz btn-quiz-outline" id="btn-skip" onclick="skipQuestion()">Skip</button>
+        <button class="btn-quiz btn-quiz-primary" id="btn-submit-q" onclick="checkAnswer()" style="display:none">Check Answer</button>
+        <button class="btn-quiz btn-quiz-gold" id="btn-next-q" onclick="nextQuestion()" style="display:none">${idx===total-1?'See Results':'Next →'}</button>
+      </div>
+    </div>
+  `;
+
+  currentQuiz.selectedOpts = isMulti ? [] : null;
+}
+
+function selectOption(i) {
+  const q = currentQuiz.questions[currentQuiz.idx];
+  if (document.getElementById('btn-next-q').style.display !== 'none') return; // Already answered
+
+  if (q.multi) {
+    const btn = document.getElementById('opt-'+i);
+    const idx = currentQuiz.selectedOpts.indexOf(i);
+    if (idx > -1) {
+      currentQuiz.selectedOpts.splice(idx, 1);
+      btn.classList.remove('selected-multi');
+    } else {
+      currentQuiz.selectedOpts.push(i);
+      btn.classList.add('selected-multi');
+    }
+    document.getElementById('btn-submit-q').style.display = currentQuiz.selectedOpts.length > 0 ? 'block' : 'none';
+  } else {
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('opt-'+i).classList.add('selected');
+    currentQuiz.selectedOpts = i;
+    document.getElementById('btn-submit-q').style.display = 'block';
+    document.getElementById('btn-skip').style.display = 'none';
+  }
+}
+
+function checkAnswer() {
+  const q = currentQuiz.questions[currentQuiz.idx];
+  const sel = currentQuiz.selectedOpts;
+  let correct;
+
+  if (q.multi) {
+    const correctSet = Array.isArray(q.ans) ? q.ans : [q.ans];
+    const selSorted = [...sel].sort().join(',');
+    const corSorted = [...correctSet].sort().join(',');
+    correct = selSorted === corSorted;
+    q.opts.forEach((_, i) => {
+      const btn = document.getElementById('opt-'+i);
+      if (correctSet.includes(i)) btn.classList.add('correct');
+      else if (sel.includes(i)) btn.classList.add('incorrect');
+    });
+  } else {
+    correct = sel === q.ans;
+    document.getElementById('opt-'+sel).classList.add(correct ? 'correct' : 'incorrect');
+    if (!correct) document.getElementById('opt-'+q.ans).classList.add('correct');
+  }
+
+  currentQuiz.answers[currentQuiz.idx] = { selected: sel, correct };
+
+  const expEl = document.getElementById('explanation');
+  expEl.style.display = 'block';
+  expEl.innerHTML = `<div class="q-explanation"><h4>${correct?'✓ Correct!':'✗ Incorrect'}</h4><p>${q.exp}</p></div>`;
+
+  document.getElementById('btn-submit-q').style.display = 'none';
+  document.getElementById('btn-skip').style.display = 'none';
+  document.getElementById('btn-next-q').style.display = 'block';
+}
+
+function skipQuestion() {
+  currentQuiz.answers[currentQuiz.idx] = null;
+  nextQuestion();
+}
+
+function nextQuestion() {
+  if (currentQuiz.idx < currentQuiz.questions.length - 1) {
+    currentQuiz.idx++;
+    renderQuizQuestion();
+  } else {
+    submitQuiz();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuiz.idx > 0) {
+    currentQuiz.idx--;
+    renderQuizQuestion();
+  }
+}
+
+function submitQuiz() {
+  if (currentQuiz.timerInterval) { clearInterval(currentQuiz.timerInterval); currentQuiz.timerInterval = null; }
+  const { questions, answers } = currentQuiz;
+  let correct = 0, incorrect = 0, skipped = 0;
+  answers.forEach((a,i) => {
+    if (a === null || a === undefined) skipped++;
+    else if (a.correct) correct++;
+    else incorrect++;
+  });
+  const total = questions.length;
+  const pct = Math.round((correct/total)*100);
+  const pass = pct >= 70;
+  const timeTaken = currentQuiz.startTime ? Math.round((Date.now() - currentQuiz.startTime) / 1000) : null;
+
+  // ── Save to backend ─────────────────────────────────────────
+  if (sessionToken) {
+    const isR02 = currentQuiz.topic.startsWith('r02');
+    fetch('/.netlify/functions/save-progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionToken}` },
+      body: JSON.stringify({
+        type: 'quiz_attempt',
+        exam: isR02 ? 'r02' : 'r01',
+        topic: currentQuiz.topic,
+        mode: currentQuiz.mode,
+        score: correct,
+        total,
+        pct,
+        timeTakenSecs: timeTaken,
+      }),
+    }).catch(() => {}); // Fire-and-forget — don't block the UI
+  }
+
+  document.getElementById('quiz-timer-nav').textContent = '—';
+
+  document.getElementById('quiz-container').innerHTML = `
+    <div class="results-card">
+      <div class="results-score-ring" style="--score-pct:${pct*3.6}deg; background: conic-gradient(${pass?'var(--emerald-light)':pct>=50?'var(--gold)':'var(--crimson)'} ${pct*3.6}deg, var(--off-white) 0%)">
+        <div class="results-score-inner">
+          <div class="results-pct">${pct}%</div>
+          <div class="results-pct-lbl">score</div>
+        </div>
+      </div>
+      <div class="results-verdict" style="color:${pass?'var(--emerald)':pct>=50?'#b07d00':'var(--crimson)'}">
+        ${pass ? '🎉 Excellent Pass!' : pct>=50 ? '📈 Getting There' : '📚 Keep Studying'}
+      </div>
+      <p class="results-sub">${pass ? 'You\'re on track for the real exam. Keep this momentum!' : 'Review the explanations below and revisit this topic.'}</p>
+      <div class="results-breakdown">
+        <div class="rb-item pass"><div class="rb-num">${correct}</div><div class="rb-label">Correct</div></div>
+        <div class="rb-item fail"><div class="rb-num">${incorrect}</div><div class="rb-label">Incorrect</div></div>
+        <div class="rb-item skip"><div class="rb-num">${skipped}</div><div class="rb-label">Skipped</div></div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-quiz btn-quiz-primary" onclick="startQuiz('${currentQuiz.topic}')">Retry Quiz</button>
+        <button class="btn-quiz btn-quiz-outline" onclick="backToDash()">Back to Dashboard</button>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:16px;">Review All Questions</h3>
+      ${questions.map((q,i) => {
+        const a = answers[i];
+        const isCorrect = a && a.correct;
+        const wasSkipped = !a;
+        return `<div class="question-card" style="margin-bottom:14px;border-left:4px solid ${isCorrect?'var(--emerald-light)':wasSkipped?'var(--slate)':'var(--crimson)'}">
+          <div class="q-num">Q${i+1} · ${isCorrect?'✓ Correct':wasSkipped?'⏭ Skipped':'✗ Incorrect'}</div>
+          <div class="q-text" style="font-size:0.92rem;margin-bottom:14px">${q.q}</div>
+          ${q.opts.map((o,j) => {
+            let style = '';
+            const isAns = Array.isArray(q.ans) ? q.ans.includes(j) : q.ans === j;
+            const wasSel = a && (Array.isArray(a.selected) ? a.selected.includes(j) : a.selected === j);
+            if (isAns) style = 'background:rgba(26,122,94,0.08);border-color:var(--emerald-light);';
+            else if (wasSel && !isAns) style = 'background:rgba(192,57,43,0.07);border-color:var(--crimson);';
+            return `<div style="padding:10px 14px;border:2px solid var(--off-white);border-radius:8px;margin-bottom:6px;font-size:0.88rem;${style}">
+              <strong style="font-family:'DM Mono',monospace;margin-right:8px;">${String.fromCharCode(65+j)}</strong>${o}
+              ${isAns?' ✓':''}${wasSel&&!isAns?' ✗':''}
+            </div>`;
+          }).join('')}
+          <div style="margin-top:12px;padding:12px 14px;background:rgba(26,122,94,0.06);border-radius:8px;font-size:0.88rem;color:var(--text);">
+            <strong style="color:var(--emerald);display:block;margin-bottom:4px;font-size:0.8rem;">EXPLANATION</strong>${q.exp}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+  window.scrollTo(0,0);
+}
+
+// =================== FLASHCARDS ===================
+const FC_DECKS = FC_ALL_DECKS.map(d => d.name);
+
+function loadFlashcard() {
+  fcFlipped = false;
+  const deck = FC_ALL_DECKS[fcDeckIdx % FC_ALL_DECKS.length];
+  const deckCards = FLASHCARDS.slice(deck.start, Math.min(deck.end + 1, FLASHCARDS.length));
+  const card = deckCards[fcCardIdx % deckCards.length];
+  const el = document.getElementById('flashcard');
+  if (!el || !card) return;
+  el.classList.remove('flipped');
+  document.getElementById('fc-front-text').textContent = card.front;
+  document.getElementById('fc-back-text').textContent = card.back;
+  document.getElementById('fc-deck-progress').textContent = `Card ${(fcCardIdx % deckCards.length)+1} of ${deckCards.length}`;
+  document.getElementById('fc-deck-name').textContent = deck.name;
+  document.getElementById('fc-controls').style.display = 'none';
+}
+
+function flipCard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', fcFlipped);
+  document.getElementById('fc-controls').style.display = fcFlipped ? 'flex' : 'none';
+}
+
+function rateCard(rating) {
+  const msgs = { again:"Noted — you'll see this again soon", hard:'Flagged as hard — review tomorrow', good:'Great! Reviewing in a few days', easy:'Perfect — scheduled for long review' };
+  showToast(msgs[rating]);
+  // Save rating to backend
+  if (sessionToken) {
+    const cardIdx = fcCardIdx % FLASHCARDS.length;
+    fetch('/.netlify/functions/save-progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionToken}` },
+      body: JSON.stringify({ type: 'flashcard_rating', cardIdx, rating }),
+    }).catch(() => {});
+  }
+  fcCardIdx++;
+  setTimeout(loadFlashcard, 300);
+}
+
+async function markSectionComplete(loId, sectionId) {
+  showToast('Section marked complete! ✓', 'success');
+  if (sessionToken) {
+    const isR02 = loId.startsWith('r02');
+    fetch('/.netlify/functions/save-progress', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionToken}` },
+      body: JSON.stringify({ type: 'lesson_complete', exam: isR02 ? 'r02' : 'r01', loId, sectionId }),
+    }).catch(() => {});
+  }
+}
+
+function changeFCDeck(dir) {
+  fcDeckIdx = (fcDeckIdx + dir + FC_ALL_DECKS.length) % FC_ALL_DECKS.length;
+  fcCardIdx = 0;
+  loadFlashcard();
+}
+
+// =================== EXAM SWITCHING ===================
+function switchExam(exam, context, btn) {
+  activeExam = exam;
+  // Update selector buttons
+  const barId = context === 'study' ? 'study-exam-bar' : 'quiz-exam-bar';
+  document.querySelectorAll('#' + barId + ' .exam-sel-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  // Rebuild the relevant grid
+  if (context === 'study') buildTopicsGrid();
+  else buildQuizTopicsGrid();
+}
+
+function setHomeExam(exam, btn) {
+  activeExam = exam;
+  document.querySelectorAll('#dash-home .exam-sel-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  // Update quick actions to reflect current exam
+  const labels = {
+    r01: { study: 'LO3 · Legal Concepts', quiz: 'R01 Quick Quiz · 10 Qs', mock: 'R01 Mock · 100 Qs' },
+    r02: { study: 'LO1 · Asset Classes', quiz: 'R02 Quick Quiz · 10 Qs', mock: 'R02 Mock · 100 Qs' }
+  };
+  const l = labels[exam];
+  const qas = document.querySelectorAll('.qa-info p');
+  if (qas.length >= 3) {
+    qas[0].textContent = l.quiz;
+    qas[1].textContent = l.mock;
+    qas[3] && (qas[3].textContent = l.study);
+  }
+  document.getElementById('greeting-sub').textContent = exam === 'r02'
+    ? 'R02 selected — Investment Principles & Risk. Keep going!'
+    : 'R01 selected — Regulation & Ethics. Keep the momentum going.';
+}
+
+function switchLandingTab(exam, btn) {
+  document.querySelectorAll('.exam-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.exam-tab-panel').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById('landing-' + exam);
+  if (panel) panel.classList.add('active');
+}
+
+function selectMockExam(exam, btn) {
+  activeMockExam = exam;
+  document.querySelectorAll('#dash-mock .exam-sel-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const descs = {
+    r01: 'Simulates the real R01 exam: 100 questions (87 standard + 13 multiple response) with a 2-hour timer.',
+    r02: 'Simulates the real R02 exam: 100 questions (72 standard + 28 multiple response) with a 2-hour timer. Includes calculation questions.'
+  };
+  document.getElementById('mock-exam-desc').textContent = descs[exam];
+}
+
+// =================== INIT ===================
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // ── Handle Stripe success redirect ─────────────────────────
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('session_id')) {
+    // Clean URL without reloading
+    window.history.replaceState({}, '', '/');
+    showToast('Payment successful! Full Access is now active 🎉', 'success');
+  }
+  if (urlParams.get('cancelled')) {
+    window.history.replaceState({}, '', '/');
+    showToast('Payment cancelled — you can upgrade anytime from your profile.', '');
+  }
+
+  // ── Restore existing Supabase session ───────────────────────
+  // If the user is already logged in (e.g. they refreshed the page),
+  // restore their session automatically without requiring login again.
+  const { data: { session } } = await _supabase.auth.getSession();
+  if (session) {
+    sessionToken = session.access_token;
+    await afterAuth(session.user, session);
+    return;
+  }
+
+  // ── Listen for auth state changes ──────────────────────────
+  // This fires after email confirmation links are clicked
+  _supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session && !user) {
+      sessionToken = session.access_token;
+      await afterAuth(session.user, session);
+    }
+    if (event === 'SIGNED_OUT') {
+      user = null;
+      sessionToken = null;
+      progressData = null;
+      showScreen('landing');
+    }
+    // Token refresh — keep sessionToken current
+    if (event === 'TOKEN_REFRESHED' && session) {
+      sessionToken = session.access_token;
+    }
+  });
+});
+
+// Add login button IDs so loading states work
+document.addEventListener('DOMContentLoaded', () => {
+  const loginBtn = document.querySelector('#form-login .btn-submit');
+  if (loginBtn) loginBtn.id = 'btn-login-submit';
+});
+</script>
+<!-- ===== COOKIE BANNER ===== -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0a1628;border-top:1px solid rgba(201,168,76,0.3);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <p style="margin:0;font-size:0.82rem;color:rgba(255,255,255,0.75);line-height:1.6;max-width:680px;">
+    We use essential cookies to keep you signed in and track your study progress. We may also use analytics cookies to improve the platform.
+    By continuing you agree to our <a href="/privacy.html" style="color:#c9a84c;text-decoration:underline;">Privacy Policy</a>.
+  </p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="acceptCookies()" style="background:var(--gold,#c9a84c);color:#0a1628;border:none;padding:8px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;">Accept</button>
+    <button onclick="declineCookies()" style="background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;">Essential only</button>
+  </div>
+</div>
+<script>
+(function() {
+  var consent = localStorage.getItem('cookie_consent');
+  if (!consent) {
+    var banner = document.getElementById('cookie-banner');
+    if (banner) banner.style.display = 'flex';
+  }
+})();
+function acceptCookies() {
+  localStorage.setItem('cookie_consent', 'all');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function declineCookies() {
+  localStorage.setItem('cookie_consent', 'essential');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

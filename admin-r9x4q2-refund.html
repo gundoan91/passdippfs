@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Refund Checker | PassDipPFS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --gold: #c9a84c;
+    --gold-light: #f5e9c8;
+    --emerald: #1a7a5e;
+    --emerald-light: #d4f0e3;
+    --crimson: #c0392b;
+    --crimson-light: #fdf0f0;
+    --amber: #b07d00;
+    --amber-light: #fff8e0;
+    --slate: #8a9ab5;
+    --slate-light: #b8c6d9;
+    --text: #1a2540;
+    --border: #e2e8f0;
+    --bg: #f5f7fa;
+    --white: #ffffff;
+    --shadow: 0 2px 12px rgba(10,22,40,0.08);
+    --radius: 12px;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* ── Header ── */
+  header {
+    background: var(--navy);
+    padding: 1rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  header .logo { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--gold); }
+  header .badge {
+    background: rgba(192,57,43,0.25); color: #f8a; border: 1px solid rgba(192,57,43,0.5);
+    font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 0.06em;
+  }
+
+  /* ── Main layout ── */
+  .page { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--navy); margin-bottom: 0.4rem; }
+  .subtitle { font-size: 0.9rem; color: var(--slate); margin-bottom: 2rem; }
+
+  /* ── Admin login ── */
+  #admin-login { max-width: 400px; }
+  .form-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 0.4rem; }
+  .form-input {
+    width: 100%; padding: 0.7rem 1rem; border: 1.5px solid var(--border);
+    border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--text); background: var(--white); transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  .form-input:focus { outline: none; border-color: var(--gold); }
+  .btn {
+    padding: 0.75rem 1.75rem; border-radius: 8px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s;
+  }
+  .btn-primary { background: var(--navy); color: #fff; }
+  .btn-primary:hover { background: var(--navy-mid); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-danger { background: var(--crimson); color: #fff; font-size: 0.85rem; padding: 0.5rem 1.2rem; }
+  .btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--navy); }
+  .error-msg { background: var(--crimson-light); color: var(--crimson); border: 1px solid #f0c0c0; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.88rem; margin-bottom: 1rem; display: none; }
+
+  /* ── Search bar ── */
+  #search-section { display: none; }
+  .search-row { display: flex; gap: 0.75rem; margin-bottom: 2rem; }
+  .search-row .form-input { margin-bottom: 0; flex: 1; }
+
+  /* ── Results ── */
+  #results { display: none; }
+  .user-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .user-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem; }
+  .user-name { font-size: 1.1rem; font-weight: 600; color: var(--navy); }
+  .user-email { font-size: 0.85rem; color: var(--slate); margin-top: 2px; font-family: 'DM Mono', monospace; }
+  .user-joined { font-size: 0.8rem; color: var(--slate); }
+
+  .verdict-box {
+    border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .verdict-box.eligible { background: var(--emerald-light); border: 1px solid #b5d9c5; }
+  .verdict-box.borderline { background: var(--amber-light); border: 1px solid #f0d080; }
+  .verdict-box.ineligible { background: var(--crimson-light); border: 1px solid #f0c0c0; }
+  .verdict-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .verdict-title { font-size: 0.9rem; font-weight: 600; }
+  .verdict-box.eligible .verdict-title { color: var(--emerald); }
+  .verdict-box.borderline .verdict-title { color: var(--amber); }
+  .verdict-box.ineligible .verdict-title { color: var(--crimson); }
+  .verdict-sub { font-size: 0.82rem; color: var(--slate); margin-top: 2px; }
+
+  /* ── Metrics grid ── */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+  .metric-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; }
+  .metric-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.4rem; }
+  .metric-value { font-size: 1.5rem; font-weight: 600; color: var(--navy); font-family: 'DM Mono', monospace; }
+  .metric-sub { font-size: 0.75rem; color: var(--slate); margin-top: 2px; }
+
+  /* ── Activity log ── */
+  .section-title { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .activity-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .activity-table th { text-align: left; padding: 0.5rem 0.75rem; color: var(--slate); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+  .activity-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--text); }
+  .activity-table tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem;
+    border-radius: 20px; font-family: 'DM Mono', monospace; letter-spacing: 0.03em;
+  }
+  .tag-quiz { background: #e8f0fe; color: #2563eb; }
+  .tag-lesson { background: var(--emerald-light); color: var(--emerald); }
+  .tag-flash { background: var(--gold-light); color: #7a5a10; }
+  .tag-exam { background: #f3e8ff; color: #7c3aed; }
+  .score-pass { color: var(--emerald); font-weight: 600; }
+  .score-fail { color: var(--crimson); font-weight: 600; }
+
+  .no-data { text-align: center; padding: 2rem; color: var(--slate); font-size: 0.9rem; }
+  .loading { text-align: center; padding: 2rem; color: var(--slate); }
+  .spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .action-row { display: flex; gap: 0.75rem; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .action-note { font-size: 0.82rem; color: var(--slate); }
+
+  .admin-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .admin-info { font-size: 0.85rem; color: var(--slate); }
+  .admin-info strong { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="logo">PassDipPFS</span>
+  <span class="badge">ADMIN · PRIVATE</span>
+</header>
+
+<div class="page">
+  <h1>Refund Checker</h1>
+  <p class="subtitle">Look up a subscriber's usage before deciding on a refund request.</p>
+
+  <!-- Admin login -->
+  <div id="admin-login">
+    <div id="login-error" class="error-msg"></div>
+    <label class="form-label" for="admin-email">Your admin email</label>
+    <input class="form-input" type="email" id="admin-email" placeholder="you@passr0exams.com">
+    <label class="form-label" for="admin-pass">Password</label>
+    <input class="form-input" type="password" id="admin-pass" placeholder="Your Supabase password">
+    <button class="btn btn-primary" id="login-btn" onclick="adminLogin()">Sign in</button>
+  </div>
+
+  <!-- Search section (shown after login) -->
+  <div id="search-section">
+    <div class="admin-bar">
+      <span class="admin-info">Signed in as <strong id="admin-name"></strong></span>
+      <button class="btn btn-outline" onclick="adminLogout()" style="font-size:0.85rem;padding:0.4rem 1rem;">Sign out</button>
+    </div>
+    <div class="search-row">
+      <input class="form-input" type="email" id="user-email" placeholder="Enter subscriber email address…" onkeydown="if(event.key==='Enter')lookupUser()">
+      <button class="btn btn-primary" id="search-btn" onclick="lookupUser()">Look up</button>
+    </div>
+    <div id="search-error" class="error-msg"></div>
+  </div>
+
+  <!-- Results -->
+  <div id="results"></div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://uiftvwvgrtmcaiondqhp.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpZnR2d3ZncnRtY2Fpb25kcWhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODc4NzEsImV4cCI6MjA5MzA2Mzg3MX0.XFK-sJJQ5rWSPuOHEyH3ixV4M-1-x84B-eFQG54jUTw';
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ── Thresholds ──────────────────────────────────────────────────
+const REFUND_THRESHOLDS = {
+  lessonsCompleted: 2,   // >2 = likely ineligible
+  quizzesTaken: 20,      // >20 questions attempted = likely ineligible
+  flashcardsRated: 15,   // >15 flashcards rated = notable usage
+};
+
+// ── Admin login ──────────────────────────────────────────────────
+async function adminLogin() {
+  const email = document.getElementById('admin-email').value.trim();
+  const pass  = document.getElementById('admin-pass').value;
+  const errEl = document.getElementById('login-error');
+  const btn   = document.getElementById('login-btn');
+
+  if (!email || !pass) { showErr(errEl, 'Please enter your email and password.'); return; }
+  btn.disabled = true; btn.textContent = 'Signing in…';
+
+  const { data, error } = await db.auth.signInWithPassword({ email, password: pass });
+  if (error) {
+    showErr(errEl, 'Sign-in failed: ' + error.message);
+    btn.disabled = false; btn.textContent = 'Sign in';
+    return;
+  }
+  document.getElementById('admin-login').style.display = 'none';
+  document.getElementById('search-section').style.display = 'block';
+  document.getElementById('admin-name').textContent = data.user.email;
+}
+
+async function adminLogout() {
+  await db.auth.signOut();
+  location.reload();
+}
+
+// ── Look up user ─────────────────────────────────────────────────
+async function lookupUser() {
+  const email = document.getElementById('user-email').value.trim().toLowerCase();
+  const errEl = document.getElementById('search-error');
+  const btn   = document.getElementById('search-btn');
+  const res   = document.getElementById('results');
+
+  errEl.style.display = 'none';
+  if (!email) { showErr(errEl, 'Please enter a subscriber email.'); return; }
+
+  btn.disabled = true; btn.textContent = 'Looking up…';
+  res.style.display = 'block';
+  res.innerHTML = '<div class="loading"><span class="spinner"></span>Fetching usage data…</div>';
+
+  try {
+    // 1. Find user profile by email
+    const { data: profiles, error: profileErr } = await db
+      .from('profiles')
+      .select('id, full_name, email, plan, subscription_status, created_at, exam_date')
+      .eq('email', email)
+      .limit(1);
+
+    if (profileErr) throw profileErr;
+    if (!profiles || profiles.length === 0) {
+      res.innerHTML = '<div class="user-card"><div class="no-data">⚠️ No account found for <strong>' + escHtml(email) + '</strong>. Check the email and try again.</div></div>';
+      btn.disabled = false; btn.textContent = 'Look up';
+      return;
+    }
+
+    const profile = profiles[0];
+    const userId  = profile.id;
+
+    // 2. Fetch all progress events for this user
+    const { data: events, error: eventsErr } = await db
+      .from('progress')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+      .limit(200);
+
+    if (eventsErr) throw eventsErr;
+
+    renderResults(profile, events || []);
+  } catch(e) {
+    res.innerHTML = '<div class="user-card"><div class="no-data" style="color:var(--crimson)">Error: ' + escHtml(e.message) + '</div></div>';
+  }
+
+  btn.disabled = false; btn.textContent = 'Look up';
+}
+
+// ── Render results ───────────────────────────────────────────────
+function renderResults(profile, events) {
+  const res = document.getElementById('results');
+
+  // Count usage metrics
+  const quizEvents     = events.filter(e => e.type === 'quiz_attempt');
+  const lessonEvents   = events.filter(e => e.type === 'lesson_complete');
+  const flashEvents    = events.filter(e => e.type === 'flashcard_rating');
+  const mockEvents     = events.filter(e => e.type === 'quiz_attempt' && e.mode === 'mock');
+
+  const totalQsAttempted = quizEvents.reduce((sum, e) => sum + (e.total || 0), 0);
+  const uniqueLessons    = new Set(lessonEvents.map(e => e.lo_id || e.loId || e.section_id)).size;
+  const lastActive       = events.length > 0 ? events[0].created_at : null;
+  const joinedDate       = profile.created_at ? new Date(profile.created_at) : null;
+  const daysSinceJoined  = joinedDate ? Math.floor((Date.now() - joinedDate) / 86400000) : null;
+
+  // Verdict logic
+  let verdict, verdictClass, verdictIcon, verdictSub;
+  const overLessonThreshold = uniqueLessons > REFUND_THRESHOLDS.lessonsCompleted;
+  const overQuizThreshold   = totalQsAttempted > REFUND_THRESHOLDS.quizzesTaken;
+  const over14Days          = daysSinceJoined !== null && daysSinceJoined > 14;
+
+  if (over14Days && (overLessonThreshold || overQuizThreshold)) {
+    verdict = 'Likely ineligible for refund'; verdictClass = 'ineligible'; verdictIcon = '✗';
+    verdictSub = `Account is ${daysSinceJoined} days old (over 14-day window) and has significant usage.`;
+  } else if (over14Days) {
+    verdict = 'Outside 14-day window'; verdictClass = 'ineligible'; verdictIcon = '✗';
+    verdictSub = `Account is ${daysSinceJoined} days old — beyond the 14-day refund window.`;
+  } else if (overLessonThreshold || overQuizThreshold) {
+    verdict = 'Usage above threshold — review carefully'; verdictClass = 'borderline'; verdictIcon = '⚠';
+    verdictSub = `Within 14 days but has completed ${uniqueLessons} lesson(s) and attempted ${totalQsAttempted} questions.`;
+  } else {
+    verdict = 'Likely eligible for refund'; verdictClass = 'eligible'; verdictIcon = '✓';
+    verdictSub = `Within 14 days with minimal usage (${uniqueLessons} lessons, ${totalQsAttempted} questions attempted).`;
+  }
+
+  // Build activity rows (last 30 events)
+  const recentEvents = events.slice(0, 30);
+  const activityRows = recentEvents.length === 0
+    ? '<tr><td colspan="5" class="no-data">No activity recorded yet.</td></tr>'
+    : recentEvents.map(e => {
+        const date = e.created_at ? new Date(e.created_at).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'2-digit' }) : '—';
+        const time = e.created_at ? new Date(e.created_at).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }) : '';
+        let tag = '', detail = '';
+        if (e.type === 'quiz_attempt') {
+          tag = '<span class="tag tag-quiz">Quiz</span>';
+          const pct = e.pct !== undefined ? e.pct : (e.score && e.total ? Math.round(e.score/e.total*100) : null);
+          const scoreClass = pct !== null ? (pct >= 70 ? 'score-pass' : 'score-fail') : '';
+          detail = `${escHtml(e.topic || e.exam || '—')} · ${e.score||0}/${e.total||0} <span class="${scoreClass}">${pct !== null ? pct+'%' : ''}</span>`;
+        } else if (e.type === 'lesson_complete') {
+          tag = '<span class="tag tag-lesson">Lesson</span>';
+          detail = escHtml(e.lo_id || e.loId || e.exam || '—') + (e.section_id ? ' · ' + escHtml(e.section_id) : '');
+        } else if (e.type === 'flashcard_rating') {
+          tag = '<span class="tag tag-flash">Flashcard</span>';
+          detail = 'Card #' + (e.card_idx !== undefined ? e.card_idx : (e.cardIdx || '?')) + ' · ' + escHtml(e.rating || '—');
+        } else if (e.type === 'update_exam_date') {
+          tag = '<span class="tag" style="background:#f0f0f0;color:#888">Settings</span>';
+          detail = 'Exam date updated';
+        } else {
+          tag = '<span class="tag" style="background:#f0f0f0;color:#888">' + escHtml(e.type||'—') + '</span>';
+          detail = '—';
+        }
+        return `<tr>
+          <td style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--slate)">${date}<br><span style="font-size:0.75rem">${time}</span></td>
+          <td>${tag}</td>
+          <td>${detail}</td>
+          <td style="font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--slate)">${escHtml(e.exam||'—')}</td>
+        </tr>`;
+      }).join('');
+
+  res.innerHTML = `
+    <div class="user-card">
+      <div class="user-header">
+        <div>
+          <div class="user-name">${escHtml(profile.full_name || 'Name not set')}</div>
+          <div class="user-email">${escHtml(profile.email)}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:0.8rem;font-weight:600;color:${profile.plan==='paid'?'var(--emerald)':'var(--slate)'}">
+            ${profile.plan === 'paid' ? '✓ Full Access' : 'Free Plan'}
+          </div>
+          <div class="user-joined">Joined ${joinedDate ? joinedDate.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '—'} · ${daysSinceJoined !== null ? daysSinceJoined + ' days ago' : ''}</div>
+          ${profile.subscription_status ? `<div style="font-size:0.78rem;color:var(--slate);margin-top:2px">Sub: ${escHtml(profile.subscription_status)}</div>` : ''}
+        </div>
+      </div>
+
+      <div class="verdict-box ${verdictClass}">
+        <div class="verdict-icon">${verdictIcon}</div>
+        <div>
+          <div class="verdict-title">${verdict}</div>
+          <div class="verdict-sub">${verdictSub}</div>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">Lessons completed</div>
+          <div class="metric-value" style="color:${overLessonThreshold?'var(--crimson)':'var(--navy)'}">${uniqueLessons}</div>
+          <div class="metric-sub">Threshold: >${REFUND_THRESHOLDS.lessonsCompleted}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Questions attempted</div>
+          <div class="metric-value" style="color:${overQuizThreshold?'var(--crimson)':'var(--navy)'}">${totalQsAttempted}</div>
+          <div class="metric-sub">Threshold: >${REFUND_THRESHOLDS.quizzesTaken}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Quiz sessions</div>
+          <div class="metric-value">${quizEvents.length}</div>
+          <div class="metric-sub">Mock exams: ${mockEvents.length}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Flashcards rated</div>
+          <div class="metric-value">${flashEvents.length}</div>
+          <div class="metric-sub">Threshold: >${REFUND_THRESHOLDS.flashcardsRated}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Total events</div>
+          <div class="metric-value">${events.length}</div>
+          <div class="metric-sub">All recorded activity</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Last active</div>
+          <div class="metric-value" style="font-size:0.9rem">${lastActive ? new Date(lastActive).toLocaleDateString('en-GB',{day:'2-digit',month:'short'}) : 'Never'}</div>
+          <div class="metric-sub">${lastActive ? new Date(lastActive).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) : '—'}</div>
+        </div>
+      </div>
+
+      <div class="section-title">Recent activity (last 30 events)</div>
+      <table class="activity-table">
+        <thead><tr><th>Date</th><th>Type</th><th>Detail</th><th>Exam</th></tr></thead>
+        <tbody>${activityRows}</tbody>
+      </table>
+
+      <div class="action-row">
+        <span class="action-note">Refund decision is yours — this data is for reference only.</span>
+        <button class="btn btn-danger" onclick="confirmDelete('${escHtml(profile.id)}', '${escHtml(profile.email)}')">🗑 Delete account &amp; data</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── Delete user account & data ───────────────────────────────────
+async function confirmDelete(userId, email) {
+  const confirmed = window.confirm(
+    `DELETE ACCOUNT\n\nThis will permanently delete all progress data for:\n${email}\n\nThe Supabase auth account must be deleted separately from your Supabase dashboard (Auth → Users).\n\nDelete all progress data now?`
+  );
+  if (!confirmed) return;
+
+  const res = document.getElementById('results');
+  try {
+    // Delete progress rows
+    const { error: progErr } = await db.from('progress').delete().eq('user_id', userId);
+    if (progErr) throw progErr;
+
+    // Delete profile row
+    const { error: profErr } = await db.from('profiles').delete().eq('id', userId);
+    if (profErr) throw profErr;
+
+    res.innerHTML = `<div class="user-card"><div class="no-data" style="color:var(--emerald)">
+      ✓ All progress and profile data deleted for <strong>${escHtml(email)}</strong>.<br><br>
+      <span style="font-size:0.82rem;color:var(--slate)">Final step: go to your <a href="https://supabase.com/dashboard/project/uiftvwvgrtmcaiondqhp/auth/users" target="_blank" style="color:var(--navy)">Supabase Auth dashboard</a> and delete the auth user manually to complete the GDPR erasure.</span>
+    </div></div>`;
+  } catch(e) {
+    alert('Error deleting data: ' + e.message);
+  }
+}
+
+// ── Helpers ──────────────────────────────────────────────────────
+function showErr(el, msg) { el.textContent = msg; el.style.display = 'block'; }
+function escHtml(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Check existing session on load
+(async () => {
+  const { data: { session } } = await db.auth.getSession();
+  if (session) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('search-section').style.display = 'block';
+    document.getElementById('admin-name').textContent = session.user.email;
+  }
+})();
+</script>
+</body>
+</html>

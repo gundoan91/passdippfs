@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | PassDipPFS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2d4a;
+    --gold: #c9973a;
+    --gold-light: #f5ecd6;
+    --text: #1a1a2e;
+    --muted: #5a6272;
+    --border: #e2e4ea;
+    --bg: #fafaf8;
+    --white: #ffffff;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  nav {
+    background: var(--navy);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  nav a { color: #fff; text-decoration: none; font-size: 0.9rem; opacity: 0.75; transition: opacity 0.2s; }
+  nav a:hover { opacity: 1; }
+  nav .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--gold); margin-right: auto; text-decoration: none; opacity: 1; }
+  .hero {
+    background: var(--navy);
+    padding: 4rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; margin-bottom: 0.75rem; }
+  .hero p { color: rgba(255,255,255,0.65); font-size: 1.05rem; max-width: 480px; margin: 0 auto; }
+  .container { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .card h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--gold-light); }
+  .info-row { display: flex; align-items: flex-start; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); min-width: 160px; padding-top: 2px; }
+  .info-value { font-size: 1rem; color: var(--text); }
+  .info-value a { color: var(--navy); text-decoration: none; border-bottom: 1px solid var(--gold); }
+  .info-value a:hover { color: var(--gold); }
+  .badge {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--navy);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-top: 0.25rem;
+  }
+  .response-box {
+    background: linear-gradient(135deg, var(--gold-light) 0%, #fdf6e8 100%);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .response-box p { font-size: 0.95rem; color: var(--navy); line-height: 1.7; }
+  .response-box strong { font-weight: 600; }
+  footer { text-align: center; padding: 2rem; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); background: var(--white); }
+  footer a { color: var(--navy); text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">PassDipPFS</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/refunds.html">Refunds</a>
+</nav>
+
+<div class="hero">
+  <h1>Contact Us</h1>
+  <p>Questions about your subscription, content, or account? We're here to help.</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>Business Information</h2>
+    <div class="info-row">
+      <span class="info-label">Trading Name</span>
+      <div class="info-value">
+        PassDipPFS
+        <br><span class="badge">CII Exam Preparation</span>
+      </div>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Operated By</span>
+      <span class="info-value">Gyundoan Yumer</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Email Address</span>
+      <span class="info-value"><a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Website</span>
+      <span class="info-value"><a href="https://passr0exams.com">passr0exams.com</a></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Business Location</span>
+      <span class="info-value">Luton, England, United Kingdom</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Registration</span>
+      <span class="info-value">Sole Trader — registered with HMRC<br><span style="font-size:0.85rem; color: var(--muted);">VAT registration not applicable (below threshold)</span></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Get in Touch</h2>
+    <div class="info-row">
+      <span class="info-label">General Enquiries</span>
+      <span class="info-value"><a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Account & Billing</span>
+      <span class="info-value"><a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Content Feedback</span>
+      <span class="info-value"><a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a></span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Refund Requests</span>
+      <span class="info-value"><a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a> — please include your order reference</span>
+    </div>
+
+    <div class="response-box">
+      <p><strong>Response time:</strong> We aim to respond to all enquiries within <strong>2 business days</strong>. For urgent billing matters, please include "URGENT" in your subject line.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 PassDipPFS | Gyundoan Yumer
+  <br style="margin-bottom:0.5rem">
+  <a href="/terms.html">Terms &amp; Conditions</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/refunds.html">Refund Policy</a>
+  <a href="/contact.html">Contact</a>
+</footer>
+
+</body>
+</html>

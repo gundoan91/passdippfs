@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refund Policy | PassDipPFS</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2d4a;
+    --gold: #c9973a;
+    --gold-light: #f5ecd6;
+    --text: #1a1a2e;
+    --muted: #5a6272;
+    --border: #e2e4ea;
+    --bg: #fafaf8;
+    --white: #ffffff;
+    --green: #1a6b3c;
+    --green-light: #e8f5ee;
+    --red: #8b1a1a;
+    --red-light: #fdf0f0;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.8; }
+  nav { background: var(--navy); padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; }
+  nav a { color: #fff; text-decoration: none; font-size: 0.9rem; opacity: 0.75; transition: opacity 0.2s; }
+  nav a:hover { opacity: 1; }
+  nav .logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--gold); margin-right: auto; text-decoration: none; opacity: 1; }
+  .hero { background: var(--navy); padding: 4rem 2rem 5rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 60px; background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%); }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: #fff; margin-bottom: 0.75rem; }
+  .hero p { color: rgba(255,255,255,0.65); font-size: 1rem; }
+  .container { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  .last-updated { font-size: 0.85rem; color: var(--muted); margin-bottom: 2.5rem; padding: 0.6rem 1rem; background: var(--gold-light); border-radius: 8px; display: inline-block; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: var(--navy); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold-light); }
+  h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin: 1.5rem 0 0.5rem; }
+  p { font-size: 0.975rem; color: var(--text); margin-bottom: 1rem; }
+  ul { margin: 0.5rem 0 1rem 1.5rem; }
+  ul li { font-size: 0.975rem; margin-bottom: 0.4rem; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0 2rem; }
+  .summary-card { border-radius: 12px; padding: 1.5rem; }
+  .summary-card.yes { background: var(--green-light); border: 1px solid #b5d9c5; }
+  .summary-card.no { background: var(--red-light); border: 1px solid #f0c0c0; }
+  .summary-card h3 { margin: 0 0 0.75rem; font-size: 1rem; }
+  .summary-card.yes h3 { color: var(--green); }
+  .summary-card.no h3 { color: var(--red); }
+  .summary-card ul { margin-left: 1.2rem; }
+  .summary-card ul li { font-size: 0.875rem; color: var(--text); margin-bottom: 0.35rem; }
+  .steps { counter-reset: steps; }
+  .step { counter-increment: steps; display: flex; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .step:last-child { border-bottom: none; }
+  .step-num { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; }
+  .step-content h3 { margin: 0 0 0.4rem; font-size: 0.95rem; color: var(--navy); }
+  .step-content p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+  .highlight-box { background: var(--gold-light); border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .highlight-box p { margin: 0; font-size: 0.95rem; color: var(--navy); }
+  .timeline { display: flex; gap: 0; margin: 1.5rem 0; overflow: hidden; border-radius: 10px; }
+  .timeline-item { flex: 1; padding: 1rem; text-align: center; }
+  .timeline-item:nth-child(1) { background: var(--green-light); }
+  .timeline-item:nth-child(2) { background: #fff8e8; }
+  .timeline-item:nth-child(3) { background: var(--red-light); }
+  .timeline-item .days { font-size: 1.3rem; font-weight: 600; color: var(--navy); display: block; }
+  .timeline-item .label { font-size: 0.8rem; color: var(--muted); }
+  a { color: var(--navy); }
+  footer { text-align: center; padding: 2rem; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--border); background: var(--white); }
+  footer a { color: var(--navy); text-decoration: none; margin: 0 0.5rem; }
+  @media (max-width: 520px) {
+    .summary-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">PassDipPFS</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/terms.html">Terms</a>
+  <a href="/privacy.html">Privacy</a>
+  <a href="/refunds.html">Refunds</a>
+</nav>
+
+<div class="hero">
+  <h1>Refund Policy</h1>
+  <p>We want you to feel confident buying from us. Here's exactly how refunds work.</p>
+</div>
+
+<div class="container">
+  <span class="last-updated">Last updated: 1 May 2025</span>
+
+  <p>This Refund Policy applies to all purchases made on <a href="https://passr0exams.com">passr0exams.com</a>. Because we sell digital products (online exam preparation content), this policy is designed to be fair to both you and us.</p>
+
+  <div class="highlight-box">
+    <p><strong>Quick summary:</strong> You have <strong>14 days</strong> to request a full refund on any purchase, provided you have not completed more than <strong>2 lessons</strong> or attempted more than <strong>20 practice questions</strong>. After 14 days, or if you have exceeded these thresholds, we handle refunds case-by-case.</p>
+  </div>
+
+  <h2>When You're Eligible for a Refund</h2>
+
+  <div class="summary-grid">
+    <div class="summary-card yes">
+      <h3>✓ Eligible</h3>
+      <ul>
+        <li>Within 14 days of purchase</li>
+        <li>Fewer than 2 lessons completed</li>
+        <li>Fewer than 20 questions attempted</li>
+        <li>Technical fault preventing access</li>
+        <li>Duplicate accidental purchase</li>
+        <li>Content significantly misrepresented</li>
+      </ul>
+    </div>
+    <div class="summary-card no">
+      <h3>✗ Not Eligible</h3>
+      <ul>
+        <li>More than 14 days after purchase</li>
+        <li>More than 2 lessons completed</li>
+        <li>More than 20 questions attempted</li>
+        <li>Exam failed (content is revision only)</li>
+        <li>Changed mind after heavy use</li>
+        <li>Forgetting to cancel subscription</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Refund Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="days">Days 0–14</span>
+      <span class="label">Full refund available (if under 20% used)</span>
+    </div>
+    <div class="timeline-item">
+      <span class="days">Days 15–30</span>
+      <span class="label">Partial refund considered case-by-case</span>
+    </div>
+    <div class="timeline-item">
+      <span class="days">Day 30+</span>
+      <span class="label">Refunds not available except for technical issues</span>
+    </div>
+  </div>
+
+  <h2>How to Request a Refund</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3>Email us</h3>
+        <p>Send a refund request to <a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a> with the subject line "Refund Request".</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3>Include your order details</h3>
+        <p>Provide your full name, email address used at purchase, order reference number, and reason for the refund request.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3>We'll review within 3 business days</h3>
+        <p>We'll confirm whether your refund is approved and let you know the next steps.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h3>Refund processed in 5–10 business days</h3>
+        <p>Approved refunds are returned to your original payment method. Your account access will be revoked upon refund.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Subscriptions</h2>
+  <p>Monthly subscriptions can be cancelled at any time from your account dashboard. Cancellation takes effect at the end of your current billing period — you will not be charged again, and you keep access until the period ends.</p>
+  <p>We do not offer refunds for partial months. If you are charged after believing you cancelled, please contact us promptly and we will investigate.</p>
+
+  <h2>Technical Issues</h2>
+  <p>If you are unable to access content you have paid for due to a technical fault on our side, we will either resolve the issue promptly or offer a full refund regardless of the 14-day window. Please contact us at <a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a> with a description of the problem.</p>
+
+  <h2>Consumer Rights</h2>
+  <p>Under the UK Consumer Contracts Regulations 2013, you normally have a 14-day right to cancel digital content purchases. However, by accessing the content (starting a quiz, viewing a lesson), you acknowledge that we begin supplying the digital service immediately and that this cancellation right may be reduced accordingly. We maintain our 14-day / 20% policy as a courtesy above the statutory minimum.</p>
+  <p>Nothing in this policy affects your statutory rights under UK consumer law.</p>
+
+  <h2>Contact Us</h2>
+  <p>For any refund queries, email <a href="mailto:hello@passr0exams.com">hello@passr0exams.com</a> or visit our <a href="/contact.html">Contact page</a>. We aim to respond within 2 business days.</p>
+</div>
+
+<footer>
+  &copy; 2025 PassDipPFS | Gyundoan Yumer
+  <br style="margin-bottom:0.5rem">
+  <a href="/terms.html">Terms &amp; Conditions</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="/refunds.html">Refund Policy</a>
+  <a href="/contact.html">Contact</a>
+</footer>
+
+</body>
+</html>
