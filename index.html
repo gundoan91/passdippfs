@@ -2286,6 +2286,7 @@ footer-landing {
     }
   });
   // Test connection on load
+  console.log('Supabase client initialised for:', SUPABASE_URL);
 </script>
 
 <script>
@@ -2750,38 +2751,6 @@ function selectPlan(el, plan) {
   document.getElementById('btn-register-submit').textContent = plan === 'free' ? 'Create Free Account' : 'Pay £20/month & Create Account';
 }
 
-// =================== SECURITY UTILITIES ===================
-function escapeHtml(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;');
-}
-
-// Login brute-force protection — 5 attempts = 15 min lockout
-let _loginAttempts = 0;
-let _lockoutUntil = 0;
-
-function checkLoginRateLimit() {
-  if (Date.now() < _lockoutUntil) {
-    const mins = Math.ceil((_lockoutUntil - Date.now()) / 60000);
-    showToast(`Too many failed attempts. Try again in ${mins} minute${mins>1?'s':''}`, 'error');
-    return false;
-  }
-  return true;
-}
-function recordFailedLogin() {
-  _loginAttempts++;
-  if (_loginAttempts >= 5) {
-    _lockoutUntil = Date.now() + (15 * 60 * 1000);
-    _loginAttempts = 0;
-  }
-}
-function resetLoginAttempts() { _loginAttempts = 0; _lockoutUntil = 0; }
-
 // =================== SUPABASE AUTH ===================
 // Holds the Supabase session token for API calls
 let sessionToken = null;
@@ -2791,20 +2760,19 @@ async function doLogin() {
   const email = document.getElementById('login-email').value.trim();
   const pass = document.getElementById('login-password').value;
   if (!email || !pass) { showToast('Please enter your email and password', 'error'); return; }
-  if (!checkLoginRateLimit()) return;
 
   setBtnLoading('btn-login-submit', true, 'Signing in...');
   try {
+    // Test Supabase connection first
     const { data, error } = await _supabase.auth.signInWithPassword({ email, password: pass });
     if (error) throw error;
-    resetLoginAttempts();
     sessionToken = data.session.access_token;
     await afterAuth(data.user, data.session);
   } catch (err) {
-    recordFailedLogin();
+    console.error('Login error:', err);
     const msg = err.message || 'Login failed';
     if (msg.includes('fetch') || msg.includes('network') || msg.includes('Failed')) {
-      showToast('Cannot reach server — check your internet connection', 'error');
+      showToast('Cannot reach Supabase — check your internet connection', 'error');
     } else if (msg.includes('Invalid login')) {
       showToast('Wrong email or password', 'error');
     } else if (msg.includes('Email not confirmed')) {
@@ -2841,7 +2809,8 @@ async function doRegister() {
     if (data.session) {
       sessionToken = data.session.access_token;
       await afterAuth(data.user, data.session);
-      if (selectedPlan === 'full') { await upgradePlan(); }
+      if (selectedPlan === 'r01') { await upgradePlan('r01'); }
+    else if (selectedPlan === 'r02') { await upgradePlan('r02'); }
     } else {
       closeModal();
       showToast('Account created! Check your email to confirm, then sign in.', 'success');
@@ -2876,7 +2845,9 @@ async function afterAuth(supabaseUser, session) {
         id: supabaseUser.id,
         name: progressData.profile?.full_name || supabaseUser.email.split('@')[0],
         email: supabaseUser.email,
-        plan: progressData.profile?.plan === 'paid' ? 'full' : 'free',
+        plan: progressData.profile?.plan || 'free',
+        r01: progressData.profile?.r01_active === true,
+        r02: progressData.profile?.r02_active === true,
         examdate: progressData.profile?.exam_date || '2026-05-29',
         subscriptionStatus: progressData.profile?.subscription_status,
       };
@@ -2887,6 +2858,8 @@ async function afterAuth(supabaseUser, session) {
         name: supabaseUser.user_metadata?.full_name || supabaseUser.email.split('@')[0],
         email: supabaseUser.email,
         plan: 'free',
+        r01: false,
+        r02: false,
         examdate: '2026-05-29',
       };
       progressData = null;
@@ -2898,6 +2871,8 @@ async function afterAuth(supabaseUser, session) {
       name: supabaseUser.user_metadata?.full_name || supabaseUser.email.split('@')[0],
       email: supabaseUser.email,
       plan: 'free',
+      r01: false,
+      r02: false,
       examdate: '2026-05-29',
     };
     progressData = null;
@@ -2949,12 +2924,13 @@ function setBtnLoading(id, loading, text) {
 function setupDashboard() {
   const initials = user.name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
   document.getElementById('dash-avatar').textContent = initials;
-  document.getElementById('dash-username').textContent = escapeHtml(user.name.split(' ')[0]);
-  document.getElementById('greeting-name').textContent = escapeHtml(user.name.split(' ')[0]);
+  document.getElementById('dash-username').textContent = user.name.split(' ')[0];
+  document.getElementById('greeting-name').textContent = user.name.split(' ')[0];
   document.getElementById('profile-avatar-big').textContent = initials;
   document.getElementById('profile-name-big').textContent = user.name;
   document.getElementById('profile-email-big').textContent = user.email;
-  document.getElementById('profile-plan-badge').textContent = user.plan === 'full' ? 'Full Access ✓' : 'Free Plan';
+  const activeSubs = [user.r01 && 'R01', user.r02 && 'R02'].filter(Boolean);
+  document.getElementById('profile-plan-badge').textContent = activeSubs.length ? activeSubs.join(' + ') + ' Active ✓' : 'Free Plan';
   document.getElementById('profile-plan-badge').className = 'profile-plan' + (user.plan === 'full' ? '' : ' plan-badge-free');
   if (user.examdate) document.getElementById('profile-examdate').value = user.examdate;
 
@@ -2989,7 +2965,7 @@ function updateSubInfo() {
   if (!el) return;
   const status = user.subscriptionStatus;
   const isCancelling = status === 'cancelling';
-  const isActive = user.plan === 'full';
+  const isActive = user.plan === 'full' || user.r01 || user.r02;
 
   el.innerHTML = `
     <p style="color:var(--slate); font-size:0.92rem; margin-bottom:16px;">
@@ -3064,11 +3040,11 @@ function setMobActive(btn) {
 
 function buildTopicsGrid() {
   const grid = document.getElementById('topics-grid');
-  const isPaid = user && user.plan === 'full';
+  const hasAccess = user && (user[activeExam] || user.plan === 'full');
   const topics = activeExam === 'r02' ? TOPICS_R02 : TOPICS;
   const freeIds = activeExam === 'r02' ? ['r02lo1'] : ['lo1','lo2'];
   grid.innerHTML = topics.map(t => {
-    const locked = !isPaid && !freeIds.includes(t.id);
+    const locked = !hasAccess && !freeIds.includes(t.id);
     const lessonAvail = activeExam === 'r02' ? !!LESSONS_R02[t.id] : !!LESSONS[t.id];
     return `<div class="topic-card ${t.cls}" onclick="${locked ? 'showUpgradePrompt()' : `openLesson('${t.id}')`}">
       <div class="tc-top"><span class="tc-num">${t.num}</span><span class="tc-q-count">${t.qs} exam Qs${locked?'  🔒':''}</span></div>
@@ -3084,12 +3060,12 @@ function buildTopicsGrid() {
 
 function buildQuizTopicsGrid() {
   const grid = document.getElementById('quiz-topics-grid');
-  const isPaid = user && user.plan === 'full';
+  const hasAccess = user && (user[activeExam] || user.plan === 'full');
   const topics = activeExam === 'r02' ? TOPICS_R02 : TOPICS;
   const freeIds = activeExam === 'r02' ? ['r02lo1','r02lo2','r02lo4'] : ['lo1','lo2','lo3'];
   const qBank = activeExam === 'r02' ? QUESTIONS_R02 : QUESTIONS;
   grid.innerHTML = topics.map(t => {
-    const locked = !isPaid && !freeIds.includes(t.id);
+    const locked = !hasAccess && !freeIds.includes(t.id);
     const hasQs = qBank[t.id] && qBank[t.id].length > 0;
     return `<div class="topic-card ${t.cls}">
       <div class="tc-top"><span class="tc-num">${t.num}</span><span class="tc-q-count">${t.qs} exam Qs${locked?'  🔒':''}</span></div>
@@ -3143,22 +3119,39 @@ function buildLOPerformance() {
 }
 
 function showUpgradePrompt() {
-  showToast('Upgrade to Full Access to unlock all R01, R02, R03 & R04 content');
+  showToast('Subscribe to this exam unit to unlock all content — £20/month');
   showDashSection('profile', null);
 }
 
-async function upgradePlan() {
+// Price IDs from Stripe
+const STRIPE_PRICES = {
+  r01: 'price_1TatzBQcWP7oEhvX74OixjUC',
+  r02: 'price_1Tau15QcWP7oEhvX14SAdmBJ',
+};
+
+async function upgradePlan(exam) {
   if (!user?.id) { showModal('register'); return; }
-  showToast('Redirecting to secure checkout...', '');
+  if (!exam) { showToast('Please select an exam to purchase', 'error'); return; }
+  if (user[exam]) { showToast('You already have access to ' + exam.toUpperCase(), ''); return; }
+
+  const examNames = { r01: 'R01 — Regulation & Ethics', r02: 'R02 — Investment Principles' };
+  showToast('Redirecting to Stripe checkout for ' + (examNames[exam] || exam) + '...', '');
+
   try {
     const res = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionToken}` },
-      body: JSON.stringify({ userId: user.id, userEmail: user.email, userName: user.name }),
+      body: JSON.stringify({
+        userId: user.id,
+        userEmail: user.email,
+        userName: user.name,
+        exam,
+        priceId: STRIPE_PRICES[exam],
+      }),
     });
     const data = await res.json();
     if (data.url) {
-      window.location.href = data.url; // Redirect to Stripe Checkout
+      window.location.href = data.url;
     } else {
       throw new Error(data.error || 'Could not create checkout session');
     }
@@ -3654,7 +3647,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (urlParams.get('session_id')) {
     // Clean URL without reloading
     window.history.replaceState({}, '', '/');
-    showToast('Payment successful! Full Access is now active 🎉', 'success');
+    showToast('Payment successful! Your exam access is now active 🎉', 'success');
   }
   if (urlParams.get('cancelled')) {
     window.history.replaceState({}, '', '/');
