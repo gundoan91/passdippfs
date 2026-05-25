@@ -2731,6 +2731,15 @@ function backToDash() {
 // =================== AUTH ===================
 function showModal(tab='login') {
   document.getElementById('modal-overlay').classList.remove('hidden');
+  // If coming from a specific exam button, update register form accordingly
+  if (tab === 'register' && (selectedPlan === 'r01' || selectedPlan === 'r02')) {
+    const examLabel = selectedPlan === 'r01' ? 'R01 — Regulation & Ethics' : 'R02 — Investment Principles';
+    document.querySelector('.modal-plan-select').style.display = 'none';
+    document.getElementById('payment-section').classList.add('hidden');
+    document.getElementById('btn-register-submit').textContent = `Create Account & Pay £20/mo for ${examLabel}`;
+  } else {
+    document.querySelector('.modal-plan-select').style.display = '';
+  }
   switchTab(tab);
 }
 function closeModal() { document.getElementById('modal-overlay').classList.add('hidden'); }
@@ -2809,8 +2818,7 @@ async function doRegister() {
     if (data.session) {
       sessionToken = data.session.access_token;
       await afterAuth(data.user, data.session);
-      if (selectedPlan === 'r01') { await upgradePlan('r01'); }
-    else if (selectedPlan === 'r02') { await upgradePlan('r02'); }
+      if (selectedPlan === 'r01' || selectedPlan === 'r02') { await upgradePlan(selectedPlan); }
     } else {
       closeModal();
       showToast('Account created! Check your email to confirm, then sign in.', 'success');
@@ -3130,7 +3138,7 @@ const STRIPE_PRICES = {
 };
 
 async function upgradePlan(exam) {
-  if (!user?.id) { showModal('register'); return; }
+  if (!user?.id) { selectedPlan = exam; showModal('register'); return; }
   if (!exam) { showToast('Please select an exam to purchase', 'error'); return; }
   if (user[exam]) { showToast('You already have access to ' + exam.toUpperCase(), ''); return; }
 
