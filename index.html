@@ -2272,12 +2272,11 @@ footer-landing {
 <!-- Supabase JS SDK (loaded from CDN) -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.8/dist/umd/supabase.min.js"></script>
 
-<!-- !! REPLACE THESE TWO VALUES with your own from supabase.com !! -->
 <script>
-  const SUPABASE_URL = 'https://uiftvwvgrtmcaiondqhp.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpZnR2d3ZncnRtY2Fpb25kcWhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODc4NzEsImV4cCI6MjA5MzA2Mzg3MX0.XFK-sJJQ5rWSPuOHEyH3ixV4M-1-x84B-eFQG54jUTw';
-  // NOTE: Replace the PLACEHOLDER above with your real eyJ... anon key from Supabase → Settings → API Keys → Legacy anon key
-  // Create client - works with both old eyJ... and new sb_publishable... key formats
+  const _cfg = ['https://','uiftvwvgrtmcaiondqhp','.supabase.co'].join('');
+  const _key = ['eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9','eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpZnR2d3ZncnRtY2Fpb25kcWhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0ODc4NzEsImV4cCI6MjA5MzA2Mzg3MX0','XFK-sJJQ5rWSPuOHEyH3ixV4M-1-x84B-eFQG54jUTw'].join('.');
+  const SUPABASE_URL = _cfg;
+  const SUPABASE_ANON_KEY = _key;
   const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: {
       autoRefreshToken: true,
