@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — PassR0Exams | CII DipPFS Study Tips & Guides</title>
+<meta name="description" content="Exam tips, study strategies and CII syllabus updates for DipPFS candidates sitting R01, R02, R03 and R04.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-mid: #122040;
+  --gold: #c9a84c;
+  --gold-light: #e8c96a;
+  --slate: #8a9ab5;
+  --slate-light: #b8c6d9;
+  --white: #f8f6f0;
+  --text: #1a2540;
+  --radius: 16px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--navy); color:var(--white); min-height:100vh; }
+
+/* NAV */
+.nav-bar { display:flex; justify-content:space-between; align-items:center; padding:20px 40px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.nav-logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900; color:var(--white); text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.btn-nav { background:transparent; border:1px solid rgba(255,255,255,0.2); color:var(--slate-light); padding:8px 18px; border-radius:8px; cursor:pointer; font-size:0.88rem; text-decoration:none; transition:all 0.2s; }
+.btn-nav:hover { border-color:var(--gold); color:var(--gold); }
+
+/* HERO */
+.blog-hero { padding:80px 40px 60px; text-align:center; max-width:700px; margin:0 auto; }
+.blog-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.2rem); font-weight:900; margin-bottom:16px; }
+.blog-hero h1 span { color:var(--gold); }
+.blog-hero p { color:var(--slate-light); font-size:1rem; line-height:1.6; }
+
+/* ARTICLES GRID */
+.blog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px; max-width:1100px; margin:0 auto; padding:0 40px 80px; }
+
+.article-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); overflow:hidden; transition:border-color 0.2s, transform 0.2s; }
+.article-card:hover { border-color:var(--gold); transform:translateY(-4px); }
+.article-card a { text-decoration:none; display:block; }
+
+.article-tag { font-size:0.75rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; padding:24px 24px 0; margin-bottom:10px; }
+.article-title { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:700; color:var(--white); padding:0 24px; margin-bottom:12px; line-height:1.4; }
+.article-excerpt { color:var(--slate-light); font-size:0.88rem; line-height:1.6; padding:0 24px; margin-bottom:20px; }
+.article-read { color:var(--gold); font-size:0.85rem; font-weight:600; padding:0 24px 24px; display:block; }
+
+/* FULL ARTICLE */
+.article-full { display:none; max-width:720px; margin:0 auto; padding:60px 40px 80px; }
+.article-full.active { display:block; }
+.article-full-tag { font-size:0.78rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px; }
+.article-full h1 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; margin-bottom:24px; line-height:1.2; }
+.article-full .meta { color:var(--slate); font-size:0.85rem; margin-bottom:40px; padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.article-full h2 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--white); margin:36px 0 16px; }
+.article-full p { color:var(--slate-light); line-height:1.8; margin-bottom:20px; font-size:0.97rem; }
+.article-full ul, .article-full ol { color:var(--slate-light); line-height:1.8; margin-bottom:20px; padding-left:24px; font-size:0.97rem; }
+.article-full li { margin-bottom:8px; }
+.article-full .tip-box { background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:12px; padding:20px 24px; margin:28px 0; }
+.article-full .tip-box p { color:var(--white); margin:0; }
+.back-btn { display:inline-flex; align-items:center; gap:8px; color:var(--slate-light); font-size:0.88rem; cursor:pointer; margin-bottom:40px; transition:color 0.2s; background:none; border:none; }
+.back-btn:hover { color:var(--gold); }
+
+/* FOOTER */
+footer { border-top:1px solid rgba(255,255,255,0.08); padding:32px 40px; text-align:center; color:var(--slate); font-size:0.82rem; }
+footer a { color:var(--slate-light); text-decoration:none; margin:0 10px; }
+footer a:hover { color:var(--gold); }
+
+@media(max-width:600px) {
+  .nav-bar { padding:16px 20px; }
+  .blog-hero { padding:50px 20px 40px; }
+  .blog-grid { padding:0 20px 60px; grid-template-columns:1fr; }
+  .article-full { padding:40px 20px 60px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-bar">
+  <a href="/" class="nav-logo">PassR<span>0</span>Exams</a>
+  <a href="/" class="btn-nav">← Back to site</a>
+</nav>
+
+<!-- BLOG LIST VIEW -->
+<div id="blog-list">
+  <div class="blog-hero">
+    <h1>Study smarter. <span>Pass first time.</span></h1>
+    <p>Exam tips, study strategies and CII syllabus guides for DipPFS candidates.</p>
+  </div>
+
+  <div class="blog-grid">
+
+    <div class="article-card">
+      <a href="#how-to-pass-r02" onclick="showArticle('how-to-pass-r02')">
+        <div class="article-tag">Exam Tips · R02</div>
+        <div class="article-title">How to Pass R02 Investment Principles First Time</div>
+        <div class="article-excerpt">R02 has a reputation for being the hardest of the R0 units. Here's a structured 6-week approach to tackling the syllabus.</div>
+        <span class="article-read">Read more →</span>
+      </a>
+    </div>
+
+    <div class="article-card">
+      <a href="#cii-exam-day-tips" onclick="showArticle('cii-exam-day-tips')">
+        <div class="article-tag">Study Strategy · All Units</div>
+        <div class="article-title">CII Exam Day: 10 Tips to Maximise Your Score</div>
+        <div class="article-excerpt">From time management to question elimination — what experienced CII candidates wish they'd known before sitting their first exam.</div>
+        <span class="article-read">Read more →</span>
+      </a>
+    </div>
+
+    <div class="article-card">
+      <a href="#dipfps-vs-cfa" onclick="showArticle('dipfps-vs-cfa')">
+        <div class="article-tag">Career · DipPFS</div>
+        <div class="article-title">DipPFS vs CFA: Which Qualification is Right for You?</div>
+        <div class="article-excerpt">Both are respected finance qualifications — but they serve very different careers. Here's how to choose the right path.</div>
+        <span class="article-read">Read more →</span>
+      </a>
+    </div>
+
+    <div class="article-card">
+      <a href="#r01-study-guide" onclick="showArticle('r01-study-guide')">
+        <div class="article-tag">Study Guide · R01</div>
+        <div class="article-title">The Complete R01 Study Guide: Regulation & Ethics</div>
+        <div class="article-excerpt">R01 is the gateway to DipPFS. Master the FCA framework, conduct rules and key legislation with this structured breakdown.</div>
+        <span class="article-read">Read more →</span>
+      </a>
+    </div>
+
+    <div class="article-card">
+      <a href="#spaced-repetition" onclick="showArticle('spaced-repetition')">
+        <div class="article-tag">Study Strategy · All Units</div>
+        <div class="article-title">Why Spaced Repetition is the Best Way to Study for CII Exams</div>
+        <div class="article-excerpt">The science behind spaced repetition and how to apply it to your DipPFS revision — with a practical weekly schedule.</div>
+        <span class="article-read">Read more →</span>
+      </a>
+    </div>
+
+    <div class="article-card">
+      <a href="#paraplanning-career" onclick="showArticle('paraplanning-career')">
+        <div class="article-tag">Career · Paraplanning</div>
+        <div class="article-title">Breaking into Paraplanning: What Employers Actually Want</div>
+        <div class="article-excerpt">DipPFS is the entry ticket — but what else do firms look for? A practical guide to landing your first paraplanning role.</div>
+        <span class="article-read">Read more →</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FULL ARTICLES -->
+
+<div class="article-full" id="article-how-to-pass-r02">
+  <button class="back-btn" onclick="showList()">← Back to all articles</button>
+  <div class="article-full-tag">Exam Tips · R02</div>
+  <h1>How to Pass R02 Investment Principles First Time</h1>
+  <div class="meta">By PassR0Exams · May 2026 · 6 min read</div>
+
+  <p>R02 Investment Principles and Risk is widely regarded as the most technically demanding of the R0 units. Unlike R01, which is heavily legislation-based, R02 requires genuine understanding of investment concepts — you can't just memorise definitions and pass.</p>
+
+  <p>Here's a structured 6-week plan that works.</p>
+
+  <h2>Week 1–2: Build the Foundation</h2>
+  <p>Start with the macroeconomic framework — economic cycles, monetary policy, inflation and interest rates. These underpin almost every other topic in R02. If you understand why interest rates affect bond prices, the rest starts to make sense.</p>
+  <p>Key areas to cover: GDP, inflation measures (CPI vs RPI), Bank of England base rate, yield curves.</p>
+
+  <div class="tip-box"><p>💡 <strong>Tip:</strong> Draw the economic cycle diagram from memory every day for a week. It should become instinctive.</p></div>
+
+  <h2>Week 3: Asset Classes Deep Dive</h2>
+  <p>This is where most candidates spend too little time. You need to understand not just what each asset class is, but its risk/return profile, liquidity characteristics, and how it behaves in different economic environments.</p>
+  <ul>
+    <li>Equities — dividends, P/E ratios, market capitalisation</li>
+    <li>Fixed income — gilts, corporate bonds, duration, convexity</li>
+    <li>Property — direct vs indirect, illiquidity premium</li>
+    <li>Alternatives — hedge funds, private equity, commodities</li>
+    <li>Cash — real returns, counterparty risk</li>
+  </ul>
+
+  <h2>Week 4: Risk and Portfolio Theory</h2>
+  <p>Modern Portfolio Theory is central to R02. You need to understand correlation, diversification, the efficient frontier, and the Capital Asset Pricing Model (CAPM). Questions on Sharpe ratio, alpha, beta and standard deviation appear regularly.</p>
+
+  <div class="tip-box"><p>💡 <strong>Tip:</strong> Learn the Sharpe ratio formula: (Return − Risk-free rate) ÷ Standard deviation. You will be tested on this.</p></div>
+
+  <h2>Week 5: Investment Products and Wrappers</h2>
+  <p>OEICs, unit trusts, investment trusts, ETFs — understand how each is structured, priced and regulated. Know the difference between dual and single pricing, and why investment trusts can trade at a discount or premium to NAV.</p>
+
+  <h2>Week 6: Mock Exams and Gap Filling</h2>
+  <p>Do at least three full mock exams under timed conditions. Review every wrong answer and trace it back to a specific topic gap. Spend the final week filling those gaps, not re-reading everything.</p>
+
+  <p>The CII R02 exam is 100 questions in 2 hours — that's 72 seconds per question. Pace yourself and don't dwell on questions you're unsure about. Flag and return.</p>
+</div>
+
+<div class="article-full" id="article-cii-exam-day-tips">
+  <button class="back-btn" onclick="showList()">← Back to all articles</button>
+  <div class="article-full-tag">Study Strategy · All Units</div>
+  <h1>CII Exam Day: 10 Tips to Maximise Your Score</h1>
+  <div class="meta">By PassR0Exams · May 2026 · 5 min read</div>
+
+  <p>You've put in the revision. Now it's about executing on exam day. These 10 tips come from candidates who've sat multiple CII exams and know what makes the difference between a pass and a fail.</p>
+
+  <ol>
+    <li><strong>Arrive early.</strong> CII exams are held at Pearson VUE centres. Arrive 20 minutes early — you'll need to check in, store your belongings and settle before the clock starts.</li>
+    <li><strong>Read every question twice.</strong> CII questions are precise. A single word changes the answer. "Which of the following is NOT..." catches out candidates who skim-read.</li>
+    <li><strong>Use elimination.</strong> Even if you don't know the right answer, you can often eliminate two obviously wrong options. That takes you from 25% to 50% odds on a guess.</li>
+    <li><strong>Don't spend too long on one question.</strong> Flag uncertain questions and move on. Return with fresh eyes at the end.</li>
+    <li><strong>Watch for absolutes.</strong> Options containing "always", "never", "all" or "none" are usually wrong. Financial regulation rarely works in absolutes.</li>
+    <li><strong>Trust your first instinct.</strong> Research consistently shows that changing answers at the last minute reduces scores. Only change if you have a specific reason.</li>
+    <li><strong>Manage the 87:13 split.</strong> R02 has roughly 87 standard questions and 13 multiple-response questions. Multi-response questions require all correct options — partial marks aren't awarded.</li>
+    <li><strong>Sleep the night before.</strong> No last-minute cramming. Your brain consolidates memory during sleep. A tired candidate who crammed at midnight will underperform a rested one every time.</li>
+    <li><strong>Eat before you go.</strong> A 2-hour exam on an empty stomach is brutal. Eat something substantial an hour before.</li>
+    <li><strong>Review your answers.</strong> If you finish early, go back and review flagged questions. Don't leave early — most passes are built in the last 10 minutes.</li>
+  </ol>
+
+  <div class="tip-box"><p>💡 The CII pass mark for R0 units is typically around 65–70%. You don't need to be perfect — you need to be consistent.</p></div>
+</div>
+
+<div class="article-full" id="article-dipfps-vs-cfa">
+  <button class="back-btn" onclick="showList()">← Back to all articles</button>
+  <div class="article-full-tag">Career · DipPFS</div>
+  <h1>DipPFS vs CFA: Which Qualification is Right for You?</h1>
+  <div class="meta">By PassR0Exams · May 2026 · 7 min read</div>
+
+  <p>If you're entering the UK financial services industry, you'll quickly encounter two qualifications above all others: the CII Level 4 Diploma in Financial Planning (DipPFS) and the CFA Institute's Chartered Financial Analyst designation. Both are respected — but they serve very different purposes.</p>
+
+  <h2>What is DipPFS?</h2>
+  <p>The DipPFS is a UK-specific qualification regulated by the FCA. It's the minimum requirement to give regulated financial advice in the UK and is the standard entry point for financial planners, paraplanners and IFAs. It consists of six units (R01–R06) and can be completed in 12–24 months of part-time study.</p>
+
+  <h2>What is the CFA?</h2>
+  <p>The CFA is an internationally recognised designation focused on investment analysis and portfolio management. It has three levels and typically takes 3–5 years to complete. Pass rates are low — around 40–50% per level — and it requires roughly 300 hours of study per level.</p>
+
+  <h2>Which Should You Choose?</h2>
+  <p>The answer depends entirely on your career goal:</p>
+  <ul>
+    <li><strong>Financial adviser / paraplanner / IFA:</strong> DipPFS. It's the regulatory requirement and will get you hired.</li>
+    <li><strong>Fund manager / investment analyst / portfolio manager:</strong> CFA. It's the global standard for investment roles.</li>
+    <li><strong>Both:</strong> If you want to be a wealth manager advising HNW clients on bespoke portfolios, having both is increasingly common.</li>
+  </ul>
+
+  <div class="tip-box"><p>💡 <strong>Bottom line:</strong> If you want to give regulated financial advice in the UK, DipPFS comes first. You can always add CFA later if your career takes you toward investment management.</p></div>
+
+  <h2>Cost Comparison</h2>
+  <p>DipPFS: Approximately £800–1,200 in CII exam fees across all units, plus study materials. CFA: Registration and exam fees total approximately $2,500–3,500 USD across all three levels, plus study materials.</p>
+
+  <p>DipPFS is the faster, more affordable path to a career in UK financial planning. Start there.</p>
+</div>
+
+<div class="article-full" id="article-r01-study-guide">
+  <button class="back-btn" onclick="showList()">← Back to all articles</button>
+  <div class="article-full-tag">Study Guide · R01</div>
+  <h1>The Complete R01 Study Guide: Regulation & Ethics</h1>
+  <div class="meta">By PassR0Exams · May 2026 · 8 min read</div>
+
+  <p>R01 Financial Services, Regulation and Ethics is the gateway to DipPFS. It establishes the regulatory framework within which every other unit operates. Many candidates underestimate it — don't make that mistake.</p>
+
+  <h2>The FCA Framework</h2>
+  <p>The Financial Conduct Authority is the centrepiece of R01. You need to understand its objectives (consumer protection, market integrity, competition), its powers (authorisation, supervision, enforcement) and its approach to regulation (principles-based, outcomes-focused).</p>
+  <p>Know the difference between authorised and appointed representative status, and the implications of each for a firm's regulatory obligations.</p>
+
+  <h2>The Conduct Rules</h2>
+  <p>The FCA's conduct rules apply to all regulated firms and their staff. Individual conduct rules cover honesty, care and skill, cooperation with regulators, and market conduct. Senior Manager conduct rules add additional obligations for those in senior functions.</p>
+
+  <div class="tip-box"><p>💡 Learn the individual conduct rules verbatim — they appear frequently in R01 questions.</p></div>
+
+  <h2>Key Legislation</h2>
+  <ul>
+    <li>Financial Services and Markets Act 2000 (FSMA) — the foundation of UK financial regulation</li>
+    <li>Financial Services Act 2012 — created the FCA and PRA</li>
+    <li>Consumer Duty (2023) — the FCA's new outcomes-based standard</li>
+    <li>Money Laundering Regulations 2017 — AML obligations</li>
+    <li>Data Protection Act 2018 / UK GDPR — data handling</li>
+  </ul>
+
+  <h2>Ethics and Professional Standards</h2>
+  <p>R01 tests your understanding of ethical principles in financial services — treating customers fairly, managing conflicts of interest, whistleblowing obligations and the expectations of a professional adviser. These questions are often scenario-based and require applying principles to situations rather than recalling facts.</p>
+
+  <h2>Study Tips for R01</h2>
+  <p>R01 is primarily memorisation-heavy. Flashcards work well. Focus on: the FCA's three statutory objectives, the 11 Principles for Business, the individual conduct rules, and the key provisions of FSMA 2000. Use past questions to identify which topics get the most exam weight.</p>
+</div>
+
+<div class="article-full" id="article-spaced-repetition">
+  <button class="back-btn" onclick="showList()">← Back to all articles</button>
+  <div class="article-full-tag">Study Strategy · All Units</div>
+  <h1>Why Spaced Repetition is the Best Way to Study for CII Exams</h1>
+  <div class="meta">By PassR0Exams · May 2026 · 5 min read</div>
+
+  <p>Most candidates study for CII exams the wrong way. They read the textbook chapter by chapter, highlight things, and then try to cram in the week before the exam. This approach has a critical flaw: the forgetting curve.</p>
+
+  <h2>The Forgetting Curve</h2>
+  <p>Hermann Ebbinghaus demonstrated in the 19th century that we forget roughly 50% of new information within an hour, and 90% within a week — unless we review it. The good news is that each time you review material, the forgetting curve flattens. Eventually, the information becomes permanent.</p>
+
+  <h2>How Spaced Repetition Works</h2>
+  <p>Instead of reviewing everything every day, spaced repetition has you review material at increasing intervals — today, tomorrow, in 3 days, in a week, in a month. Items you find difficult get reviewed more frequently; items you know well get reviewed less often.</p>
+
+  <div class="tip-box"><p>💡 PassR0Exams uses spaced repetition in its flashcard system — cards you struggle with reappear sooner, cards you know well appear less often.</p></div>
+
+  <h2>A Practical Weekly Schedule for R02</h2>
+  <ol>
+    <li><strong>Monday:</strong> Study new topic (e.g. bond pricing)</li>
+    <li><strong>Tuesday:</strong> Review Monday's material + new topic</li>
+    <li><strong>Wednesday:</strong> Quiz on Monday + Tuesday material + new topic</li>
+    <li><strong>Thursday–Friday:</strong> New topics + review of earlier material</li>
+    <li><strong>Weekend:</strong> Full mock exam questions on the week's topics</li>
+  </ol>
+
+  <p>This approach is more demanding than passive reading but dramatically more effective. Candidates who use spaced repetition consistently report feeling genuinely prepared on exam day — not just hoping for the best.</p>
+</div>
+
+<div class="article-full" id="article-paraplanning-career">
+  <button class="back-btn" onclick="showList()">← Back to all articles</button>
+  <div class="article-full-tag">Career · Paraplanning</div>
+  <h1>Breaking into Paraplanning: What Employers Actually Want</h1>
+  <div class="meta">By PassR0Exams · May 2026 · 6 min read</div>
+
+  <p>Paraplanning is one of the most accessible entry points into financial planning — and one of the most underrated career paths. But the market is competitive, and having DipPFS (or working toward it) is just the starting point.</p>
+
+  <h2>What Paraplanners Actually Do</h2>
+  <p>A paraplanner supports financial advisers by conducting research, preparing suitability reports, analysing client portfolios and ensuring recommendations are compliant. It's technical, detail-oriented work that requires both financial knowledge and strong writing skills.</p>
+
+  <h2>What Employers Look For</h2>
+  <p>Beyond DipPFS progress, firms consistently hire for:</p>
+  <ul>
+    <li><strong>Suitability report writing</strong> — can you explain a complex recommendation in plain English?</li>
+    <li><strong>Cashflow modelling</strong> — familiarity with tools like Voyant or Truth is increasingly valued</li>
+    <li><strong>Platform knowledge</strong> — understanding of how major platforms (Transact, Nucleus, Quilter) work</li>
+    <li><strong>Attention to detail</strong> — FCA compliance requirements mean errors are costly</li>
+    <li><strong>Communication</strong> — paraplanners liaise with advisers, clients and providers daily</li>
+  </ul>
+
+  <h2>How to Stand Out</h2>
+  <p>The candidates who get hired aren't always the most qualified — they're the ones who demonstrate genuine interest in the profession. Read the FCA's consumer duty guidance. Follow industry publications like Money Marketing. Understand what a suitability report looks like.</p>
+
+  <div class="tip-box"><p>💡 Consider volunteering to help with financial literacy programmes or getting work experience in a financial planning firm while studying. It signals commitment and gives you real talking points in interviews.</p></div>
+
+  <h2>Salary Expectations</h2>
+  <p>Entry-level paraplanning roles in the UK typically start at £25,000–£32,000. With 2–3 years of experience and full DipPFS, £35,000–£45,000 is achievable. Senior paraplanners and those with additional qualifications can earn £50,000+.</p>
+
+  <p>It's a solid foundation for a long-term career in financial planning — and for many, the stepping stone to becoming a qualified adviser.</p>
+</div>
+
+<footer>
+  <p style="margin-bottom:12px;">
+    <a href="/">Home</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/contact.html">Contact</a>
+  </p>
+  <p>PassR0Exams is an independent study platform. Not affiliated with or endorsed by the Chartered Insurance Institute.</p>
+</footer>
+
+<script>
+function showArticle(id) {
+  document.getElementById('blog-list').style.display = 'none';
+  document.querySelectorAll('.article-full').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('article-' + id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showList() {
+  document.getElementById('blog-list').style.display = 'block';
+  document.querySelectorAll('.article-full').forEach(a => a.classList.remove('active'));
+  window.scrollTo(0,0);
+}
+
+// Handle direct URL hash on load
+window.addEventListener('load', () => {
+  const hash = window.location.hash.replace('#','');
+  if (hash) showArticle(hash);
+});
+</script>
+</body>
+</html>
