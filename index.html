@@ -1502,12 +1502,13 @@ footer-landing {
       <div class="logo">PassDipPFS <span class="logo-badge">CII Prep</span></div>
       <div class="nav-links">
         <span style="background:rgba(201,168,76,0.15);color:var(--gold);border:1px solid rgba(201,168,76,0.4);padding:6px 14px;border-radius:20px;font-size:0.82rem;font-weight:600;font-family:'DM Mono',monospace;">🚧 Beta — Coming Soon</span>
+        <button class="btn-nav" onclick="showModal('login')" style="margin-left:8px;">Sign In</button>
       </div>
     </nav>
 
     <section class="hero">
       <div class="hero-tag">▸ DipPFS · R01 · R02 · 2025/2026 Syllabus · R03, R04 &amp; R05 coming soon</div>
-      <h1>Pass your <span style="font-variant-numeric:slashed-zero;font-family:'DM Mono',monospace;font-size:inherit;font-weight:900;">R0</span> exams<br><em>first time.</em></h1>
+      <h1>Pass your <span style="font-variant-numeric:slashed-zero;font-family:'DM Mono',monospace;font-size:inherit;font-weight:900;">R0</span> exams</h1>
       <p>Structured lessons, adaptive quizzes, and mock exams built to the exact CII DipPFS syllabus — starting with R01 and R02. R03, R04 and R05 coming soon. Study smarter — not longer.</p>
       <div class="hero-cta">
         <div style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);border-radius:14px;padding:18px 28px;text-align:center;">
@@ -1569,7 +1570,7 @@ footer-landing {
     </section>
 
     <section class="exams-tabs-section">
-      <h2 class="section-title">R0 exams — <span>available now</span></h2>
+      <h2 class="section-title">R<span style="font-variant-numeric:slashed-zero;font-family:'DM Mono',monospace;font-size:inherit;font-weight:900;">0</span> exams — <span>available now</span></h2>
       <div class="exam-tab-btns">
         <button class="exam-tab-btn active" onclick="switchLandingTab('r01',this)">R01 — Regulation &amp; Ethics</button>
         <button class="exam-tab-btn" onclick="switchLandingTab('r02',this)">R02 — Investment Principles</button>
@@ -1698,43 +1699,7 @@ footer-landing {
       </div>
     </section>
 
-    <section class="pricing-section">
-      <h2 class="section-title">Simple <span>pricing</span></h2>
-      <p style="text-align:center;color:var(--slate-light);margin-bottom:32px;font-size:0.95rem;">One price per exam unit. Only pay for what you're studying.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-name">R01 — Regulation &amp; Ethics</div>
-          <div class="pricing-price">£20<span> / month</span></div>
-          <ul class="pricing-features">
-            <li>All 11 LO lessons</li>
-            <li>100 practice questions</li>
-            <li>Full mock exams (timed)</li>
-            <li>Flashcard review deck</li>
-            <li>Progress tracking</li>
-            <li>Cancel anytime</li>
-          </ul>
-          <button class="btn-plan" onclick="upgradePlan('r01')">Get Started — R01</button>
-        </div>
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Available at Launch</div>
-          <div class="pricing-name">R02 — Investment Principles</div>
-          <div class="pricing-price">£20<span> / month</span></div>
-          <ul class="pricing-features">
-            <li>All 9 LO lessons</li>
-            <li>100 practice questions</li>
-            <li>Full mock exams (timed)</li>
-            <li>Flashcard review deck</li>
-            <li>Progress tracking</li>
-            <li>Cancel anytime</li>
-          </ul>
-          <button class="btn-plan" onclick="upgradePlan('r02')">Get Started — R02</button>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:32px;padding:20px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:14px;">
-        <div style="color:var(--gold);font-weight:700;margin-bottom:8px;">🔜 Coming Soon: R03 — Personal Taxation, R04 — Pensions &amp; R05 — Financial Protection</div>
-        <div style="color:var(--slate-light);font-size:0.88rem;">Each unit priced at £20/month. Subscribe to individual exams as you need them.</div>
-      </div>
-    </section>
+    
 
     <div style="border-top:1px solid rgba(255,255,255,0.08); padding:40px 0 32px; text-align:center; color:var(--slate); font-size:0.82rem;">
       <p style="margin-bottom:20px;">
@@ -1760,7 +1725,7 @@ footer-landing {
 
     <div class="modal-tabs" id="modal-tabs">
       <button class="modal-tab active" onclick="switchTab('login')">Sign In</button>
-      <button class="modal-tab" onclick="switchTab('register')">Create Account</button>
+      
     </div>
 
     <!-- Login Form -->
@@ -1775,7 +1740,7 @@ footer-landing {
       </div>
       <button class="btn-submit" onclick="doLogin()">Sign In</button>
       <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--slate);">
-        Don't have an account? <a href="#" onclick="switchTab('register')" style="color:var(--navy);font-weight:600;">Sign up free</a>
+        
       </p>
       <p style="text-align:center;margin-top:8px;font-size:0.78rem;">
         <a href="#" onclick="sendPasswordReset()" style="color:var(--slate);">Forgot your password?</a>
@@ -2178,11 +2143,11 @@ footer-landing {
               <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
                   <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R01 — Regulation &amp; Ethics</span>
-                  <button class="btn-primary" onclick="upgradePlan('r01')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>
+                  
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
                   <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R02 — Investment Principles</span>
-                  <button class="btn-primary" onclick="upgradePlan('r02')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>
+                  
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
                   <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R04 — Pensions 🔜</span>
@@ -2793,7 +2758,7 @@ async function doLogin() {
   }
 }
 
-async function doRegister() {
+async function doRegister_disabled() {
   const name = document.getElementById('reg-name').value.trim();
   const email = document.getElementById('reg-email').value.trim();
   const pass = document.getElementById('reg-password').value;
@@ -2983,13 +2948,13 @@ function updateSubInfo() {
         <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R01 — Regulation &amp; Ethics</span>
         ${isActive
           ? `<span style="color:var(--emerald);font-size:0.82rem;font-weight:600;">✓ Active</span>`
-          : `<button class="btn-primary" onclick="upgradePlan('r01')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>`}
+          : ``}
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;">
         <span style="font-weight:600;color:var(--navy);font-size:0.9rem;">R02 — Investment Principles</span>
         ${isActive
           ? `<span style="color:var(--emerald);font-size:0.82rem;font-weight:600;">✓ Active</span>`
-          : `<button class="btn-primary" onclick="upgradePlan('r02')" style="padding:8px 16px;font-size:0.82rem;">£20/mo</button>`}
+          : ``}
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--off-white);border-radius:10px;opacity:0.5;">
         <span style="font-weight:600;color:var(--slate);font-size:0.9rem;">R03 — Personal Taxation 🔜</span>
